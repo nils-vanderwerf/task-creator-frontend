@@ -8,9 +8,9 @@ const tasksReducer = (state = [], action) => {
             return [
                 ...state,
                 {
-                    id: action.id,
-                    title: action.title,
-                    completed: false
+                    id: action.task.id,
+                    title: action.task.title,
+                    description: action.task.description,
                 }
             ]
         case UPDATE_TASK:

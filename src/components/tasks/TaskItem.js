@@ -1,16 +1,18 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import {Link} from 'react-router-dom'
-import { closeDeleteConfirm, deleteConfirmMessage } from '../../redux/actions/deleteActions'
-import DeleteButton from '../DeleteButton'
-import {deleteTask} from '../../redux/actions/taskActions'
 
 // import taskActions from '../../redux/actions/taskAction';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import taskActions from '../../redux/actions/taskActions';
 
 const TaskItem = (props) => {
-   
-    const handleDeleteTask = () => {
-      deleteConfirmMessage(props.task)
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+    const handleDeleteTask = async () => {
+      await dispatch(taskActions.deleteTaskFromDB({task: props.task}))
+      history.push('/tasks');
     } 
 
     return (
@@ -27,26 +29,10 @@ const TaskItem = (props) => {
             <Link to={ { pathname: `/tasks/${props.task.id}/edit` }}>
                 <button> Edit </button>
             </Link>
-           
-            <DeleteButton
-                confirmMessageDisplay={props.confirmMessageDisplay}
-                closeDeleteConfirm={props.closeDeleteConfirm}
-                item={props.task}
-            >
-            </DeleteButton>
+            <button onClick={handleDeleteTask}>Delete</button>
         </li>
         </>
     )
 }
 
-const mapStateToProps = (state) => ({
-    confirmMessageDisplay: state.delete.confirmMessageDisplay
-})
-
-const mapDispatchToProps = (dispatch) => ({
-    deleteConfirmMessage: (item) => dispatch(deleteConfirmMessage(item)),
-    closeDeleteConfirm: () => dispatch(closeDeleteConfirm()),
-    deleteTask: (id) => dispatch(deleteTask(id))
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(TaskItem)
+export default TaskItem
