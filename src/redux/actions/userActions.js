@@ -49,8 +49,8 @@ const newUserToDB = userObj => dispatch => {
     .then(result => result.json())
     .then(data => {
       console.log("data", data)
-      dispatch(setUserAction(data.user));
       localStorage.setItem('token', data.token);
+      dispatch(setUserAction(data.user));
     })
     .catch(error => console.log(error))
 };
