@@ -38,8 +38,6 @@ const Signup = props => {
   console.log("destructured:", signupForm.user)
   const { username, password } = signupForm.user;
 
-
-
   // Component code
   return (
     <form onSubmit={handleSubmit}>
