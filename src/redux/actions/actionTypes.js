@@ -15,5 +15,10 @@ export const UPDATE_TASK = 'UPDATE_TASK'
 export const TASK_COMPLETED = 'TASK_COMPLETED'
 export const DELETE_TASK = 'DELETE_TASK'
 
+//CONFIRMATION DELETE MESSAGE BOX
+export const DISPLAY_DELETE_CONFIRM = 'DELETE_TASK'
+export const CLOSE_DELETE_CONFIRM = 'CLOSE_DELETE_CONFIRM'
+
 export const GET_TASKS_URL = BASE_URL + '/tasks';
 export const CREATE_TASK_URL = BASE_URL + '/create-new-task';
+

@@ -6,7 +6,7 @@ import TaskItem from './TaskItem'
 const TaskList = () => {
     const tasks = useSelector(state => state.tasksReducer)
 
-    console.log(tasks)
+    
     const dispatch = useDispatch()
   
     useEffect(() => {
@@ -17,7 +17,8 @@ const TaskList = () => {
         <div>
         <h1>Your Tasks</h1>
             <ul className="task-list">
-                {tasks.map(
+                {console.log(tasks.tasks[0])}
+                {tasks.tasks.map(
                     task => <TaskItem key={task.id} task={task}/>)
                 }
             </ul>
