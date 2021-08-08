@@ -2,10 +2,17 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 
 // import taskActions from '../../redux/actions/taskAction';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import taskActions from '../../redux/actions/taskActions';
 
 const TaskItem = (props) => {
-    const handleDeleteTask = () => {
-      // taskActions.deleteTaskFromDB
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+    const handleDeleteTask = async () => {
+      await dispatch(taskActions.deleteTaskFromDB({task: props.task}))
+      history.push('/tasks');
     } 
 
     return (
