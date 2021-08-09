@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import userActions from '../redux/actions/userActions.js';
 import { Navbar, Nav } from 'react-bootstrap';
+import './nav.css'
 
 const NavBar = () => {
   const dispatch = useDispatch();

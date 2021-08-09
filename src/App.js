@@ -6,9 +6,10 @@ import Login from './components/pages/auth/Login'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import userActions from './redux/actions/userActions';
 import NavBar from './components/NavBar'
-import TaskList from './components/tasks/TaskList'
-import InputTaskForm from './components/tasks/InputTaskForm'
-import ShowTask from './components/tasks/ShowTask'
+import TaskList from './components/pages/tasks/TaskList'
+import InputTaskForm from './components/pages/tasks/InputTaskForm'
+import ShowTask from './components/pages/tasks/ShowTask'
+import './App.css'
 
 const App = () => {
   const currentUser = useSelector(state => state.currentUser)

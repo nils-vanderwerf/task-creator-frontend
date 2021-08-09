@@ -13,3 +13,7 @@ h1.auth-header {
 button {
     width: 100%;
 }
+
+nav.navbar.bg-dark {
+    color: #fff;
+}

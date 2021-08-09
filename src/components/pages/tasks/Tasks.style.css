@@ -1,0 +1,5 @@
+div.task li {
+    background-color: #f2f2f2;
+    list-style: none;
+    display: inline-block;
+}

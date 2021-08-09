@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import TaskList from './tasks/TaskList';
+import TaskList from './pages/tasks/TaskList';
 import userActions from '../redux/actions/userActions'
 
 const Home = (props) => {

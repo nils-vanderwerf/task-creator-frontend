@@ -2,8 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useParams, useHistory } from 'react-router-dom';
-import taskActions from '../../redux/actions/taskActions';
-import userActions from '../../redux/actions/userActions';                                                                                                                                                          
+import taskActions from '../../../redux/actions/taskActions';
+import userActions from '../../../redux/actions/userActions';                                                                                                                                                          
 const InputTaskForm = (props) => {
   const dispatch = useDispatch()
   const currentUser = useSelector(state => state.currentUser.id)

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { connect, useDispatch, useSelector } from 'react-redux'
 import { useLocation, useParams } from 'react-router-dom'
-import { getAllTasks } from '../../redux/actions/taskActions'
+import { getAllTasks } from '../../../redux/actions/taskActions'
 
 const ShowTask = (props) => {
     // const location = useLocation()

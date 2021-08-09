@@ -1,0 +1,7 @@
+nav.navbar.bg-dark {
+  height: 50px;  
+}
+
+nav.navbar.bg-dark a {
+    color: #fff;
+}
