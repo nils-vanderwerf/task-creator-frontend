@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Home from './components/Home'
-import Signup from './components/Signup'
+import Signup from './components/pages/signup/Signup'
 import Login from './components/Login'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import userActions from './redux/actions/userActions';

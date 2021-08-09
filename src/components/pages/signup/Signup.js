@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import {Jumbotron}from 'react-bootstrap'
 import { useDispatch } from 'react-redux';
-import userActions from '../redux/actions/userActions';                                                                                                                                                          
+import userActions from '../../../redux/actions/userActions';
+import './Signup.style.css'          
+import {Button } from 'react-bootstrap'                                                
 const Signup = props => {
   // initializing dispatch
   const dispatch = useDispatch();
@@ -41,25 +43,28 @@ const Signup = props => {
 
   // Component code
   return (
-    <form onSubmit={handleSubmit}>
-      <h1>Signup Page</h1>
-
-      <input
-        type="text"
-        name="username"
-        value={username}
-        onChange={handleChange}
-        placeholder="Username"
-      />
-      <input
-        type="password"
-        name="password"
-        value={password}
-        onChange={handleChange}
-        placeholder="Password"
-      />
-      <input type="submit">Sign Up</input> />
-    </form>
+    <div className="signup-page">
+      <form onSubmit={handleSubmit}>
+        <h1>Signup Page</h1>
+        <input
+          type="text"
+          name="username"
+          value={username}
+          onChange={handleChange}
+          placeholder="Username"
+        />
+        <br/>
+        <input
+          type="password"
+          name="password"
+          value={password}
+          onChange={handleChange}
+          placeholder="Password"
+        />
+        <br/>
+        <Button type="submit">Sign Up</Button>
+      </form>
+    </div>
   );
 };
 
