@@ -1,0 +1,80 @@
+
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import userActions from '../../../redux/actions/userActions';
+import './Authentication.style.css'
+import { Button, Form } from 'react-bootstrap'
+
+const Login = props => {
+  // initializing dispatch
+  const dispatch = useDispatch();
+  // Setting up local state using the useState hook
+  // Setting up local state using the useState hook
+  const [loginForm, setloginForm] = useState({
+    user: {
+      username: '',
+      password: ''
+    }
+  });
+
+  // Controlled form functions
+  const handleChange = e => {
+
+    setloginForm({
+      ...loginForm, user: {
+        ...loginForm.user,
+        [e.target.name]: e.target.value
+      }
+    }
+    );
+    console.log("Login form", loginForm)
+  }
+  // controlled form functions
+  const handleSubmit = e => {
+    e.preventDefault();
+    dispatch(userActions.loginUserToDB(loginForm));
+    props.history.push('/');
+  };
+
+
+  // Destructuring keys from our local state to use in the form
+  const { username, password } = loginForm.user;
+
+  // Component code
+  return (
+    <div className="auth-form col-md-3">
+       <div className="form-inner-content align-items-center justify-content-center">
+      <h1 className="auth-header mb-4" >Login</h1>
+        <Form className="form" onSubmit={handleSubmit}>
+          <Form.Group className="mb-3">
+            <Form.Label>Username</Form.Label>
+            <Form.Control
+              type="text"
+              name="username"
+              placeholder="Enter Username"
+              value={username}
+              onChange={handleChange}
+              placeholder="Username"
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              name="password"
+              placeholder="Enter Password"
+              value={password}
+              onChange={handleChange}
+              placeholder="Password"
+            />
+            <br />
+          </Form.Group>
+          <Button type="submit">Login</Button>
+        </Form>
+      </div>
+    </div>
+  );
+};
+
+export default Login;
