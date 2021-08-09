@@ -12,7 +12,7 @@ const Signup = props => {
   // Setting up local state using the useState hook
   const [signupForm, setSignupForm] = useState({
     user: {
-      username: '',
+      email: '',
       password: ''
     }
   });
@@ -30,8 +30,6 @@ const Signup = props => {
     console.log("Signup form", signupForm)
   }
 
-
-
   const handleSubmit = e => {
     e.preventDefault();
     const { history } = props;
@@ -42,7 +40,7 @@ const Signup = props => {
 
   // Destructuring keys from our local state to use in the form
   console.log("destructured:", signupForm.user)
-  const { username, password } = signupForm.user;
+  const { email, password } = signupForm.user;
 
   // Component code
   return (
@@ -52,14 +50,14 @@ const Signup = props => {
      
       <Form className="form" onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
-          <Form.Label>Username</Form.Label>
+          <Form.Label>Email</Form.Label>
           <Form.Control
             type="text"
-            name="username"
-            placeholder="Enter Username"
-            value={username}
+            name="email"
+            placeholder="Enter email"
+            value={email}
             onChange={handleChange}
-            placeholder="Username"
+            placeholder="email"
           />
         </Form.Group>
 

@@ -16,8 +16,8 @@ const Home = (props) => {
     return (
         <div class="main-container">
             <h1>Home</h1>
-            {currentUser && currentUser.user && currentUser.user.username
-            ? currentUser.user.username :"Not logged in"}
+            {currentUser && currentUser.user && currentUser.user.email
+            ? currentUser.user.email :"Not logged in"}
         </div>
     )
 };

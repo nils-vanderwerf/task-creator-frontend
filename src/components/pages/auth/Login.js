@@ -12,7 +12,7 @@ const Login = props => {
   // Setting up local state using the useState hook
   const [loginForm, setloginForm] = useState({
     user: {
-      username: '',
+      email: '',
       password: ''
     }
   });
@@ -38,23 +38,23 @@ const Login = props => {
 
 
   // Destructuring keys from our local state to use in the form
-  const { username, password } = loginForm.user;
+  const { email, password } = loginForm.user;
 
   // Component code
   return (
     <div className="auth-form col-12">
-       <div className="form-inner-content align-items-center justify-content-center col-sm-4">
-      <h1 className="auth-header mb-4" >Login</h1>
+      <div className="form-inner-content align-items-center justify-content-center col-sm-4">
+        <h1 className="auth-header mb-4" >Login</h1>
         <Form className="form" onSubmit={handleSubmit}>
           <Form.Group className="mb-3">
-            <Form.Label>Username</Form.Label>
+            <Form.Label>Email</Form.Label>
             <Form.Control
               type="text"
-              name="username"
-              placeholder="Enter Username"
-              value={username}
+              name="email"
+              placeholder="Enter Email"
+              value={email}
               onChange={handleChange}
-              placeholder="Username"
+              placeholder="Enter your email"
             />
           </Form.Group>
 
@@ -66,7 +66,7 @@ const Login = props => {
               placeholder="Enter Password"
               value={password}
               onChange={handleChange}
-              placeholder="Password"
+              placeholder="Enter your password"
             />
             <br />
           </Form.Group>

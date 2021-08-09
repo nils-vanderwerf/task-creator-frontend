@@ -19,18 +19,19 @@ const NavBar = () => {
       <div class="main-container justify-content-between">
         {/* <Navbar.Toggle aria-controls="basic-navbar-nav" /> */}
         {/* <Navbar.Collapse id="basic-navbar-nav"> */}
+        {
+          localStorage.getItem('token') &&
+          <Link to="/tasks/new">
+          <Button style={{marginLeft: "0"}}>Create a task</Button>
+        </Link>
+        }
         <Link to="/">Home</Link>
         {console.log(`Token >> ${localStorage.getItem('token')}`)}
         {!localStorage.getItem('token') &&
           <Link to="/register">Signup</Link>}
         {!localStorage.getItem('token') &&
           <Link to="/login">Login </Link>}
-          {
-          localStorage.getItem('token') &&
-          <Link to="/tasks/new">
-          <Button style={{marginLeft: "0"}}>Create a task</Button>
-        </Link>
-        }
+         
         {
           localStorage.getItem('token') &&
           <Link to="/" onClick={handleLogout}>
