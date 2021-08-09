@@ -1,4 +1,4 @@
-.auth-form{
+.form{
     min-height: 100vh;
     margin: auto;
     justify-content: center;
@@ -14,6 +14,3 @@ button {
     width: 100%;
 }
 
-nav.navbar.bg-dark {
-    color: #fff;
-}

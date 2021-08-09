@@ -2,6 +2,7 @@ import React, {useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllTasks } from '../../../redux/actions/taskActions'
 import TaskItem from './TaskItem'
+import './Tasks.style.css'
 
 const TaskList = () => {
     const tasks = useSelector(state => state.tasksReducer)

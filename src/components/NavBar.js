@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import userActions from '../redux/actions/userActions.js';
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav, Button } from 'react-bootstrap';
 import './nav.css'
 
 const NavBar = () => {
@@ -15,22 +15,27 @@ const NavBar = () => {
   };
 
   return (
-    <Navbar bg="dark" expand="lg" style={{ display: 'flex', justifyContent: 'space-evenly' }}>
-      {/* <Navbar.Toggle aria-controls="basic-navbar-nav" /> */}
-      {/* <Navbar.Collapse id="basic-navbar-nav"> */}
+    <Navbar bg="dark" expand="lg" style={{ display: 'flex', justifyContent: 'space-evenly' }} >
+      <div class="main-container justify-content-between">
+        {/* <Navbar.Toggle aria-controls="basic-navbar-nav" /> */}
+        {/* <Navbar.Collapse id="basic-navbar-nav"> */}
+        <Link to="/tasks/new">
+          <Button style={{marginLeft: "0"}}>Create a task</Button>
+        </Link>
         <Link to="/">Home</Link>
         {console.log(`Token >> ${localStorage.getItem('token')}`)}
-        {!localStorage.getItem('token') && 
-        <Link to="/register">Signup</Link>}
-        {!localStorage.getItem('token') && 
-        <Link to="/login">Login </Link>}
+        {!localStorage.getItem('token') &&
+          <Link to="/register">Signup</Link>}
+        {!localStorage.getItem('token') &&
+          <Link to="/login">Login </Link>}
         {
           localStorage.getItem('token') &&
           <Link to="/" onClick={handleLogout}>
             Logout
           </Link>
         }
-      {/* </Navbar.Collapse> */}
+        {/* </Navbar.Collapse> */}
+      </div>
     </Navbar >
   );
 };

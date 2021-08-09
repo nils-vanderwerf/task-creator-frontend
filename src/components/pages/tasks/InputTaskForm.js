@@ -1,9 +1,12 @@
 
 import React, { useState, useEffect } from 'react';
+import { FormGroup } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useParams, useHistory } from 'react-router-dom';
 import taskActions from '../../../redux/actions/taskActions';
-import userActions from '../../../redux/actions/userActions';                                                                                                                                                          
+import userActions from '../../../redux/actions/userActions';
+import { Button, Form, FormControl } from 'react-bootstrap'
+import '../auth/Form.style.css'                                                                                                                                                          
 const InputTaskForm = (props) => {
   const dispatch = useDispatch()
   const currentUser = useSelector(state => state.currentUser.id)
@@ -62,25 +65,31 @@ const InputTaskForm = (props) => {
 
   // Component code
   return (
-    <form onSubmit={(path === '/tasks/new') ? handleCreateTask : handleEdit}>
+    
+    <Form onSubmit={(path === '/tasks/new') ? handleCreateTask : handleEdit}>
+      <Form.Group className="mb-3">
       <h1>{(path === '/tasks/new') ? "New Task" : "Edit task" }</h1>
-      <input
+      <FormControl className="col-3"
         type="text"
         name="title"
         value={title}
         onChange={handleChange}
         placeholder="Task Title"
       />
+      </Form.Group>
       <br/>
-      <textarea 
+      <Form.Group className="mb-3">
+      <FormControl className="col-3"
         name="description"
         value={description}
         onChange={handleChange}
         cols="40"
         rows="5"
         />
-      <input type="submit" />
-    </form>
+        </Form.Group>
+      <Button type="submit">Create Task</Button>
+      
+    </Form>
   );
 };
 

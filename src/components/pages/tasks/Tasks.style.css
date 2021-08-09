@@ -1,12 +1,15 @@
+ul.task-list {
+    padding: 0;
+}
+
 div.task {
-    padding: 20px;
+    padding: 20px 40px 20px 0;
 }
 
 div.task {
     background-color: #f2f2f2;
     list-style: none;
     display: inline-block;
-    padding: 20px;
 }
 
 .button-container a {

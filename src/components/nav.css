@@ -1,7 +1,24 @@
 nav.navbar.bg-dark {
-  height: 50px;  
+  height: 50px;
+  width: 100%;
+  background: #333; 
 }
 
 nav.navbar.bg-dark a {
     color: #fff;
+}
+
+nav > .main-container {
+    max-width: 1024px;
+    width: 100%;
+    display: flex;
+    padding: 0 40px;
+    align-items: center;
+    justify-content: left;
+
+}
+
+nav > .main-container a {
+    display: block;
+
 }

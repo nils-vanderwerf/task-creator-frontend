@@ -29,7 +29,7 @@ const TaskItem = (props) => {
                 <h2>{props.task.title}</h2>
             </Link>
                 <p>{props.task.description}</p>
-                <div class="button-container d-flex justify-content-between p-2">
+                <div class="button-container d-flex justify-content-between">
                     <Link to={ { pathname: `/tasks/${props.task.id}/edit` }}>
                         <Button className="col-6" variant="primary"> Edit </Button>
                     </Link>
