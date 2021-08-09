@@ -1,6 +1,8 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
+import Button from 'react-bootstrap/Button';
+
 // import taskActions from '../../redux/actions/taskAction';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -27,9 +29,9 @@ const TaskItem = (props) => {
         </Link>
             <p>{props.task.description}</p>
             <Link to={ { pathname: `/tasks/${props.task.id}/edit` }}>
-                <button> Edit </button>
+                <Button variant="light"> Edit </Button>
             </Link>
-            <button onClick={handleDeleteTask}>Delete</button>
+            <Button onClick={handleDeleteTask} variant="light">Delete</Button>
         </li>
         </>
     )

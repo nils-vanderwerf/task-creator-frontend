@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {Jumbotron}from 'react-bootstrap'
 import { useDispatch } from 'react-redux';
 import userActions from '../redux/actions/userActions';                                                                                                                                                          
 const Signup = props => {
@@ -42,6 +43,7 @@ const Signup = props => {
   return (
     <form onSubmit={handleSubmit}>
       <h1>Signup Page</h1>
+
       <input
         type="text"
         name="username"
@@ -56,7 +58,7 @@ const Signup = props => {
         onChange={handleChange}
         placeholder="Password"
       />
-      <input type="submit" />
+      <input type="submit">Sign Up</input> />
     </form>
   );
 };
