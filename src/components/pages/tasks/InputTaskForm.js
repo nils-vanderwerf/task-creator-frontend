@@ -65,10 +65,11 @@ const InputTaskForm = (props) => {
 
   // Component code
   return (
-    
+    <div className="auth-form col-12">
+    <div className="form-inner-content align-items-center justify-content-center col-sm-6">
     <Form onSubmit={(path === '/tasks/new') ? handleCreateTask : handleEdit}>
       <Form.Group className="mb-3">
-      <h1>{(path === '/tasks/new') ? "New Task" : "Edit task" }</h1>
+      <h1 className="auth-header mb-4">{(path === '/tasks/new') ? "New Task" : "Edit task" }</h1>
       <FormControl className="col-3"
         type="text"
         name="title"
@@ -79,7 +80,7 @@ const InputTaskForm = (props) => {
       </Form.Group>
       <br/>
       <Form.Group className="mb-3">
-      <FormControl className="col-3"
+      <textarea className="col-3 form-control"
         name="description"
         value={description}
         onChange={handleChange}
@@ -90,6 +91,8 @@ const InputTaskForm = (props) => {
       <Button type="submit">Create Task</Button>
       
     </Form>
+    </div>
+    </div>
   );
 };
 

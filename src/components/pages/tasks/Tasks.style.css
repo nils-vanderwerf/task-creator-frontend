@@ -3,13 +3,17 @@ ul.task-list {
 }
 
 div.task {
-    padding: 20px 40px 20px 0;
-}
-
-div.task {
-    background-color: #f2f2f2;
+    background-color: rgb(248, 248, 248);
     list-style: none;
     display: inline-block;
+}
+
+div.task li {
+    padding: 40px;
+}
+
+.button-container {
+    margin-top: 40px;
 }
 
 .button-container a {
