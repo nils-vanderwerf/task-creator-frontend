@@ -19,7 +19,7 @@ const TaskItem = (props) => {
     } 
 
     return (
-        <div className="task col-sm-3">
+        <div className="task col-sm-4">
             <li>
             <Link to={ { 
                 pathname: `/task/${props.task.id}`,
@@ -29,10 +29,12 @@ const TaskItem = (props) => {
                 <h2>{props.task.title}</h2>
             </Link>
                 <p>{props.task.description}</p>
-                <Link to={ { pathname: `/tasks/${props.task.id}/edit` }}>
-                    <Button variant="info"> Edit </Button>
-                </Link>
-                <Button onClick={handleDeleteTask} variant="info">Delete</Button>
+                <div class="button-container d-flex justify-content-between p-2">
+                    <Link to={ { pathname: `/tasks/${props.task.id}/edit` }}>
+                        <Button className="col-6" variant="primary"> Edit </Button>
+                    </Link>
+                    <Button className="col-6" onClick={handleDeleteTask} variant="primary">Delete</Button>
+                </div>
             </li>
         </div>
     )

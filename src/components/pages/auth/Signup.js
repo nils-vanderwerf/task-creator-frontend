@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Jumbotron } from 'react-bootstrap'
 import { useDispatch } from 'react-redux';
 import userActions from '../../../redux/actions/userActions';
-import './Authentication.style.css'
+import './Form.style.css'
 import { Button, Form } from 'react-bootstrap'
 import { FormGroup } from '@material-ui/core';
 const Signup = props => {
@@ -46,9 +46,9 @@ const Signup = props => {
 
   // Component code
   return (
-    <div className="auth-form col-md-3">
-       <div className="form-inner-content align-items-center justify-content-center">
-      <h1 className="auth-header mb-4">Signup Page</h1>
+    <div className="auth-form col-12">
+       <div className="form-inner-content align-items-center justify-content-center col-sm-4">
+      <h1 className="auth-header mb-4">Create a new account</h1>
      
       <Form className="form" onSubmit={handleSubmit}>
         <Form.Group className="mb-3">

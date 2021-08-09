@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import userActions from '../../../redux/actions/userActions';
-import './Authentication.style.css'
+import './Form.style.css'
 import { Button, Form } from 'react-bootstrap'
 
 const Login = props => {
@@ -42,8 +42,8 @@ const Login = props => {
 
   // Component code
   return (
-    <div className="auth-form col-md-3">
-       <div className="form-inner-content align-items-center justify-content-center">
+    <div className="auth-form col-12">
+       <div className="form-inner-content align-items-center justify-content-center col-sm-4">
       <h1 className="auth-header mb-4" >Login</h1>
         <Form className="form" onSubmit={handleSubmit}>
           <Form.Group className="mb-3">

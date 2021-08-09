@@ -4,6 +4,12 @@
   font-family: 'Noto Sans JP', sans-serif;
 }
 
+.main-container {
+max-width: 1024px;
+margin: auto;
+padding: 40px;
+}
+
 h1 {
   font-size: 36px;
 }

@@ -1,5 +1,22 @@
-div.task li {
+div.task {
+    padding: 20px;
+}
+
+div.task {
     background-color: #f2f2f2;
     list-style: none;
     display: inline-block;
+    padding: 20px;
+}
+
+.button-container a {
+    width: 100%;
+    margin-right: 10px;
+    display: block;
+}
+
+
+.button-container a button{
+    display: block;
+    width: 100%;
 }
