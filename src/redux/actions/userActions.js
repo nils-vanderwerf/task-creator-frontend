@@ -80,10 +80,16 @@ const loginUserToDB = userCredentials => dispatch => {
     .then(r => r.json())
     .then(data => {
       console.log('Login data > ', data);
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('user_id', data.user.id);
-      dispatch(setUserAction(data.user));
-    });
+      if (data.errors) {
+        dispatch(setUserAction(data.errors))
+      }
+      else {
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('user_id', data.user.id);
+        dispatch(setUserAction(data.user));
+      }
+    })
+    .catch(error => console.log('error', error))
 };
 
 const logoutUser = () => dispatch => {

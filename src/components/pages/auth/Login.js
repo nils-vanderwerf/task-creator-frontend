@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import userActions from '../../../redux/actions/userActions';
 import './Form.style.css'
 import { Button, Form } from 'react-bootstrap'
@@ -8,6 +8,7 @@ import { Button, Form } from 'react-bootstrap'
 const Login = props => {
   // initializing dispatch
   const dispatch = useDispatch();
+  const currentUser = useSelector(state => state.currentUser)
   // Setting up local state using the useState hook
   // Setting up local state using the useState hook
   const [loginForm, setloginForm] = useState({
@@ -33,6 +34,7 @@ const Login = props => {
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(userActions.loginUserToDB(loginForm));
+    currentUser !== 'Email or password not valid.' && 
     props.history.push('/');
   };
 
@@ -46,6 +48,8 @@ const Login = props => {
       <div className="form-inner-content align-items-center justify-content-center col-sm-4">
         <h1 className="auth-header mb-4" >Login</h1>
         <Form className="form" onSubmit={handleSubmit}>
+          
+          {currentUser && currentUser === 'Email or password not valid.' && <p class="error-message">{currentUser}</p>}
           <Form.Group className="mb-3">
             <Form.Label>Email</Form.Label>
             <Form.Control
