@@ -13,7 +13,9 @@ const Signup = props => {
   const [signupForm, setSignupForm] = useState({
     user: {
       email: '',
-      password: ''
+      password: '',
+      first_name: '',
+      last_name: ''
     }
   });
 
@@ -40,7 +42,7 @@ const Signup = props => {
 
   // Destructuring keys from our local state to use in the form
   console.log("destructured:", signupForm.user)
-  const { email, password } = signupForm.user;
+  const { email, password, first_name, last_name } = signupForm.user;
 
   // Component code
   return (
@@ -49,15 +51,34 @@ const Signup = props => {
       <h1 className="auth-header mb-4">Create a new account</h1>
      
       <Form className="form" onSubmit={handleSubmit}>
+      <Form.Group className="mb-3">
+          <Form.Label>First Name</Form.Label>
+          <Form.Control
+            type="text"
+            name="first_name"
+            placeholder="Enter First Name"
+            value={first_name}
+            onChange={handleChange}
+          />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>Last Name</Form.Label>
+          <Form.Control
+            type="text"
+            name="last_name"
+            placeholder="Enter Last Name"
+            value={last_name}
+            onChange={handleChange}
+          />
+        </Form.Group>
         <Form.Group className="mb-3">
           <Form.Label>Email</Form.Label>
           <Form.Control
             type="text"
             name="email"
-            placeholder="Enter email"
+            placeholder="Enter Email"
             value={email}
             onChange={handleChange}
-            placeholder="email"
           />
         </Form.Group>
 
@@ -69,7 +90,6 @@ const Signup = props => {
             placeholder="Enter Password"
             value={password}
             onChange={handleChange}
-            placeholder="Password"
           />
           <br />
         </Form.Group>

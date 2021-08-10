@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom'
+import { Button } from 'react-bootstrap';
+import './Home.style.css'
 
 import TaskList from './pages/tasks/TaskList';
 import userActions from '../redux/actions/userActions'
@@ -11,13 +14,27 @@ const Home = (props) => {
 
     useEffect(() => {
         dispatch(userActions.getCurrentUser());
-      }, [dispatch])
+    }, [dispatch])
 
     return (
         <div class="main-container">
             <h1>Home</h1>
-            {currentUser && currentUser.user && currentUser.user.email
-            ? currentUser.user.email :"Not logged in"}
+            {currentUser && currentUser.user && currentUser.user.first_name && currentUser.user.last_name
+                ?
+                <>
+                Welcome {currentUser.user.first_name}
+                <Link to="/tasks/">
+                <Button id="view-tasks" className="home" style={{ marginLeft: "0" }}>View Tasks</Button>
+            </Link>
+            </>
+                :
+                <>
+                Not logged in
+                <Link to="/login/">
+                <Button id="login" className="home" style={{ marginLeft: "0" }}>Login</Button>
+            </Link>
+            </> 
+                }
         </div>
     )
 };
