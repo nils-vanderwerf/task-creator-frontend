@@ -9,6 +9,7 @@ const Login = props => {
   // initializing dispatch
   const dispatch = useDispatch();
   let currentUser = useSelector(state => state.currentUser)
+  let [auth, setAuth] = useState(false)
 
   // Setting up local state using the useState hook
   // Setting up local state using the useState hook
@@ -18,6 +19,7 @@ const Login = props => {
       password: ''
     }
   });
+
 
   // Controlled form functions
   const handleChange = e => {
@@ -35,12 +37,15 @@ const Login = props => {
     e.preventDefault();
     dispatch(userActions.loginUserToDB(loginForm));
     const errorContainer = document.getElementById('error-message')
-    console.log(`Current user on submit >>  ${currentUser}`)
-    if (currentUser == 'Email or password not valid.') {
-      errorContainer.innerHTML = currentUser
+    console.log("ON LOGIN SUBMIT >>", currentUser)
+    if ((currentUser.base || currentUser === {})) {
+      console.log("CURRENT USER IS AN EMPTY OBJECT", currentUser)
+      errorContainer.innerHTML = `Login ${currentUser.base}`
     } 
     else {
+      console.log("CURRENT USER IS NOT AN EMPTY OBJECT", currentUser)
       props.history.push('/');
+      errorContainer.innerHTML = ""
     }   
     
   };

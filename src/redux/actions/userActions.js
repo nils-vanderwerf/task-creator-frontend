@@ -80,10 +80,11 @@ const loginUserToDB = userCredentials => dispatch => {
     .then(r => r.json())
     .then(data => {
       console.log('Login data > ', data);
-      if (data.errors) {
-        dispatch(setUserAction(data.errors))
+      if (data.base) {
+        dispatch(setUserAction(data))
       }
       else {
+        
         localStorage.setItem('token', data.token);
         localStorage.setItem('user_id', data.user.id);
         dispatch(setUserAction(data.user));

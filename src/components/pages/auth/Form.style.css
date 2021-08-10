@@ -14,3 +14,7 @@ button {
     width: 100%;
 }
 
+#error-message {
+    color: #ff0000;
+}
+
