@@ -14,7 +14,8 @@ button {
     width: 100%;
 }
 
-#error-message {
+p.error-message {
+    font-size: 16px;
     color: #ff0000;
 }
 
