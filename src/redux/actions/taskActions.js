@@ -58,7 +58,9 @@ export const getAllTasks = () => dispatch => {
 };
 
 const createTaskToDB = taskObj => dispatch => {
-  console.log("Task object:", taskObj)
+  console.log("Task object before delete:", taskObj.task)
+  delete taskObj.task.id
+  console.log("Task object after delete:", taskObj)
   const config = {
     method: 'POST',
     headers: {

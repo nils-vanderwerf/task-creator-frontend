@@ -26,8 +26,15 @@ const InputTaskForm = (props) => {
       dispatch(userActions.getCurrentUser());
       dispatch(getAllCategories());
       console.log("Mounted current user: ", currentUser)
-    }
-  }, [dispatch])
+      setTaskForm({
+        ...taskForm, task: {
+          ...taskForm.task,
+          category_ids:checkedCats
+        }
+    })
+  }
+  console.log("<=====category ids====>", taskForm.task.category_ids)
+}, [dispatch, checkedCats])
 
   // Setting up local state using the useState hook
   const [taskForm, setTaskForm] =
@@ -59,7 +66,7 @@ const InputTaskForm = (props) => {
       setCheckedCats(array)
     }
   }
-    console.log(checkedCats)
+    console.log("CHECKED CATS", checkedCats)
 
     console.log("CURRRRENT USER", taskForm)
     console.log("CATEGORIES", categories)

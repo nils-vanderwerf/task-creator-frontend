@@ -11,6 +11,7 @@ const tasksReducer = (state = [], action) => {
                     id: action.task.id,
                     title: action.task.title,
                     description: action.task.description,
+                    categories: action.task.categories
                 }
             ]
         case UPDATE_TASK:

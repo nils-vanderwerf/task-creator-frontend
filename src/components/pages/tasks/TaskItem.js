@@ -13,6 +13,7 @@ const TaskItem = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
 
+
     const handleDeleteTask = async () => {
       await dispatch(taskActions.deleteTaskFromDB({task: props.task}))
       history.push('/tasks');
