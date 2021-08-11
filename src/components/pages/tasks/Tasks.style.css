@@ -27,3 +27,11 @@ div.task li {
     display: block;
     width: 100%;
 }
+
+.check-container {
+    flex-wrap: wrap;
+}
+
+.description, .check-container {
+    margin-bottom: 40px;
+}

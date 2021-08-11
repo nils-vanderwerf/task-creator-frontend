@@ -4,8 +4,6 @@ import {
   UPDATE_TASK,
   TASK_COMPLETED,
   DELETE_TASK,
-  CREATE_TASK_URL,
-  GET_TASKS_URL,
 } from './actionTypes'
 
 export function loadTasks(tasks) {
