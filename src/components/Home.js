@@ -19,10 +19,10 @@ const Home = (props) => {
     return (
         <div class="main-container">
             <h1>Home</h1>
-            {currentUser && currentUser.user && currentUser.user.first_name && currentUser.user.last_name
+            {currentUser && currentUser.first_name && currentUser.last_name
                 ?
                 <>
-                Welcome {currentUser.user.first_name}
+                Welcome {currentUser.first_name}
                 <Link to="/tasks/">
                 <Button id="view-tasks" className="home" style={{ marginLeft: "0" }}>View Tasks</Button>
             </Link>

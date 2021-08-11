@@ -31,7 +31,7 @@ const getCurrentUser = () => dispatch => {
     fetch(`http://localhost:3001/users/${localStorage.getItem('user_id')}`, config)
       .then(r => r.json())
       .then(userInstance => {
-        dispatch(setUserAction(userInstance));
+        dispatch(setUserAction(userInstance.user));
       });
   }
 };
@@ -114,5 +114,6 @@ export default {
   deleteUserFromDB,
   loginUserToDB,
   getCurrentUser,
-  logoutUser
+  logoutUser,
+  setUserAction
 };
