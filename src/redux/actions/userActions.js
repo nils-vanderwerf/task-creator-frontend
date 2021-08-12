@@ -12,7 +12,7 @@ import { SET_USER,
 
 const receiveErrors = errorsObj => ({
   type: SET_ERRORS,
-  payload: errorsObj
+  payload: {'errorMessage': errorsObj}
 })
 
 const setUserAction = userObj => ({
@@ -54,11 +54,17 @@ const newUserToDB = userObj => dispatch => {
   fetch('http://localhost:3001/users', config)
     .then(result => result.json())
     .then(data => {
-      console.log("data", data)
+      if (data.ok) { 
+      console.log("DATA OK, data", data)
       localStorage.setItem('token', data.token);
       dispatch(setUserAction(data.user));
+      }
+      else {
+        console.log("DATA NOT OK, data", data)
+        dispatch(receiveErrors(data.message));
+      }
     })
-    .catch(error => dispatch(receiveErrors(error)))
+    .catch(error => console.log(error))
 };
 
 const deleteUserFromDB = userId => dispatch => {

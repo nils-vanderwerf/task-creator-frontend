@@ -38,7 +38,7 @@ const App = () => {
           )} />
         <Route path="/register" component={Signup} />
         <Route path="/login" component={Login} />
-        <PrivateRoute path="/tasks">
+        <PrivateRoute exact path="/tasks">
         <TaskList/>
         </PrivateRoute>
         <Route 
@@ -47,10 +47,12 @@ const App = () => {
             <InputTaskForm {...props} currentUser={currentUser} />
           )}
         />
+
         <Route exact path='/tasks/:id' render={match => <ShowTask match={match}/>} />
         <Route path='/tasks/:id/edit' render={match =>
           <InputTaskForm match={match} />
         } />
+       
       </Switch>
     </Router>
   )

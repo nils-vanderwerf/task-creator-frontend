@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Jumbotron } from 'react-bootstrap'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import userActions from '../../../redux/actions/userActions';
 import './Form.style.css'
 import { Button, Form} from 'react-bootstrap'
@@ -15,6 +15,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 const Signup = props => {
   // initializing dispatch
   const dispatch = useDispatch();
+  let currentUser = useSelector(state => state.currentUser)
 
   // Setting up local state using the useState hook
   // const [signupForm, setSignupForm] = useState({
@@ -37,53 +38,24 @@ const Signup = props => {
       const formData = { 
         user: values
     }
+    console.log("Form data", formData)
     submitForm(formData)
   },
     validationSchema
   });
 
-//   const validationSchema = yup.object().shape({
-//     first_name: yup
-//           .string()
-//           .min(2, "Too short!")
-//           .max(50, "Too long!")
-//           .required("Required"),
-//     last_name: yup
-//           .string()
-//           .min(2, "Too short!")
-//           .max(50, "Too long!")
-//           .required("Required"),
-//     email: yup
-//           .string()
-//           .email("Invalid email")
-//           .required("Required"),
-//     password: yup
-//           .string()
-//           .min(4, "Too short!")
-//           .max(20, "Too long!")
-//           .required("Required")
-// })
-
-
-
-
-  // // Controlled form functions
-  // const handleChange = e => {
-  //   setSignupForm({
-  //     ...signupForm, user: {
-  //       ...signupForm.user,
-  //       [e.target.name]: e.target.value
-  //     }
-  //   }
-  //   );
-  //   console.log("Signup form", signupForm)
-  // }
 
   const submitForm = (formData) => {
-    const { history } = props;
+    console.log("B4 DISPATCH >> ", currentUser);
     dispatch(userActions.newUserToDB(formData));
-    history.push('/');
+    console.log("CURRENT USER IN SUBMIT FORM", currentUser)
   };
+
+
+  if (!currentUser.errorMessage && Object.keys(currentUser).length !== 0) {
+    console.log('CurrentUser in Signup 2 >> ', currentUser);
+    props.history.push('/');
+  }
 
   // // Destructuring keys from our local state to use in the form
   // console.log("destructured:", signupForm.user)
@@ -96,7 +68,13 @@ const Signup = props => {
       <h1 className="auth-header mb-4">Create a new account</h1>
 
      
-      <Form className="form" onSubmit={formik.handleSubmit}>
+      <Form className="form" 
+        onSubmit={
+          (event) => {
+            event.preventDefault(); 
+            formik.handleSubmit(event)
+          }
+        }>
       <Form.Group className="mb-3">
           <Form.Label>First Name</Form.Label>
           <Form.Control
@@ -143,6 +121,11 @@ const Signup = props => {
            <strong>{formik.errors.email}</strong>
           </p>
        ) : null}
+          {currentUser.errorMessage ? (
+         <p className="error-message">
+           <strong>{currentUser.errorMessage}</strong>
+          </p>
+       ) : null}
         </Form.Group>
      
         <Form.Group className="mb-3">
@@ -157,6 +140,11 @@ const Signup = props => {
           {formik.touched.password && formik.errors.password ? (
          <p className="error-message">
            <strong>{formik.errors.password}</strong>
+           </p>
+       ) : null}
+       {currentUser.base ? (
+         <p className="error-message">
+           <strong>{currentUser.errorMessage}</strong>
            </p>
        ) : null}
         </Form.Group>
