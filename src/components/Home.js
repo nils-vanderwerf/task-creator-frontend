@@ -17,7 +17,7 @@ const Home = (props) => {
     }, [dispatch])
 
     return (
-        <div class="main-container">
+        <div className="main-container">
             <h1>Home</h1>
             {currentUser && currentUser.first_name && currentUser.last_name
                 ?

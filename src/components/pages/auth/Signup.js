@@ -44,6 +44,9 @@ const Signup = props => {
     validationSchema
   });
 
+  const removeErrorMessage = (event) => {
+    dispatch(userActions.clearUserAction())
+  }
 
   const submitForm = (formData) => {
     console.log("B4 DISPATCH >> ", currentUser);
@@ -114,7 +117,12 @@ const Signup = props => {
             name="email"
             placeholder="Enter Email"
             value={formik.values.email}
-            onChange={formik.handleChange}
+            onChange={(event) => {
+              event.preventDefault();
+              removeErrorMessage() 
+              formik.handleChange(event)
+            }
+          }
           />
              {formik.touched.email && formik.errors.email ? (
          <p className="error-message">

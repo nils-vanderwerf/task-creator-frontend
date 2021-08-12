@@ -11,9 +11,11 @@ import { Button, Form, FormControl } from 'react-bootstrap'
 import '../auth/Form.style.css'
 const InputTaskForm = (props) => {
   const dispatch = useDispatch()
-  const currentUser = useSelector(state => state.currentUser.id)
+  let categories 
+  = useSelector(state => state.categoriesReducer.categories)
+  let currentUser = useSelector(state => state.currentUser.id)
   const tasks = useSelector(state => state.tasksReducer)
-  const categories = useSelector(state => state.categoriesReducer.categories)
+  
   const location = useLocation()
   const history = useHistory();
   const path = location.pathname
@@ -47,8 +49,6 @@ const InputTaskForm = (props) => {
         user_id: currentUser
       }
     })
-
-
 
   const handleCheckBoxChange = event => {
     let array = [...checkedCats]
@@ -97,7 +97,10 @@ const InputTaskForm = (props) => {
 
     // Destructuring keys from our local state to use in the form
     const { title, description } = taskForm.task;
-
+    if (!categories) {
+      return null
+    }
+    else {
     // Component code
     return (
       <div className="auth-form col-12">
@@ -151,6 +154,7 @@ const InputTaskForm = (props) => {
         </div>
       </div>
     );
+   }
   };
 
   export default InputTaskForm;

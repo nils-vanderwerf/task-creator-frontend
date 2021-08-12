@@ -12,6 +12,7 @@ import ShowTask from './components/pages/tasks/ShowTask'
 import './App.css'
 import history from './history'
 import PrivateRoute from './components/PrivateRoute'
+// import { getAllCategories } from '../../../redux/actions/categoryActions';
 
 const App = () => {
   const currentUser = useSelector(state => state.currentUser)

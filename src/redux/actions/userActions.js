@@ -20,7 +20,7 @@ const setUserAction = userObj => ({
   payload: userObj
 });
 
-const clearUserAction = () => ({
+export const clearUserAction = () => ({
   type: CLEAR_USER
 });
 
@@ -54,8 +54,10 @@ const newUserToDB = userObj => dispatch => {
   fetch('http://localhost:3001/users', config)
     .then(result => result.json())
     .then(data => {
-      if (data.ok) { 
-      console.log("DATA OK, data", data)
+      console.log("DAAAAATAAAA", data)
+      if (data.user) { 
+      console.log("DATA FROM THE SUBMITTED USER", data.user)
+      console.log("TOKEN", data.token)
       localStorage.setItem('token', data.token);
       dispatch(setUserAction(data.user));
       }
@@ -127,5 +129,6 @@ export default {
   loginUserToDB,
   getCurrentUser,
   logoutUser,
-  setUserAction
+  setUserAction,
+  clearUserAction
 };
