@@ -1,5 +1,6 @@
 // API CONSTANTS
-import { SET_USER, 
+import { SET_USER,
+  SET_ERRORS, 
   CLEAR_USER,
   BASE_URL, 
   USERS_URL, 
@@ -8,6 +9,11 @@ import { SET_USER,
   SPECIFIC_USER_URL } from "./actionTypes";
 
 // Redux Actions
+
+const receiveErrors = errorsObj => ({
+  type: SET_ERRORS,
+  payload: errorsObj
+})
 
 const setUserAction = userObj => ({
   type: SET_USER,
@@ -52,7 +58,7 @@ const newUserToDB = userObj => dispatch => {
       localStorage.setItem('token', data.token);
       dispatch(setUserAction(data.user));
     })
-    .catch(error => console.log(error))
+    .catch(error => dispatch(receiveErrors(error)))
 };
 
 const deleteUserFromDB = userId => dispatch => {

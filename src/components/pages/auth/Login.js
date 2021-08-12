@@ -9,7 +9,6 @@ const Login = props => {
   // initializing dispatch
   const dispatch = useDispatch();
   let currentUser = useSelector(state => state.currentUser)
-  let [auth, setAuth] = useState(false)
 
   // Setting up local state using the useState hook
   // Setting up local state using the useState hook
@@ -66,7 +65,7 @@ const Login = props => {
       <div className="form-inner-content align-items-center justify-content-center col-sm-4">
         <h1 className="auth-header mb-4" >Login</h1>
         <Form className="form" onSubmit={handleSubmit}>
-          <p id="error-message">
+          <p className="error-message">
             {currentUser.base && `Login ${currentUser.base}`}
           </p>
           <Form.Group className="mb-3">

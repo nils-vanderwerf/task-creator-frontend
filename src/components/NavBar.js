@@ -1,17 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import userActions from '../redux/actions/userActions.js';
 import { Navbar, Nav, Button } from 'react-bootstrap';
 import './nav.css'
+import history from '../history'
 
-const NavBar = () => {
+const NavBar = (props) => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
+    
+    console.log("HIIIISSTOOOORRRY", history)
     dispatch(userActions.logoutUser());
     localStorage.clear();
-
+    history.push('/login');
   };
 
   return (
@@ -34,7 +37,7 @@ const NavBar = () => {
          
         {
           localStorage.getItem('token') &&
-          <Link to="/" onClick={handleLogout}>
+          <Link to="/login" onClick={handleLogout}>
             Logout
           </Link>
         }

@@ -10,6 +10,8 @@ import TaskList from './components/pages/tasks/TaskList'
 import InputTaskForm from './components/pages/tasks/InputTaskForm'
 import ShowTask from './components/pages/tasks/ShowTask'
 import './App.css'
+import history from './history'
+import PrivateRoute from './components/PrivateRoute'
 
 const App = () => {
   const currentUser = useSelector(state => state.currentUser)
@@ -22,8 +24,8 @@ const App = () => {
   }, [dispatch])
 
   return (
-    <Router>
-      <NavBar />
+    <Router history={history}>
+      <NavBar/>
       <Switch>
         <Route
           exact path={"/"}
@@ -36,7 +38,9 @@ const App = () => {
           )} />
         <Route path="/register" component={Signup} />
         <Route path="/login" component={Login} />
-        <Route exact path="/tasks" component={TaskList} />
+        <PrivateRoute path="/tasks">
+        <TaskList/>
+        </PrivateRoute>
         <Route 
           path="/tasks/new"
           render={props => (

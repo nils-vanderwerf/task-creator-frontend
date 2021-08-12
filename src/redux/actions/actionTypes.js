@@ -1,6 +1,7 @@
 export const BASE_URL = 'http://localhost:3001';
 export const SET_USER = 'SET_USER'
 export const CLEAR_USER = 'CLEAR_USER'
+export const SET_ERRORS = 'SET_ERRORS'
 
 // USERS URLS
 export const USERS_URL = BASE_URL + '/users';
@@ -14,6 +15,7 @@ export const CREATE_TASK = 'CREATE_TASK'
 export const UPDATE_TASK = 'UPDATE_TASK'
 export const TASK_COMPLETED = 'TASK_COMPLETED'
 export const DELETE_TASK = 'DELETE_TASK'
+
 
 export const LOAD_CATEGORIES = 'LOAD_CATEGORIES'
 

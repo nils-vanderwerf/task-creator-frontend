@@ -30,7 +30,7 @@ const Home = (props) => {
                 :
                 <>
                 Not logged in
-                <Link to="/login/">
+                <Link to="/login">
                 <Button id="login" className="home" style={{ marginLeft: "0" }}>Login</Button>
             </Link>
             </> 
