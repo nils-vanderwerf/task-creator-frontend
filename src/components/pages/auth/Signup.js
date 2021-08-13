@@ -145,16 +145,16 @@ const Signup = props => {
             value={formik.values.password}
             onChange={formik.handleChange}
           />
-          {formik.touched.password && formik.errors.password ? (
+          {formik.touched.password && formik.errors.password &&
          <p className="error-message">
            <strong>{formik.errors.password}</strong>
            </p>
-       ) : null}
-       {currentUser.base ? (
+       }
+       {currentUser.base &&
          <p className="error-message">
            <strong>{currentUser.errorMessage}</strong>
            </p>
-       ) : null}
+      }
         </Form.Group>
         <Button type="submit">Sign Up</Button>
       </Form>

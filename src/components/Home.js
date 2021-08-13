@@ -24,8 +24,8 @@ const Home = (props) => {
                 <>
                 Welcome {currentUser.first_name}
                 <Link to="/tasks/">
-                <Button id="view-tasks" className="home" style={{ marginLeft: "0" }}>View Tasks</Button>
-            </Link>
+                    <Button id="view-tasks" className="home" style={{ marginLeft: "0" }}>View Tasks</Button>
+                </Link>
             </>
                 :
                 <>

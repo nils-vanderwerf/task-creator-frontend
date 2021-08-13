@@ -19,7 +19,7 @@ const NavBar = (props) => {
 
   return (
     <Navbar bg="dark" expand="lg" style={{ display: 'flex', justifyContent: 'space-evenly' }} >
-      <div class="main-container justify-content-between">
+      <div className="main-container justify-content-between">
         {/* <Navbar.Toggle aria-controls="basic-navbar-nav" /> */}
         {/* <Navbar.Collapse id="basic-navbar-nav"> */}
         {

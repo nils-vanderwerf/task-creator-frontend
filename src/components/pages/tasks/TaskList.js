@@ -6,6 +6,7 @@ import './Tasks.style.css'
 
 const TaskList = () => {
     const tasks = useSelector(state => state.tasksReducer)
+    console.log("USER TASKS", tasks)
 
     console.log(tasks)
     const dispatch = useDispatch()
@@ -15,12 +16,18 @@ const TaskList = () => {
     }, [dispatch])
 
     return (
-        <div class="main-container">
+        <div className="main-container">
         <div className="all-tasks p-10">
         <h1>Your Tasks</h1>
             <ul className="task-list d-flex flex-wrap">
-                {tasks.map(
-                    task => <TaskItem key={task.id} task={task}/>)
+                
+                {tasks && tasks.map(
+                        (task, index) => (
+                        <div className="task col-sm-4" key={task.id}>
+                            <TaskItem taskIndex={index} task={task}/>
+                        </div>
+                        )
+                    )
                 }
             </ul>
         </div>

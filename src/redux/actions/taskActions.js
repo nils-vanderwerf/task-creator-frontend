@@ -52,9 +52,10 @@ export const getAllTasks = () => dispatch => {
   fetch(`http://localhost:3001/users/${localStorage.getItem('user_id')}/tasks`, config)
     .then(r => r.json())
     .then(tasks => {
-      console.log("Fetch request function ")
+      console.log("<=====Fetch request function====>")
       dispatch(loadTasks(tasks));
-    });
+    })
+    .catch(error => console.log("ERROR:", error))
 };
 
 const createTaskToDB = taskObj => dispatch => {

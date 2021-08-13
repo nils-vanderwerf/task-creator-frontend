@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { FormGroup } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useParams, useHistory } from 'react-router-dom';
@@ -8,6 +8,7 @@ import userActions from '../../../redux/actions/userActions';
 import categoryActions from '../../../redux/actions/categoryActions'
 import { getAllCategories } from '../../../redux/actions/categoryActions';
 import { Button, Form, FormControl } from 'react-bootstrap'
+import { TaskCloneContext } from '../../../contexts/taskCloneContext';
 import '../auth/Form.style.css'
 const InputTaskForm = (props) => {
   const dispatch = useDispatch()
@@ -21,7 +22,9 @@ const InputTaskForm = (props) => {
   const path = location.pathname
   const params = useParams()
   const taskToEdit = tasks.find(task => task.id == params.id)
+  const [taskClone, setTaskClone] = useContext(TaskCloneContext)
   const [checkedCats, setCheckedCats] = useState([])
+  console.log("Task clone", taskClone)
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
@@ -34,9 +37,16 @@ const InputTaskForm = (props) => {
           category_ids:checkedCats
         }
     })
+    
   }
   console.log("<=====category ids====>", taskForm.task.category_ids)
 }, [dispatch, checkedCats])
+
+useEffect(() => {
+  setTaskClone(taskToEdit)
+  //set task clone context to taskToEdit variable
+  //use task clone context object ti
+}, [])
 
   // Setting up local state using the useState hook
   const [taskForm, setTaskForm] =
@@ -50,6 +60,8 @@ const InputTaskForm = (props) => {
       }
     })
 
+
+
   const handleCheckBoxChange = event => {
     let array = [...checkedCats]
     let index = array.indexOf(event.target.value)
@@ -57,6 +69,7 @@ const InputTaskForm = (props) => {
     if (event.target.checked) {
       const selectedEl =
         categories.find(cat => event.target.name === cat.title)
+
       console.log("selected Element", selectedEl)
       array = [...checkedCats, selectedEl.id]
       setCheckedCats(array)
@@ -132,14 +145,15 @@ const InputTaskForm = (props) => {
                 {categories.map(cat => {
                   return (
                     <div className="form-check col-sm-6 mb-2">
-                      <input class="form-check-input"
+                      <input className="form-check-input"
                         type="checkbox"
                         name={cat.title}
                         key={cat.id}
-                        value={cat.title}
+                        value={cat.id}
+                        checked={taskToEdit.categories.find(taskCat => taskCat.title === cat.title)}
                         onChange={handleCheckBoxChange}
                         id="flexCheckDefault"></input>
-                      <label class="form-check-label" for="flexCheckDefault">
+                      <label className="form-check-label" for="flexCheckDefault">
                         {cat.title}
                       </label>
                     </div>
