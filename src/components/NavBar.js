@@ -29,7 +29,6 @@ const NavBar = (props) => {
         </Link>
         }
         <Link to="/">Home</Link>
-        {console.log(`Token >> ${localStorage.getItem('token')}`)}
         {!localStorage.getItem('token') &&
           <Link to="/register">Signup</Link>}
         {!localStorage.getItem('token') &&

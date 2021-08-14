@@ -6,9 +6,7 @@ import './Tasks.style.css'
 
 const TaskList = () => {
     const tasks = useSelector(state => state.tasksReducer)
-    console.log("USER TASKS", tasks)
 
-    console.log(tasks)
     const dispatch = useDispatch()
   
     useEffect(() => {

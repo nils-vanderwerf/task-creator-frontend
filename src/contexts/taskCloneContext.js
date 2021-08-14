@@ -3,6 +3,8 @@ const TaskCloneContext = createContext()
 
 const TaskCloneContextProvider = (props) => {
     const [taskClone, setTaskClone] = useState()
+
+    console.log("Context", taskClone)
     
     return (
         <TaskCloneContext.Provider 
