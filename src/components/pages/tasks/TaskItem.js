@@ -4,20 +4,14 @@ import { Link } from 'react-router-dom'
 // import taskActions from '../../redux/actions/taskAction';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import taskActions from '../../../redux/actions/taskActions';
+
 import './Tasks.style.css'
 import ButtonContainer from './ButtonContainer';
 
 const TaskItem = (props) => {
-    const history = useHistory();
     const dispatch = useDispatch();
     const categories = useSelector(state => state.tasksReducer.categories)
     console.log("Task index", props.taskIndex)
-
-    const handleDeleteTask = async () => {
-        await dispatch(taskActions.deleteTaskFromDB({ task: props.task }))
-        history.push('/tasks');
-    }
 
     return (
         <>
@@ -37,7 +31,6 @@ const TaskItem = (props) => {
                     ))}
                 </div>
             <ButtonContainer 
-                handleDeleteTask={handleDeleteTask}
                 task={props.task}/>
             </li>
         </>

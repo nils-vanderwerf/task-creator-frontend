@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { connect, useDispatch, useSelector } from 'react-redux'
 import { useLocation, useParams } from 'react-router-dom'
 import { getAllTasks } from '../../../redux/actions/taskActions'
+import ButtonContainer from './ButtonContainer'
 
 const ShowTask = (props) => {
 
@@ -9,7 +10,6 @@ const ShowTask = (props) => {
     const params = useParams()
     const tasks = useSelector(state => state.tasksReducer)
     const taskToShow = tasks.find(task => task.id == params.id)
-
     // const [task, setTask] = useState()
     const dispatch = useDispatch()
 
@@ -23,9 +23,13 @@ const ShowTask = (props) => {
       console.log("Show page task", taskToShow)
     return (
         <div class="main-container">
-            <h3>{taskToShow.title}</h3>
-            <p>{taskToShow.description}</p>
+            <h3>Task: {taskToShow.title}</h3>
+            <p>Description: {taskToShow.description}</p>
+            <div className="col-sm-4">
+            <ButtonContainer task={taskToShow}/>
+            </div>
         </div>
+
     )
 }
 

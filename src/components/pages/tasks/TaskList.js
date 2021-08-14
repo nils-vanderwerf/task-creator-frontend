@@ -17,7 +17,7 @@ const TaskList = () => {
 
     return (
         <>
-        <div className="all-tasks p-10">
+        <div className="all-tasks main-container p-10">
         <h1>Your Tasks</h1>
             <ul className="task-list d-flex flex-wrap">
                 
