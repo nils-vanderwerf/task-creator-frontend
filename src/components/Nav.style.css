@@ -4,8 +4,10 @@ nav.navbar.bg-dark {
   background: #333; 
 }
 
-nav.navbar.bg-dark a {
+nav.navbar.bg-dark a, nav.navbar.bg-dark p {
     color: #fff;
+    align-items: center;
+    margin-bottom: 0;
 }
 
 nav > .main-container {

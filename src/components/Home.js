@@ -3,9 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom'
 import { Button } from 'react-bootstrap';
 import './Home.style.css'
+import './pages/tasks/Tasks.style.css'
 
 import TaskList from './pages/tasks/TaskList';
+import Login from './pages/auth/Login'
 import userActions from '../redux/actions/userActions'
+
 
 const Home = (props) => {
     const currentUser = useSelector(state => state.currentUser)
@@ -18,23 +21,12 @@ const Home = (props) => {
 
     return (
         <div className="main-container">
-            <h1>Home</h1>
-            {currentUser && currentUser.first_name && currentUser.last_name
+            {currentUser && currentUser.first_name
                 ?
-                <>
-                Welcome {currentUser.first_name}
-                <Link to="/tasks/">
-                    <Button id="view-tasks" className="home" style={{ marginLeft: "0" }}>View Tasks</Button>
-                </Link>
-            </>
+                <TaskList />
                 :
-                <>
-                Not logged in
-                <Link to="/login">
-                <Button id="login" className="home" style={{ marginLeft: "0" }}>Login</Button>
-            </Link>
-            </> 
-                }
+                <Login />
+            }
         </div>
     )
 };

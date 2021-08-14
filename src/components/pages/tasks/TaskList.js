@@ -16,7 +16,7 @@ const TaskList = () => {
     }, [dispatch])
 
     return (
-        <div className="main-container">
+        <>
         <div className="all-tasks p-10">
         <h1>Your Tasks</h1>
             <ul className="task-list d-flex flex-wrap">
@@ -31,7 +31,7 @@ const TaskList = () => {
                 }
             </ul>
         </div>
-    </div>
+    </>
     )
 }
 
