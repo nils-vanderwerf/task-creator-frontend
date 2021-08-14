@@ -8,8 +8,6 @@ const ShowTask = (props) => {
     const params = useParams()
     const tasks = useSelector(state => state.tasksReducer)
 
-    console.log(params)
-
     // const [task, setTask] = useState()
     const dispatch = useDispatch()
 
