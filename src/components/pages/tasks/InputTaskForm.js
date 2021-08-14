@@ -10,7 +10,8 @@ import { getAllCategories } from '../../../redux/actions/categoryActions';
 import { Button, Form, FormControl } from 'react-bootstrap'
 import { TaskCloneContext } from '../../../contexts/taskCloneContext';
 import '../auth/Form.style.css'
-const InputTaskForm = (props) => {
+
+const InputTaskForm = ({task}) => {
   const dispatch = useDispatch()
   let categories 
   = useSelector(state => state.categoriesReducer.categories)
@@ -39,11 +40,11 @@ const InputTaskForm = (props) => {
     })
     
   }
-  console.log("<=====category ids====>", taskForm.task.category_ids)
 }, [dispatch, checkedCats])
 
 useEffect(() => {
-  setTaskClone(taskToEdit)
+  // setTaskClone(taskToEdit)
+  setCheckedCats(taskToEdit.categories.map(category => category.id))
   //set task clone context to taskToEdit variable
   //use task clone context object ti
 }, [])
@@ -63,26 +64,23 @@ useEffect(() => {
 
 
   const handleCheckBoxChange = event => {
+    console.log("CHECKED CATS BEFORE CHANGE", checkedCats)
     let array = [...checkedCats]
     let index = array.indexOf(event.target.value)
-    console.log("Array, index", array, index)
-    if (event.target.checked) {
-      const selectedEl =
-        categories.find(cat => event.target.name === cat.title)
 
-      console.log("selected Element", selectedEl)
+    if (event.target.checked) {
+      const selectedEl = categories.find(cat => event.target.name === cat.title)
       array = [...checkedCats, selectedEl.id]
       setCheckedCats(array)
     }
     else {
+      console.log("ARRAY BEFORE SPLICE", array)
       array.splice(index, 1);
+      console.log("ARRAY AFTER SPLICE", array)
       setCheckedCats(array)
     }
   }
-    console.log("CHECKED CATS", checkedCats)
-
-    console.log("CURRRRENT USER", taskForm)
-    console.log("CATEGORIES", categories)
+    
 
     // Controlled form functions
     const handleChange = e => {
@@ -104,7 +102,7 @@ useEffect(() => {
 
     const handleEdit = e => {
       e.preventDefault();
-      dispatch(taskActions.updateTaskToDB(taskForm));
+      dispatch(taskActions.updateTaskToDB(taskToEdit));
       history.push('/tasks');
     }
 
@@ -150,7 +148,7 @@ useEffect(() => {
                         name={cat.title}
                         key={cat.id}
                         value={cat.id}
-                        checked={taskToEdit.categories.find(taskCat => taskCat.title === cat.title)}
+                        defaultChecked={taskClone && taskClone.categories && taskClone.categories.find(taskCat => taskCat.title === cat.title)}
                         onChange={handleCheckBoxChange}
                         id="flexCheckDefault"></input>
                       <label className="form-check-label" for="flexCheckDefault">
@@ -161,7 +159,7 @@ useEffect(() => {
                 })}
               </div>
             </Form.Group>
-            <Button type="submit">Create Task</Button>
+            <Button type="submit">{(path === '/tasks/new') ? "Create Task" : "Edit Task"} </Button>
 
 
           </Form>

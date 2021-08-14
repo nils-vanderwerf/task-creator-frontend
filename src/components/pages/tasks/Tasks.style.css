@@ -35,3 +35,19 @@ div.task li {
 .description, .check-container {
     margin-bottom: 40px;
 }
+
+.check-container {
+    flex-wrap: wrap;
+}
+
+.categories-list span {
+    background-color: #333;
+    border-radius: 25px;
+    color: #fff;
+    padding: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    display: inline-block;
+    word-wrap: break-word;
+
+}

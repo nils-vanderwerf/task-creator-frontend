@@ -1,13 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import Button from 'react-bootstrap/Button';
-
 // import taskActions from '../../redux/actions/taskAction';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import taskActions from '../../../redux/actions/taskActions';
 import './Tasks.style.css'
+import ButtonContainer from './ButtonContainer';
 
 const TaskItem = (props) => {
     const history = useHistory();
@@ -24,7 +23,7 @@ const TaskItem = (props) => {
         <>
             <li>
                 <Link to={{
-                    pathname: `/task/${props.task.id}`,
+                    pathname: `/tasks/${props.task.id}`,
                     state: {
                         task: props.task.id
                     }
@@ -37,12 +36,9 @@ const TaskItem = (props) => {
                         <span>{cat.title}</span>
                     ))}
                 </div>
-                <div className="button-container d-flex justify-content-between">
-                    <Link to={{ pathname: `/tasks/${props.task.id}/edit` }}>
-                        <Button className="col-6" variant="primary"> Edit </Button>
-                    </Link>
-                    <Button className="col-6" onClick={handleDeleteTask} variant="primary">Delete</Button>
-                </div>
+            <ButtonContainer 
+                handleDeleteTask={handleDeleteTask}
+                task={props.task}/>
             </li>
         </>
     )

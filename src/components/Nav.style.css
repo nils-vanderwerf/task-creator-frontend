@@ -24,3 +24,7 @@ nav > .main-container a {
     display: block;
 
 }
+
+p#welcome {
+    font-size: 16px;
+}

@@ -35,7 +35,10 @@ const NavBar = (props) => {
           <Button style={{marginLeft: "0"}}>Create a task</Button>
         </Link>
         }
-        <p>{currentUser && currentUser.first_name && `Welcome ${currentUser.first_name}`}</p>
+        <p id="welcome">
+          {currentUser && currentUser.first_name && 
+          `Welcome ${currentUser.first_name}`}
+        </p>
         {console.log(`Token >> ${localStorage.getItem('token')}`)}
         {!localStorage.getItem('token') &&
           <Link to="/register">Signup</Link>}

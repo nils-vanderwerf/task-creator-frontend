@@ -53,7 +53,8 @@ const App = () => {
         />
 
         <Route exact path='/tasks/:id' render={match => <ShowTask match={match}/>} />
-        <Route path='/tasks/:id/edit' render={match =>
+        <Route path='/tasks/:id/edit' 
+          render={match =>
           <InputTaskForm match={match} />
         } />
        
