@@ -61,8 +61,6 @@ useEffect(() => {
       }
     })
 
-
-
   const handleCheckBoxChange = event => {
     console.log("CHECKED CATS BEFORE CHANGE", checkedCats)
     let array = [...checkedCats]
@@ -81,7 +79,6 @@ useEffect(() => {
     }
   }
     
-
     // Controlled form functions
     const handleChange = e => {
       setTaskForm({
@@ -159,7 +156,8 @@ useEffect(() => {
                 })}
               </div>
             </Form.Group>
-            <Button type="submit">{(path === '/tasks/new') ? "Create Task" : "Edit Task"} </Button>
+            <Button type="submit">{(path === '/tasks/new') ? 
+            "Create Task" : "Edit Task"} </Button>
 
 
           </Form>
