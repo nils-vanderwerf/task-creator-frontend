@@ -40,7 +40,7 @@ const App = () => {
             // handleLogout={this.handleLogout}
             />
           )} />
-        <Route path="/register" component={Signup} />
+        <Route exact path="/register" component={Signup} />
         <Route path="/login" component={Login} />
         <PrivateRoute exact path="/tasks">
           <TaskList/>

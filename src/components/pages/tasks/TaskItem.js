@@ -25,8 +25,9 @@ const TaskItem = (props) => {
                     <h2>{props.task.title}</h2>
                 </Link>
                 <p>{props.task.description}</p>
+                <p className="small">Categories:</p>
                 <div className="categories-list">
-                    {props.task.categories.map(cat => (
+                    {props.task && props.task.categories && props.task.categories.map(cat => (
                         <span>{cat.title}</span>
                     ))}
                 </div>

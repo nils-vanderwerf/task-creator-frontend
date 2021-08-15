@@ -25,7 +25,7 @@ const InputTaskForm = ({task}) => {
   const taskToEdit = tasks.find(task => task.id == params.id)
   const [taskClone, setTaskClone] = useContext(TaskCloneContext)
   const [checkedCats, setCheckedCats] = useState([])
-  console.log("Task clone", taskClone)
+
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
@@ -42,12 +42,14 @@ const InputTaskForm = ({task}) => {
   }
 }, [dispatch, checkedCats])
 
+
 useEffect(() => {
   // setTaskClone(taskToEdit)
-  setCheckedCats(taskToEdit.categories.map(category => category.id))
+  path !== '/tasks/new' && setCheckedCats(taskToEdit.categories.map(category => category.id))
   //set task clone context to taskToEdit variable
   //use task clone context object ti
 }, [])
+
 
   // Setting up local state using the useState hook
   const [taskForm, setTaskForm] =
