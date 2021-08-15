@@ -19,6 +19,7 @@ const TaskItem = ({task, showState, showModal, hideModal, deletedMessage}) => {
     const handleDeleteTask = async () => {
         await dispatch(taskActions.deleteTaskFromDB({ task: task }))
         deletedMessage(`Task '${task.title}' has been deleted` )
+        hideModal()
         history.push('/tasks');
     }
 

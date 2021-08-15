@@ -18,9 +18,6 @@ const ButtonContainer = ({task, showModal, deleteTask}) => {
 
     console.log("Button container Task id", task.id)
 
-
-    
-
     return (
         <div className="button-container d-flex justify-content-between">
             <Link to={{
