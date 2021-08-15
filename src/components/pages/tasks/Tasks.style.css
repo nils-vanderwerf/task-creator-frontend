@@ -53,3 +53,12 @@ div.task li {
     word-wrap: break-word;
 
 }
+
+task delete confirmation only visible when you delete a task
+div.fade.alert.alert-success.show {
+    padding: 0;
+}
+
+.task-message-visible {
+    display: block
+}

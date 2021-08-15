@@ -5,20 +5,20 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import taskActions from '../../../redux/actions/taskActions';
-
 import './Tasks.style.css'
 import ButtonContainer from './ButtonContainer';
-import {Modal} from 'react-bootstrap'
+import {Modal, Alert} from 'react-bootstrap'
 import history from '../../../history';
 import DeleteConfirmation from './DeleteConfirmation';
 
-const TaskItem = ({task, showState, showModal, hideModal, deletedMessage}) => {
+const TaskItem = ({task, showState, showModal, hideModal, confirmMessage}) => {
     const dispatch = useDispatch();
     const categories = useSelector(state => state.tasksReducer.categories)
 
     const handleDeleteTask = async () => {
         await dispatch(taskActions.deleteTaskFromDB({ task: task }))
-        deletedMessage(`Task '${task.title}' has been deleted` )
+        let taskMessage = document.getElementById('confirm-message')
+        confirmMessage(`Task '${task.title}' has been deleted` )
         hideModal()
         history.push('/tasks');
     }

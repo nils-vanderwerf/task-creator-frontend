@@ -13,7 +13,6 @@ import ShowTask from './ShowTask';
 const ButtonContainer = ({task, showModal, deleteTask}) => {
     const history = useHistory()
     const dispatch = useDispatch();
-    const [deleteMessage, setDeleteMessage] = useState(null)
 
 
     console.log("Button container Task id", task.id)

@@ -8,7 +8,7 @@ import './Tasks.style.css'
 const TaskList = () => {
     const tasks = useSelector(state => state.tasksReducer)
     console.log("USER TASKS", tasks)
-    const [deletedMessage, setDeletedMessage] = useState(null);
+    const [confirmMessage, setConfirmMessage] = useState(null);
 
     console.log(tasks)
     const dispatch = useDispatch()
@@ -19,15 +19,14 @@ const TaskList = () => {
   
     useEffect(() => {
       dispatch(getAllTasks())
+        
     }, [dispatch])
 
     return (
         <>
         <div className="all-tasks main-container p-10">
         <h1>Your Tasks</h1>
-        <p id="confirm-delete-message">
-            <Alert variant="success" className="task-deleted">{deletedMessage}</Alert>
-        </p>
+            {confirmMessage && <Alert variant="success hide">{confirmMessage}</Alert>}
             <ul className="task-list d-flex flex-wrap">
                 
                 {tasks && tasks.map(
@@ -39,7 +38,7 @@ const TaskList = () => {
                                 showModal={showModal} 
                                 hideModal={hideModal}
                                 showState={showState}
-                                deletedMessage={setDeletedMessage}
+                                confirmMessage={setConfirmMessage}
                                 />
                         </div>
                         )
