@@ -4,35 +4,60 @@ import { Link } from 'react-router-dom'
 // import taskActions from '../../redux/actions/taskAction';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import taskActions from '../../../redux/actions/taskActions';
 
 import './Tasks.style.css'
 import ButtonContainer from './ButtonContainer';
+import {Modal} from 'react-bootstrap'
+import history from '../../../history';
+import DeleteConfirmation from './DeleteConfirmation';
 
-const TaskItem = (props) => {
+const TaskItem = ({task, showState, showModal, hideModal, deletedMessage}) => {
     const dispatch = useDispatch();
     const categories = useSelector(state => state.tasksReducer.categories)
-    console.log("Task index", props.taskIndex)
+
+    const handleDeleteTask = async () => {
+        await dispatch(taskActions.deleteTaskFromDB({ task: task }))
+        deletedMessage(`Task '${task.title}' has been deleted` )
+        history.push('/tasks');
+    }
 
     return (
         <>
             <li>
                 <Link to={{
-                    pathname: `/tasks/${props.task.id}`,
+                    pathname: `/tasks/${task.id}`,
                     state: {
-                        task: props.task.id
+                        task: task.id
                     }
                 }}>
-                    <h2>{props.task.title}</h2>
+                    <h2>{task.title}</h2>
                 </Link>
-                <p>{props.task.description}</p>
+                <p>{task.description}</p>
                 <p className="small">Categories:</p>
                 <div className="categories-list">
-                    {props.task && props.task.categories && props.task.categories.map(cat => (
+                    {task && task.categories && task.categories.map(cat => (
                         <span>{cat.title}</span>
                     ))}
                 </div>
-            <ButtonContainer 
-                task={props.task}/>
+                <ButtonContainer
+                    task={task}
+                    deleteTask={handleDeleteTask}
+                    showModal={showModal}
+                />
+
+                <Modal show={showState} onHide={hideModal}>
+                    <Modal.Header closeButton onClick={hideModal}>
+                        <Modal.Title>Delete Confirmation</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <DeleteConfirmation
+                            hideModal={hideModal}
+                            confirmModal={handleDeleteTask}
+                            id={task.id}
+                        />
+                    </Modal.Body>
+                </Modal>
             </li>
         </>
     )

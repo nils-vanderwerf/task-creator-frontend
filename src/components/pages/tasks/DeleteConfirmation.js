@@ -1,7 +1,7 @@
 import React from 'react'
 import { Modal, Button } from "react-bootstrap";
 
-const DeleteConfirmation = ({ show, onHide, confirmModal }) => {
+const DeleteConfirmation = ({ show, hideModal, confirmModal }) => {
     return (
         // <Modal show={show}>
             <>
@@ -10,7 +10,7 @@ const DeleteConfirmation = ({ show, onHide, confirmModal }) => {
                     {/* {message} */}
                 </div>
                 {/* onhide modal */}
-                <Button variant="default" onClick={onHide}>
+                <Button variant="default" onClick={hideModal}>
                     Cancel
                 </Button>
                 <Button variant="danger" onClick={() => confirmModal()}>
