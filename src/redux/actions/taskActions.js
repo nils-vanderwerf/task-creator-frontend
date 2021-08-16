@@ -30,7 +30,6 @@ export function taskCompleted(index) {
 }
 
 export function updateTask(task) {
-  console.log("THE TASK", task)
   return {
     type: UPDATE_TASK,
     task
@@ -80,8 +79,8 @@ const createTaskToDB = taskObj => dispatch => {
     .catch(error => console.log(error))
 };
 
-const updateTaskToDB = ({ task }) => dispatch => {
-  console.log("Task object:", task)
+const updateTaskToDB = ( task ) => dispatch => {
+  console.log("Task object:", task.task.id)
   const config = {
     method: 'PUT',
     headers: {
@@ -91,7 +90,7 @@ const updateTaskToDB = ({ task }) => dispatch => {
     body: JSON.stringify(task)
   };
 
-  fetch(`http://localhost:3001/users/${localStorage.getItem('user_id')}/tasks/${task.id}`, config)
+  fetch(`http://localhost:3001/users/${localStorage.getItem('user_id')}/tasks/${task.task.id}`, config)
     .then(result => result.json())
     .then(data => {
       console.log("the data", data.task)

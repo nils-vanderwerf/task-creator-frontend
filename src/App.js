@@ -20,7 +20,6 @@ const App = () => {
   const currentUser = useSelector(state => state.currentUser)
   const [taskClone, setTaskClone] = useContext(TaskCloneContext)
   console.log(currentUser)
-  console.log("App task clone", taskClone)
   const dispatch = useDispatch()
 
   useEffect(() => {

@@ -24,9 +24,10 @@ const InputTaskForm = ({task}) => {
   const path = location.pathname
   const params = useParams()
   const taskToEdit = tasks.find(task => task.id == params.id)
-  const [taskClone, setTaskClone] = useContext(TaskCloneContext)
+  // const [taskClone, setTaskClone] = useContext(TaskCloneContext)
   const [checkedCats, setCheckedCats] = useState([])
   const [confirmMessage, setConfirmMessage] = useContext(ConfirmMessageContext)
+  console.log(path == `/tasks/${params.id}/edit`)
 
 
   useEffect(() => {
@@ -34,20 +35,24 @@ const InputTaskForm = ({task}) => {
       dispatch(userActions.getCurrentUser());
       dispatch(getAllCategories());
       console.log("Mounted current user: ", currentUser)
+      // console.log("Task clone on mount: ", taskClone)
       setTaskForm({
         ...taskForm, task: {
           ...taskForm.task,
-          category_ids:checkedCats
+          category_ids:checkedCats,
+          categories: checkedCats
         }
     })
-    
   }
+  console.log(taskForm)
 }, [dispatch, checkedCats])
 
 
 useEffect(() => {
   // setTaskClone(taskToEdit)
-  path !== '/tasks/new' && setCheckedCats(taskToEdit.categories.map(category => category.id))
+  taskToEdit && taskToEdit.categories && setCheckedCats(taskToEdit.categories.map(category => category.id))
+  // setTaskClone(taskToEdit)
+  console.log("Checked cats on mount", checkedCats)
   //set task clone context to taskToEdit variable
   //use task clone context object ti
 }, [])
@@ -57,9 +62,9 @@ useEffect(() => {
   const [taskForm, setTaskForm] =
     useState({
       task: {
-        id: (taskToEdit) ? taskToEdit.id : null,
-        title: (path === '/tasks/new') ? '' : taskToEdit.title,
-        description: (path === '/tasks/new') ? '' : taskToEdit.description,
+        id: taskToEdit && taskToEdit.id,
+        title: taskToEdit && taskToEdit.title,
+        description: taskToEdit && taskToEdit.description,
         category_ids: checkedCats,
         user_id: currentUser
       }
@@ -71,7 +76,8 @@ useEffect(() => {
     let index = array.indexOf(event.target.value)
 
     if (event.target.checked) {
-      const selectedEl = categories.find(cat => event.target.name === cat.title)
+      const selectedEl = categories.find
+      (cat => event.target.name === cat.title)
       array = [...checkedCats, selectedEl.id]
       setCheckedCats(array)
     }
@@ -104,7 +110,7 @@ useEffect(() => {
 
     const handleEdit = e => {
       e.preventDefault();
-      dispatch(taskActions.updateTaskToDB(taskToEdit));
+      dispatch(taskActions.updateTaskToDB(taskForm));
       setConfirmMessage(`${taskToEdit.title} has been updated.`)
       history.push('/tasks');
     }
@@ -151,7 +157,7 @@ useEffect(() => {
                         name={cat.title}
                         key={cat.id}
                         value={cat.id}
-                        defaultChecked={taskClone && taskClone.categories && taskClone.categories.find(taskCat => taskCat.title === cat.title)}
+                        defaultChecked={taskToEdit && taskToEdit.categories && taskToEdit.categories.find(taskCat => taskCat.title === cat.title)}
                         onChange={handleCheckBoxChange}
                         id="flexCheckDefault"></input>
                       <label className="form-check-label" for="flexCheckDefault">

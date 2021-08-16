@@ -14,9 +14,6 @@ const ButtonContainer = ({task, showModal, deleteTask}) => {
     const history = useHistory()
     const dispatch = useDispatch();
 
-
-    console.log("Button container Task id", task.id)
-
     return (
         <div className="button-container d-flex justify-content-between">
             <Link to={{

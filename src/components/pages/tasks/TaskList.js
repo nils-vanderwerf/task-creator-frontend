@@ -10,10 +10,8 @@ import { display } from '@material-ui/system';
 
 const TaskList = () => {
     const tasks = useSelector(state => state.tasksReducer)
-    console.log("USER TASKS", tasks)
     const [confirmMessage, setConfirmMessage] = useContext(ConfirmMessageContext)
 
-    console.log(tasks)
     const dispatch = useDispatch()
 
     const [showState, setShowState] = useState(false)
