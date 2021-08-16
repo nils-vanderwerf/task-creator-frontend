@@ -1,4 +1,5 @@
 import { LOAD_TASKS, CREATE_TASK, TASK_COMPLETED, DELETE_TASK, UPDATE_TASK } from '../actions/actionTypes'
+import { getAllTasks } from '../actions/taskActions';
 
 const tasksReducer = (state = [], action) => {
     switch (action.type) {
@@ -16,16 +17,8 @@ const tasksReducer = (state = [], action) => {
             ]
         case UPDATE_TASK:
           const newState = state.map(task => task.id === action.task.id ? action.task : task);
-          console.log('new state > ', newState);
-          return [
-            ...newState,
-            {
-                id: action.task.id,
-                title: action.task.title,
-                description: action.task.description,
-                categories: action.task.categories
-            }
-        ]
+          console.log('new state > ', state);
+          return newState;
         case DELETE_TASK:
             return state.filter(task => task.id !== action.index)
 

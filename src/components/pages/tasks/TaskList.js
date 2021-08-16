@@ -5,8 +5,10 @@ import { Alert, Button } from "react-bootstrap";
 import { getAllTasks } from '../../../redux/actions/taskActions'
 import { ConfirmMessageContext } from '../../../contexts/confirmMessageContext';
 import TaskItem from './TaskItem'
+import taskActions from '../../../redux/actions/taskActions';
 import './Tasks.style.css'
 import { display } from '@material-ui/system';
+import tasksReducer from '../../../redux/reducers/tasksReducer';
 
 const TaskList = () => {
     const tasks = useSelector(state => state.tasksReducer)
@@ -20,7 +22,6 @@ const TaskList = () => {
 
     useEffect(() => {
         dispatch(getAllTasks())
-
     }, [dispatch])
 
     return (

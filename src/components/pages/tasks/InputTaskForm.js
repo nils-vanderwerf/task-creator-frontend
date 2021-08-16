@@ -109,7 +109,7 @@ useEffect(() => {
     };
 
     const handleEdit = e => {
-      e.preventDefault();
+      // e.preventDefault();
       dispatch(taskActions.updateTaskToDB(taskForm));
       setConfirmMessage(`${taskToEdit.title} has been updated.`)
       history.push('/tasks');

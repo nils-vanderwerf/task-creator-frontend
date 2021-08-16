@@ -25,6 +25,11 @@ const ShowTask = (props) => {
         <div class="main-container">
             <h3>Task: {taskToShow.title}</h3>
             <p>Description: {taskToShow.description}</p>
+            <div className="categories-list">
+                    {taskToShow && taskToShow.categories && taskToShow.categories.map(cat => (
+                        <span>{cat.title}</span>
+                    ))}
+                </div>
             <div className="col-sm-4">
             <ButtonContainer task={taskToShow}/>
             </div>

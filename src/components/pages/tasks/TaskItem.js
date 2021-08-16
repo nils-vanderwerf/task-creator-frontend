@@ -1,5 +1,5 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, {useEffect} from 'react'
+import { Link, useParams } from 'react-router-dom'
 
 // import taskActions from '../../redux/actions/taskAction';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,7 +13,10 @@ import DeleteConfirmation from './DeleteConfirmation';
 
 const TaskItem = ({task, showState, showModal, hideModal, confirmMessage}) => {
     const dispatch = useDispatch();
-    const categories = useSelector(state => state.tasksReducer.categories)
+    
+
+    const params = useParams()
+    console.log("Parms", params)
 
     const handleDeleteTask = async () => {
         await dispatch(taskActions.deleteTaskFromDB({ task: task }))

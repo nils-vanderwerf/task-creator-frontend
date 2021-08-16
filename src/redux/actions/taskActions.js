@@ -40,7 +40,7 @@ export function deleteTask(index) {
   return { type: DELETE_TASK, index: index }
 }
 
-export const getAllTasks = () => dispatch => {
+export const getAllTasks = () => async dispatch => {
   const config = {
     method: 'GET',
     headers: {
@@ -79,8 +79,8 @@ const createTaskToDB = taskObj => dispatch => {
     .catch(error => console.log(error))
 };
 
-const updateTaskToDB = ( task ) => dispatch => {
-  console.log("Task object:", task.task.id)
+const updateTaskToDB = task => dispatch => {
+  console.log("Task object:", task.task)
   const config = {
     method: 'PUT',
     headers: {
