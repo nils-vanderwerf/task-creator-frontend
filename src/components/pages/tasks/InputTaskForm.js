@@ -9,6 +9,7 @@ import categoryActions from '../../../redux/actions/categoryActions'
 import { getAllCategories } from '../../../redux/actions/categoryActions';
 import { Button, Form, FormControl } from 'react-bootstrap'
 import { TaskCloneContext } from '../../../contexts/taskCloneContext';
+import { ConfirmMessageContext } from '../../../contexts/confirmMessageContext';
 import '../auth/Form.style.css'
 
 const InputTaskForm = ({task}) => {
@@ -25,6 +26,7 @@ const InputTaskForm = ({task}) => {
   const taskToEdit = tasks.find(task => task.id == params.id)
   const [taskClone, setTaskClone] = useContext(TaskCloneContext)
   const [checkedCats, setCheckedCats] = useState([])
+  const [confirmMessage, setConfirmMessage] = useContext(ConfirmMessageContext)
 
 
   useEffect(() => {
@@ -96,12 +98,14 @@ useEffect(() => {
       console.log("Submitted task is:", taskForm)
       // console.log("This user is", currentUser)
       dispatch(taskActions.createTaskToDB(taskForm));
+      setConfirmMessage(`${taskForm.task.title} has been created.`)
       history.push('/tasks');
     };
 
     const handleEdit = e => {
       e.preventDefault();
       dispatch(taskActions.updateTaskToDB(taskToEdit));
+      setConfirmMessage(`${taskToEdit.title} has been updated.`)
       history.push('/tasks');
     }
 
