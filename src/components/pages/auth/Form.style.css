@@ -19,3 +19,10 @@ p.error-message {
     color: #ff0000;
 }
 
+@media all and (max-width: 600px) {
+    .check-container .form-check.col-sm-6 {
+        width: 100%;
+        display: block;
+    }
+}
+

@@ -30,6 +30,7 @@ export function taskCompleted(index) {
 }
 
 export function updateTask(task) {
+  console.log(task)
   return {
     type: UPDATE_TASK,
     task
@@ -81,6 +82,7 @@ const createTaskToDB = taskObj => dispatch => {
 
 const updateTaskToDB = task => dispatch => {
   console.log("Task object:", task.task)
+  dispatch(updateTask(task));
   const config = {
     method: 'PUT',
     headers: {
@@ -94,7 +96,6 @@ const updateTaskToDB = task => dispatch => {
     .then(result => result.json())
     .then(data => {
       console.log("the data", data.task)
-      dispatch(updateTask(data.task));
     })
     .catch(error => console.log(error))
 };

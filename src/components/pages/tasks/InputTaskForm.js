@@ -124,7 +124,7 @@ useEffect(() => {
     // Component code
     return (
       <div className="auth-form col-12">
-        <div className="form-inner-content align-items-center justify-content-center col-sm-6">
+        <div className="form-inner-content align-items-center justify-content-center col-md-4 col-sm-6">
           <Form onSubmit={(path === '/tasks/new') ? handleCreateTask : handleEdit}>
             <Form.Group className="mb-3">
               <h1 className="auth-header mb-4">{(path === '/tasks/new') ? "New Task" : "Edit task"}</h1>
