@@ -1,6 +1,6 @@
 import { LOAD_TASKS, CREATE_TASK, DELETE_TASK, UPDATE_TASK } from '../actions/actionTypes'
 
-const tasksReducer = (state = [], action) => {
+const tasks = (state = [], action) => {
     switch (action.type) {
         case LOAD_TASKS:
             return action.payload
@@ -32,4 +32,4 @@ const tasksReducer = (state = [], action) => {
     }
 }
 
-export default tasksReducer
+export default tasks

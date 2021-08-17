@@ -148,6 +148,7 @@ const Signup = props => {
            <strong>{formik.errors.password}</strong>
            </p>
        }
+       {/* Current user base indicates that there are errors */}
        {currentUser.base &&
          <p className="error-message">
            <strong>{currentUser.errorMessage}</strong>

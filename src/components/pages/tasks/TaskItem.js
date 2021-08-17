@@ -14,7 +14,6 @@ import { TaskCloneContext } from '../../../contexts/taskCloneContext';
 
 const TaskItem = ({task, showState, showModal, hideModal, confirmMessage}) => {
     const dispatch = useDispatch();
-    const [taskClone, setTaskClone] = useContext(TaskCloneContext)
 
     const params = useParams()
     console.log("Parms", params)
@@ -36,9 +35,6 @@ const TaskItem = ({task, showState, showModal, hideModal, confirmMessage}) => {
             <li>
                 <Link to={{
                     pathname: `/tasks/${task.id}`,
-                    state: {
-                        task: task.id
-                    }
                 }}>
                     <h2>{task.title}</h2>
                 </Link>

@@ -10,7 +10,6 @@ import userActions from '../redux/actions/userActions'
 
 const Home = (props) => {
     const currentUser = useSelector(state => state.currentUser)
-    console.log('Current User >> ', currentUser);
     const dispatch = useDispatch();
 
     useEffect(() => {

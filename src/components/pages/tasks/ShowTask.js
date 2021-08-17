@@ -8,25 +8,18 @@ const ShowTask = (props) => {
 
     // const location = useLocation()
     const params = useParams()
-    const tasks = useSelector(state => state.tasksReducer)
-    const taskToShow = tasks.find(task => {
-        console.log("TRUE OR FALSE")
-        console.log(`${task} === ${params}`, task.id === params.id )
-        return task.id === params.id
-    }
-    )
-   
+    const tasks = useSelector(state => state)
+    console.log("Tasks on show page", tasks)
+    const taskToShow = tasks.find(task => task.id == params.id)
+    console.log("Task to Show", taskToShow)
+
     // const [task, setTask] = useState()
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getAllTasks())
+            dispatch(getAllTasks())
       }, [])
 
-
-      console.log("Tasks, params", tasks, params)
-      console.log("This task", tasks.find(task => task.id == params.id ))
-      console.log("Show page task", taskToShow)
     return (
         <div class="main-container">
             <h3>Task: {taskToShow.title}</h3>

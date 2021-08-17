@@ -4,16 +4,11 @@ import { Link } from 'react-router-dom'
 import { Alert, Button } from "react-bootstrap";
 import { getAllTasks } from '../../../redux/actions/taskActions'
 import { ConfirmMessageContext } from '../../../contexts/confirmMessageContext';
-import { TaskCloneContext } from '../../../contexts/taskCloneContext';
 import TaskItem from './TaskItem'
-import taskActions from '../../../redux/actions/taskActions';
 import './Tasks.style.css'
-import { display } from '@material-ui/system';
-import tasksReducer from '../../../redux/reducers/tasksReducer';
 
 const TaskList = () => {
-    const tasks = useSelector(state => state.tasksReducer)
-    const [taskClone, setTaskClone] = useContext(TaskCloneContext)
+    const tasks = useSelector(state => state.tasks)
     const [confirmMessage, setConfirmMessage] = useContext(ConfirmMessageContext)
     console.log("Tasks in task list", tasks)
 

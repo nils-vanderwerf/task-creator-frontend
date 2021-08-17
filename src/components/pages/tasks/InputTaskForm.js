@@ -14,7 +14,7 @@ const InputTaskForm = ({task}) => {
   let categories 
   = useSelector(state => state.categoriesReducer.categories)
   let currentUser = useSelector(state => state.currentUser.id)
-  const tasks = useSelector(state => state.tasksReducer)
+  const tasks = useSelector(state => state.tasks)
 
   
   const location = useLocation()

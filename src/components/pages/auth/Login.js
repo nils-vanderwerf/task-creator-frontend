@@ -53,9 +53,7 @@ const Login = props => {
   // Destructuring keys from our local state to use in the form
   const { email, password } = loginForm.user;
 
-  console.log('CurrentUser in Login 1 >> ', !currentUser.base && Object.keys(currentUser).length !== 0);
   if (!currentUser.base && Object.keys(currentUser).length !== 0) {
-    console.log('CurrentUser in Login 2 >> ', currentUser);
     props.history.push('/');
   }
 
