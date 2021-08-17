@@ -14,9 +14,8 @@ import { TaskCloneContext } from '../../../contexts/taskCloneContext';
 
 const TaskItem = ({task, showState, showModal, hideModal, confirmMessage}) => {
     const dispatch = useDispatch();
-
     const params = useParams()
-    console.log("Parms", params)
+    const tasks = useSelector(state => state.tasks)
 
     const handleDeleteTask = async () => {
         await dispatch(taskActions.deleteTaskFromDB({ task: task }))
@@ -27,8 +26,8 @@ const TaskItem = ({task, showState, showModal, hideModal, confirmMessage}) => {
     }
 
     useEffect(() => {
-
-    }, [task])
+        dispatch(getAllTasks())
+    }, [])
 
     return (
         <>

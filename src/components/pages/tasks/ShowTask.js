@@ -8,17 +8,16 @@ const ShowTask = (props) => {
 
     // const location = useLocation()
     const params = useParams()
-    const tasks = useSelector(state => state)
+    const tasks = useSelector(state => state.tasks)
     console.log("Tasks on show page", tasks)
     const taskToShow = tasks.find(task => task.id == params.id)
-    console.log("Task to Show", taskToShow)
 
     // const [task, setTask] = useState()
     const dispatch = useDispatch()
 
     useEffect(() => {
             dispatch(getAllTasks())
-      }, [])
+      }, [dispatch])
 
     return (
         <div class="main-container">
