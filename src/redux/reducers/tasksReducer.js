@@ -1,5 +1,4 @@
-import { LOAD_TASKS, CREATE_TASK, TASK_COMPLETED, DELETE_TASK, UPDATE_TASK } from '../actions/actionTypes'
-import { getAllTasks } from '../actions/taskActions';
+import { LOAD_TASKS, CREATE_TASK, DELETE_TASK, UPDATE_TASK } from '../actions/actionTypes'
 
 const tasksReducer = (state = [], action) => {
     switch (action.type) {

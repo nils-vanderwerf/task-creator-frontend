@@ -1,13 +1,9 @@
-import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { Modal, Button, Alert } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import taskActions from '../../../redux/actions/taskActions';
 import { useHistory } from 'react-router-dom';
-import DeleteConfirmation from './DeleteConfirmation';
-import ShowTask from './ShowTask';
 
 
 const ButtonContainer = ({task, showModal, deleteTask}) => {

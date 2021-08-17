@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Home from './components/Home'
 import Signup from './components/pages/auth/Signup'
@@ -13,13 +13,10 @@ import './App.css'
 import history from './history'
 import PrivateRoute from './components/PrivateRoute'
 
-import { TaskCloneContext } from './contexts/taskCloneContext'
 // import { getAllCategories } from '../../../redux/actions/categoryActions';
 
 const App = () => {
   const currentUser = useSelector(state => state.currentUser)
-  const [taskClone, setTaskClone] = useContext(TaskCloneContext)
-  console.log(currentUser)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -51,7 +48,8 @@ const App = () => {
           )}
         />
 
-        <Route exact path='/tasks/:id' render={match => <ShowTask match={match}/>} />
+        <Route exact path='/tasks/:id'
+          render={match => <ShowTask match={match}/>} />
         <Route path='/tasks/:id/edit' 
           render={match =>
           <InputTaskForm match={match} />

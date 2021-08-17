@@ -2,7 +2,6 @@ import {
   LOAD_TASKS,
   CREATE_TASK,
   UPDATE_TASK,
-  TASK_COMPLETED,
   DELETE_TASK,
 } from './actionTypes'
 
@@ -22,13 +21,6 @@ export function createTask(task) {
   }
 }
 
-export function taskCompleted(index) {
-  return {
-    type: TASK_COMPLETED,
-    index: index
-  }
-}
-
 export function updateTask(task) {
   console.log(task)
   return {
@@ -41,7 +33,8 @@ export function deleteTask(index) {
   return { type: DELETE_TASK, index: index }
 }
 
-export const getAllTasks = () => async dispatch => {
+//middleware
+export const getAllTasks = () => dispatch => {
   const config = {
     method: 'GET',
     headers: {

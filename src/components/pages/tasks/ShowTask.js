@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react'
-import { connect, useDispatch, useSelector } from 'react-redux'
-import { useLocation, useParams } from 'react-router-dom'
+import React, {useEffect} from 'react'
+import {useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
 import { getAllTasks } from '../../../redux/actions/taskActions'
 import ButtonContainer from './ButtonContainer'
 
@@ -10,6 +10,7 @@ const ShowTask = (props) => {
     const params = useParams()
     const tasks = useSelector(state => state.tasksReducer)
     const taskToShow = tasks.find(task => task.id == params.id)
+    console.log(taskToShow)
     // const [task, setTask] = useState()
     const dispatch = useDispatch()
 

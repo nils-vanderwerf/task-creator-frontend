@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 const DeleteConfirmation = ({ show, hideModal, confirmModal }) => {
     return (

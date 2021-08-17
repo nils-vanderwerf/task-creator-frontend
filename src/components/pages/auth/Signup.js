@@ -8,8 +8,6 @@ import { Button, Form} from 'react-bootstrap'
 import { validationSchema } from '../../../Validations/ValidationSchema';
 // import * as yup from "yup"
 import { useFormik } from 'formik';
-import * as yup from 'yup'
-import { yupResolver } from "@hookform/resolvers/yup";
 
 
 const Signup = props => {

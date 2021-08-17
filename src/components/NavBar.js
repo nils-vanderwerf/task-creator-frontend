@@ -1,15 +1,14 @@
 import React, {useEffect} from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import userActions from '../redux/actions/userActions.js';
-import { Navbar, Nav, Button } from 'react-bootstrap';
+import { Navbar, Button } from 'react-bootstrap';
 import './Nav.style.css'
 import history from '../history'
 
 const NavBar = (props) => {
   const dispatch = useDispatch();
   const currentUser = useSelector(state => state.currentUser)
-  console.log('Current User >> ', currentUser);
 
   useEffect(() => {
       dispatch(userActions.getCurrentUser());
@@ -39,7 +38,6 @@ const NavBar = (props) => {
           {currentUser && currentUser.first_name && 
           `Welcome ${currentUser.first_name}`}
         </p>
-        {console.log(`Token >> ${localStorage.getItem('token')}`)}
         {!localStorage.getItem('token') &&
           <Link to="/register">Signup</Link>}
         {!localStorage.getItem('token') &&

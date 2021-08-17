@@ -1,19 +1,20 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useContext} from 'react'
 import { Link, useParams } from 'react-router-dom'
 
 // import taskActions from '../../redux/actions/taskAction';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import taskActions from '../../../redux/actions/taskActions';
+import taskActions, { getAllTasks } from '../../../redux/actions/taskActions';
 import './Tasks.style.css'
 import ButtonContainer from './ButtonContainer';
 import {Modal, Alert} from 'react-bootstrap'
 import history from '../../../history';
 import DeleteConfirmation from './DeleteConfirmation';
+import { TaskCloneContext } from '../../../contexts/taskCloneContext';
 
 const TaskItem = ({task, showState, showModal, hideModal, confirmMessage}) => {
     const dispatch = useDispatch();
-    
+    const [taskClone, setTaskClone] = useContext(TaskCloneContext)
 
     const params = useParams()
     console.log("Parms", params)
@@ -25,6 +26,10 @@ const TaskItem = ({task, showState, showModal, hideModal, confirmMessage}) => {
         hideModal()
         history.push('/tasks');
     }
+
+    useEffect(() => {
+
+    }, [task])
 
     return (
         <>
@@ -41,7 +46,7 @@ const TaskItem = ({task, showState, showModal, hideModal, confirmMessage}) => {
                 <p className="small">Categories:</p>
                 <div className="categories-list">
                     {task && task.categories && task.categories.map(cat => (
-                        <span>{cat.title}</span>
+                        <span key={cat.id}>{cat.title}</span>
                     ))}
                 </div>
                 <ButtonContainer

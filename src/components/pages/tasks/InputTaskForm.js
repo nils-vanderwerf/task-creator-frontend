@@ -1,11 +1,8 @@
-
 import React, { useState, useEffect, useContext } from 'react';
-import { FormGroup } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useParams, useHistory } from 'react-router-dom';
-import taskActions from '../../../redux/actions/taskActions';
+import taskActions, { getAllTasks } from '../../../redux/actions/taskActions';
 import userActions from '../../../redux/actions/userActions';
-import categoryActions from '../../../redux/actions/categoryActions'
 import { getAllCategories } from '../../../redux/actions/categoryActions';
 import { Button, Form, FormControl } from 'react-bootstrap'
 import { TaskCloneContext } from '../../../contexts/taskCloneContext';
@@ -18,6 +15,7 @@ const InputTaskForm = ({task}) => {
   = useSelector(state => state.categoriesReducer.categories)
   let currentUser = useSelector(state => state.currentUser.id)
   const tasks = useSelector(state => state.tasksReducer)
+
   
   const location = useLocation()
   const history = useHistory();
@@ -26,52 +24,53 @@ const InputTaskForm = ({task}) => {
   const taskToEdit = tasks.find(task => task.id == params.id)
   // const [taskClone, setTaskClone] = useContext(TaskCloneContext)
   const [checkedCats, setCheckedCats] = useState([])
+  const [taskClone, setTaskClone] = useContext(TaskCloneContext)
   const [confirmMessage, setConfirmMessage] = useContext(ConfirmMessageContext)
-  console.log(path == `/tasks/${params.id}/edit`)
+  console.log("Task to edit", taskToEdit)
+// Setting up local state using the useState hook
 
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
       dispatch(userActions.getCurrentUser());
+      dispatch(getAllTasks())
       dispatch(getAllCategories());
       console.log("Mounted current user: ", currentUser)
       // console.log("Task clone on mount: ", taskClone)
       setTaskForm({
         ...taskForm, task: {
           ...taskForm.task,
-          category_ids:checkedCats,
-          categories: checkedCats
+          category_ids:checkedCats
         }
     })
   }
-  console.log(taskForm)
+  console.log("New task clone", taskClone)
 }, [dispatch, checkedCats])
 
 
 useEffect(() => {
-  // setTaskClone(taskToEdit)
+  setTaskClone(taskToEdit)
   taskToEdit && taskToEdit.categories && setCheckedCats(taskToEdit.categories.map(category => category.id))
+  
   // setTaskClone(taskToEdit)
-  console.log("Checked cats on mount", checkedCats)
   //set task clone context to taskToEdit variable
   //use task clone context object ti
-}, [])
+}, [taskClone])
 
-
-  // Setting up local state using the useState hook
-  const [taskForm, setTaskForm] =
-    useState({
-      task: {
-        id: taskToEdit && taskToEdit.id,
-        title: taskToEdit && taskToEdit.title,
-        description: taskToEdit && taskToEdit.description,
-        category_ids: checkedCats,
-        user_id: currentUser
-      }
-    })
+const [taskForm, setTaskForm] =
+useState({
+  task: {
+    id: taskToEdit && taskToEdit.id,
+    title: taskToEdit && taskToEdit.title,
+    description: taskToEdit && taskToEdit.description,
+    category_ids: checkedCats,
+    user_id: currentUser
+  }
+})
 
   const handleCheckBoxChange = event => {
     console.log("CHECKED CATS BEFORE CHANGE", checkedCats)
+    console.log("TASK CLONE", taskClone)
     let array = [...checkedCats]
     let index = array.indexOf(event.target.value)
 
@@ -80,6 +79,9 @@ useEffect(() => {
       (cat => event.target.name === cat.title)
       array = [...checkedCats, selectedEl.id]
       setCheckedCats(array)
+      setTaskClone({
+        ...taskClone, categories: [checkedCats]
+      })
     }
     else {
       console.log("ARRAY BEFORE SPLICE", array)
@@ -105,6 +107,7 @@ useEffect(() => {
       // console.log("This user is", currentUser)
       dispatch(taskActions.createTaskToDB(taskForm));
       setConfirmMessage(`${taskForm.task.title} has been created.`)
+      dispatch(getAllTasks())
       history.push('/tasks');
     };
 
@@ -151,7 +154,7 @@ useEffect(() => {
               <div className="check-container d-flex">
                 {categories.map(cat => {
                   return (
-                    <div className="form-check col-sm-6 mb-2">
+                    <div className="form-check col-sm-6 mb-2" key={cat.id}>
                       <input className="form-check-input"
                         type="checkbox"
                         name={cat.title}
@@ -160,7 +163,7 @@ useEffect(() => {
                         defaultChecked={taskToEdit && taskToEdit.categories && taskToEdit.categories.find(taskCat => taskCat.title === cat.title)}
                         onChange={handleCheckBoxChange}
                         id="flexCheckDefault"></input>
-                      <label className="form-check-label" for="flexCheckDefault">
+                      <label className="form-check-label" htmlFor="flexCheckDefault">
                         {cat.title}
                       </label>
                     </div>

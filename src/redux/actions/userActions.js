@@ -2,11 +2,7 @@
 import { SET_USER,
   SET_ERRORS, 
   CLEAR_USER,
-  BASE_URL, 
-  USERS_URL, 
-  PERSIST_USER_URL, 
-  LOGIN_URL, 
-  SPECIFIC_USER_URL } from "./actionTypes";
+  } from "./actionTypes";
 
 // Redux Actions
 
