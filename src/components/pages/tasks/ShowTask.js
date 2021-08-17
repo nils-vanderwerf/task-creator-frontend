@@ -9,14 +9,19 @@ const ShowTask = (props) => {
     // const location = useLocation()
     const params = useParams()
     const tasks = useSelector(state => state.tasksReducer)
-    const taskToShow = tasks.find(task => task.id == params.id)
-    console.log(taskToShow)
+    const taskToShow = tasks.find(task => {
+        console.log("TRUE OR FALSE")
+        console.log(`${task} === ${params}`, task.id === params.id )
+        return task.id === params.id
+    }
+    )
+   
     // const [task, setTask] = useState()
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(getAllTasks())
-      }, [dispatch])
+      }, [])
 
 
       console.log("Tasks, params", tasks, params)
@@ -27,7 +32,7 @@ const ShowTask = (props) => {
             <h3>Task: {taskToShow.title}</h3>
             <p>Description: {taskToShow.description}</p>
             <div className="categories-list">
-                    {taskToShow && taskToShow.categories && taskToShow.categories.map(cat => (
+                    {taskToShow?.categories.map(cat => (
                         <span>{cat.title}</span>
                     ))}
                 </div>

@@ -19,7 +19,7 @@ const Home = (props) => {
 
     return (
         <div className="main-container">
-            {currentUser && currentUser.first_name
+            {currentUser?.first_name
                 ?
                 <TaskList />
                 :

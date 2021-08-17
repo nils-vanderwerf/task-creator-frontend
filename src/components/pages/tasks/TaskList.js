@@ -25,7 +25,7 @@ const TaskList = () => {
 
     useEffect(() => {
         dispatch(getAllTasks())
-    }, [dispatch, taskClone])
+    }, [dispatch])
 
     return (
         <>
@@ -36,7 +36,7 @@ const TaskList = () => {
                     {tasks.length == 0 && <p>No tasks here yet.
                         <Link to="/tasks/new">Create a task now. </Link></p>
                     }
-                    {tasks && tasks.map(
+                    {tasks?.map(
                         (task, index) => (
                             <div className="task col-sm-4" key={task.id}>
                                 <TaskItem

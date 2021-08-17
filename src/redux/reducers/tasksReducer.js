@@ -15,8 +15,14 @@ const tasksReducer = (state = [], action) => {
                 }
             ]
         case UPDATE_TASK:
-          const newState = state.map(task => task.id === action.task.id ? action.task : task);
-          console.log('new state > ', state);
+            console.log('ACTION OBJECT: ', action);
+          const newState = state.map(task => {
+              console.log("=======TRUE OR FALSE=========")
+              console.log(`${task.id} === ${action.task.task.id}: `, task.id === action.task.task.id )
+              return task.id === action.task.task.id ? 
+              action.task : task
+            });
+          console.log('new state > ', newState);
           return newState;
         case DELETE_TASK:
             return state.filter(task => task.id !== action.index)

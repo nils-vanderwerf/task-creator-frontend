@@ -22,7 +22,7 @@ export function createTask(task) {
 }
 
 export function updateTask(task) {
-  console.log(task)
+  console.log("REDUCER FOR UPDATING TASK IN STORE: ", task)
   return {
     type: UPDATE_TASK,
     task
@@ -117,6 +117,7 @@ export default {
   getAllTasks,
   createTask,
   createTaskToDB,
+  updateTask,
   updateTaskToDB,
   deleteTaskFromDB
 };

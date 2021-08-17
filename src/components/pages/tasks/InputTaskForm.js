@@ -26,7 +26,6 @@ const InputTaskForm = ({task}) => {
   const [checkedCats, setCheckedCats] = useState([])
   const [taskClone, setTaskClone] = useContext(TaskCloneContext)
   const [confirmMessage, setConfirmMessage] = useContext(ConfirmMessageContext)
-  console.log("Task to edit", taskToEdit)
 // Setting up local state using the useState hook
 
 
@@ -35,7 +34,6 @@ const InputTaskForm = ({task}) => {
       dispatch(userActions.getCurrentUser());
       dispatch(getAllTasks())
       dispatch(getAllCategories());
-      console.log("Mounted current user: ", currentUser)
       // console.log("Task clone on mount: ", taskClone)
       setTaskForm({
         ...taskForm, task: {
@@ -44,7 +42,6 @@ const InputTaskForm = ({task}) => {
         }
     })
   }
-  console.log("New task clone", taskClone)
 }, [dispatch, checkedCats])
 
 
@@ -69,8 +66,6 @@ useState({
 })
 
   const handleCheckBoxChange = event => {
-    console.log("CHECKED CATS BEFORE CHANGE", checkedCats)
-    console.log("TASK CLONE", taskClone)
     let array = [...checkedCats]
     let index = array.indexOf(event.target.value)
 
@@ -79,14 +74,16 @@ useState({
       (cat => event.target.name === cat.title)
       array = [...checkedCats, selectedEl.id]
       setCheckedCats(array)
-      setTaskClone({
-        ...taskClone, categories: [checkedCats]
-      })
+      setTaskForm((prevTask) => ({
+        ...prevTask,
+        task: {
+          ...prevTask.task,
+          category_ids: array
+        }
+      }))
     }
     else {
-      console.log("ARRAY BEFORE SPLICE", array)
       array.splice(index, 1);
-      console.log("ARRAY AFTER SPLICE", array)
       setCheckedCats(array)
     }
   }
@@ -107,13 +104,16 @@ useState({
       // console.log("This user is", currentUser)
       dispatch(taskActions.createTaskToDB(taskForm));
       setConfirmMessage(`${taskForm.task.title} has been created.`)
-      dispatch(getAllTasks())
       history.push('/tasks');
     };
 
     const handleEdit = e => {
       // e.preventDefault();
+      console.log("VALUE OF TASK FORM WHEN I CLICK SUBMIT: ", taskForm)
       dispatch(taskActions.updateTaskToDB(taskForm));
+      taskForm.categories = taskForm.category_ids
+      delete taskForm.category_ids
+      dispatch(taskActions.updateTask(taskForm))
       setConfirmMessage(`${taskToEdit.title} has been updated.`)
       history.push('/tasks');
     }
