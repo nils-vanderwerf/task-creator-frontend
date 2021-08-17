@@ -33,20 +33,8 @@ const Login = props => {
   }
   // controlled form functions
   const handleSubmit = e => {
-    console.log("B4 DISPATCH >> ", currentUser);
     e.preventDefault();
     dispatch(userActions.loginUserToDB(loginForm));
-    // const errorContainer = document.getElementById('error-message')
-    // console.log("ON LOGIN SUBMIT >> ", Object.keys(currentUser).length === 0)
-    // if (currentUser.base || Object.keys(currentUser).length === 0) {
-    //   console.log("CURRENT USER IS AN EMPTY OBJECT", currentUser)
-    //   // errorContainer.innerHTML = `Login ${currentUser.base}`
-    // } 
-    // else {
-    //   console.log("CURRENT USER IS NOT AN EMPTY OBJECT", currentUser)
-    //   props.history.push('/');
-    //   // errorContainer.innerHTML = ""
-    // }    
   };
 
 

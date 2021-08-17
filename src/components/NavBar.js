@@ -16,8 +16,6 @@ const NavBar = (props) => {
 
 
   const handleLogout = () => {
-    
-    console.log("HIIIISSTOOOORRRY", history)
     dispatch(userActions.logoutUser());
     localStorage.clear();
     history.push('/login');

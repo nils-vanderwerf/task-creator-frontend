@@ -100,8 +100,6 @@ useState({
 
     const handleCreateTask = e => {
       e.preventDefault();
-      console.log("Submitted task is:", taskForm)
-      // console.log("This user is", currentUser)
       dispatch(taskActions.createTaskToDB(taskForm));
       setConfirmMessage(`${taskForm.task.title} has been created.`)
       history.push('/tasks');
@@ -109,7 +107,6 @@ useState({
 
     const handleEdit = e => {
       // e.preventDefault();
-      console.log("VALUE OF TASK FORM WHEN I CLICK SUBMIT: ", taskForm)
       dispatch(taskActions.updateTaskToDB(taskForm));
       taskForm.categories = taskForm.category_ids
       delete taskForm.category_ids
