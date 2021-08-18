@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom'
+import { Button } from 'react-bootstrap'
 import './Home.style.css'
 import './pages/tasks/Tasks.style.css'
 
@@ -18,6 +20,11 @@ const Home = (props) => {
 
     return (
         <div className="main-container">
+            <Link to="/tasks/new">
+              <Button className="create-button">
+                  Create a task
+                </Button>
+            </Link>
             {currentUser?.first_name
                 ?
                 <TaskList />

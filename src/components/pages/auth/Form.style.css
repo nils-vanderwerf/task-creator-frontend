@@ -20,6 +20,9 @@ p.error-message {
 }
 
 @media all and (max-width: 600px) {
+    .form-inner-content {
+        padding: 40px;
+    }
     .check-container .form-check.col-sm-6 {
         width: 100%;
         display: block;

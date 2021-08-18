@@ -62,3 +62,13 @@ div.fade.alert.alert-success.show {
 .task-message-visible {
     display: block
 }
+
+@media screen and (max-width: 600px) {
+
+    div.task {
+        display: block;
+        width: 100%;
+        margin: 0;
+        margin-bottom: 40px;
+    }
+}

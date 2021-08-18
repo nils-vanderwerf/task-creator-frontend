@@ -1,5 +1,5 @@
 nav.navbar.bg-dark {
-  height: 70px;
+  height: 110px;
   width: 100%;
   background: #333; 
 }
@@ -13,18 +13,29 @@ nav.navbar.bg-dark a, nav.navbar.bg-dark p {
 nav > .main-container {
     max-width: 1024px;
     width: 100%;
+    padding: 10px 0;
+}
+
+nav > .main-container > .nav-logged-in, 
+nav > .main-container > .nav-logged-out {
+    width: 100%;
     display: flex;
-    padding: 0 40px;
     align-items: center;
-    justify-content: left;
+    justify-content: space-between;
 
 }
 
-nav > .main-container a {
-    display: block;
-
+img {
+    max-width: 100%;
 }
 
 p#welcome {
     font-size: 16px;
+}
+
+@media screen and (max-width: 600px) {
+    nav > .main-container > .nav-logged-in, 
+    nav > .main-container > .nav-logged-out {
+        padding: 0 20px;
+    }
 }

@@ -1,8 +1,8 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import userActions from '../redux/actions/userActions.js';
-import { Navbar, Button } from 'react-bootstrap';
+import { Navbar } from 'react-bootstrap';
 import './Nav.style.css'
 import history from '../history'
 
@@ -11,7 +11,7 @@ const NavBar = (props) => {
   const currentUser = useSelector(state => state.currentUser)
 
   useEffect(() => {
-      dispatch(userActions.getCurrentUser());
+    dispatch(userActions.getCurrentUser());
   }, [dispatch])
 
 
@@ -28,26 +28,26 @@ const NavBar = (props) => {
         {/* <Navbar.Collapse id="basic-navbar-nav"> */}
         {
           localStorage.getItem('token') &&
-          <Link to="/tasks/new">
-          <Button style={{marginLeft: "0"}}>Create a task</Button>
-        </Link>
-        }
-        <p id="welcome">
-          {currentUser && currentUser.first_name && 
-          `Welcome ${currentUser.first_name}`}
-        </p>
-        {!localStorage.getItem('token') &&
-          <Link to="/register">Signup</Link>}
-        {!localStorage.getItem('token') &&
-          <Link to="/login">Login </Link>}
-         
-        {
-          localStorage.getItem('token') &&
-          <Link to="/login" onClick={handleLogout}>
-            Logout
-          </Link>
-        }
+          <div className="nav-logged-in">
+            <Link to="/"><img alt="Task creator logo" src="https://i.imgur.com/wRrro7e.png" /></Link>
+            
+            <p id="welcome">
+              {currentUser && currentUser.first_name &&
+                `Welcome ${currentUser.first_name}`}
+            </p>
 
+            <Link to="/login" onClick={handleLogout}>
+              Logout
+            </Link>
+          </div>
+        }
+        {!localStorage.getItem('token') &&
+          <div className="nav-logged-out">
+            
+            <Link to="/register">Signup</Link>
+            <Link to="/login">Login </Link>
+          </div>
+        }
         {/* </Navbar.Collapse> */}
       </div>
     </Navbar >
