@@ -28,14 +28,17 @@ const NavBar = (props) => {
         {/* <Navbar.Collapse id="basic-navbar-nav"> */}
         {
           localStorage.getItem('token') &&
+          <>
           <Link to="/tasks/new">
           <Button style={{marginLeft: "0"}}>Create a task</Button>
         </Link>
-        }
+        
         <p id="welcome">
           {currentUser && currentUser.first_name && 
           `Welcome ${currentUser.first_name}`}
         </p>
+        </>
+        }
         {!localStorage.getItem('token') &&
           <Link to="/register">Signup</Link>}
         {!localStorage.getItem('token') &&
