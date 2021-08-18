@@ -47,7 +47,7 @@ const newUserToDB = userObj => dispatch => {
     },
     body: JSON.stringify(userObj)
   };
-  fetch('http://localhost:3001/users', config)
+  fetch('http://task-creator-app.herokuapp.com/users', config)
     .then(result => result.json())
     .then(data => {
       console.log("DAAAAATAAAA", data)
@@ -72,7 +72,7 @@ const deleteUserFromDB = userId => dispatch => {
       Authorization: `Bearer ` + localStorage.token
     }
   };
-  fetch(`http://localhost:3001/users/${userId}`, config).then(r => {
+  fetch(`https://task-creator-app.herokuapp.com/users/${userId}`, config).then(r => {
     dispatch(clearUserAction());
     localStorage.clear();
   });
@@ -86,7 +86,7 @@ const loginUserToDB = userCredentials => dispatch => {
     },
     body: JSON.stringify(userCredentials)
   };
-  fetch('http://localhost:3001/login', config)
+  fetch('https://task-creator-app.herokuapp.com/login', config)
     .then(r => r.json())
     .then(data => {
       console.log('Login data > ', data);
@@ -111,7 +111,7 @@ const logoutUser = () => dispatch => {
     }
   };
 
-  fetch(`http://localhost:3001/logout`, config)
+  fetch(`https://task-creator-app.herokuapp.com/logout`, config)
     .then(r => r.json())
     .then(() => {
       dispatch(clearUserAction());

@@ -2,23 +2,29 @@ import React, {useEffect} from 'react'
 import {useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import {getAllTasks} from '../../../redux/actions/taskActions'
+import userActions from '../../../redux/actions/userActions'
 import ButtonContainer from './ButtonContainer'
 import { Provider } from 'react-redux'
 import store from '../../../redux/store/store'
+import currentUser from '../../../redux/reducers/currentUser'
 
 const ShowTask = (props) => {
+    const currentUser = useSelector(state => state.currentUser)
     const tasks = useSelector(state => state.tasks)
     const dispatch = useDispatch()
     const params = useParams()
     
+    console.log("currentUser", currentUser)
     console.log("Tasks on show page", tasks)
     const taskToShow = tasks.find(task => task.id == params.id)
     console.log(props)
 
     useEffect(() => {
         dispatch(getAllTasks())
-    }, [dispatch])
+        dispatch(userActions.getCurrentUser())
+    }, [])
     // const [task, setTask] = useState()
+
 
     return (
         <div class="main-container">

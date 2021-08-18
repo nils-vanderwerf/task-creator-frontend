@@ -24,7 +24,11 @@ const App = () => {
   useEffect(() => {
     dispatch(userActions.getCurrentUser())
     dispatch(taskActions.getAllTasks())
-  }, [])
+  }, [window.reload])
+
+  console.log("current user", currentUser)
+
+ 
 
   return (
     <Router history={history}>
