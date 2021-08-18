@@ -46,7 +46,7 @@ const newUserToDB = userObj => dispatch => {
     },
     body: JSON.stringify(userObj)
   };
-  fetch('http://task-creator-app.herokuapp.com/users', config)
+  fetch('https://task-creator-app.herokuapp.com/users', config)
     .then(result => result.json())
     .then(data => {
       if (data.user) { 
@@ -82,7 +82,7 @@ const loginUserToDB = userCredentials => dispatch => {
     },
     body: JSON.stringify(userCredentials)
   };
-  fetch('http://task-creator-app.herokuapp.com/login', config)
+  fetch('https://task-creator-app.herokuapp.com/login', config)
     .then(r => r.json())
     .then(data => {
       console.log('Login data > ', data);
