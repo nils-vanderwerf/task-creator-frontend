@@ -15,7 +15,7 @@ const tasks = (state = [], action) => {
                 }
             ]
         case UPDATE_TASK:
-            console.log('ACTION OBJECT: ', action);
+          console.log("action.task", action.task)  
           const newState = state.map(task => {
               console.log("=======TRUE OR FALSE=========")
               console.log(`${task.id} === ${action.task.task.id}: `, task.id === action.task.task.id )

@@ -6,7 +6,6 @@ import {
 } from './actionTypes'
 
 export function loadTasks(tasks) {
-  console.log("Load tasks function")
   return {
     type: LOAD_TASKS,
     payload: tasks
@@ -14,7 +13,6 @@ export function loadTasks(tasks) {
 }
 
 export function createTask(task) {
-  console.log("THE TASK", task)
   return {
     type: CREATE_TASK,
     task
@@ -45,16 +43,13 @@ export const getAllTasks = () => dispatch => {
   fetch(`http://localhost:3001/users/${localStorage.getItem('user_id')}/tasks`, config)
     .then(r => r.json())
     .then(tasks => {
-      console.log("<=====Fetch request function====>")
       dispatch(loadTasks(tasks));
     })
     .catch(error => console.log("ERROR:", error))
 };
 
 const createTaskToDB = taskObj => dispatch => {
-  console.log("Task object before delete:", taskObj.task)
   delete taskObj.task.id
-  console.log("Task object after delete:", taskObj)
   const config = {
     method: 'POST',
     headers: {
@@ -74,7 +69,6 @@ const createTaskToDB = taskObj => dispatch => {
 };
 
 const updateTaskToDB = task => dispatch => {
-  console.log("Task object:", task.task)
   dispatch(updateTask(task));
   const config = {
     method: 'PUT',
@@ -87,14 +81,11 @@ const updateTaskToDB = task => dispatch => {
 
   fetch(`http://localhost:3001/users/${localStorage.getItem('user_id')}/tasks/${task.task.id}`, config)
     .then(result => result.json())
-    .then(data => {
-      console.log("the data", data.task)
-    })
+    .then(dispatch(getAllTasks()))
     .catch(error => console.log(error))
 };
 
 const deleteTaskFromDB = ({ task }) => dispatch => {
-  console.log("Task object:", task)
   const config = {
     method: 'DELETE',
     headers: {
@@ -106,7 +97,6 @@ const deleteTaskFromDB = ({ task }) => dispatch => {
   fetch(`http://localhost:3001/users/${localStorage.getItem('user_id')}/tasks/${task.id}`, config)
     .then(result => result.json())
     .then(() => {
-      console.log("the data")
       dispatch(deleteTask(task.id));
     })
     .catch(error => console.log(error))

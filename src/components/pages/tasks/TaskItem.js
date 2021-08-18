@@ -32,15 +32,13 @@ const TaskItem = ({task, showState, showModal, hideModal, confirmMessage}) => {
     return (
         <>
             <li>
-                <Link to={{
-                    pathname: `/tasks/${task.id}`,
-                }}>
+            <Link key={task.id} to={`/tasks/${task.id}`} task={task} className="link-button">
                     <h2>{task.title}</h2>
                 </Link>
                 <p>{task.description}</p>
                 <p className="small">Categories:</p>
                 <div className="categories-list">
-                    {task && task.categories && task.categories.map(cat => (
+                    {task.categories?.map(cat => (
                         <span key={cat.id}>{cat.title}</span>
                     ))}
                 </div>
