@@ -3,15 +3,17 @@ ul.task-list {
 }
 
 div.task {
-    background-color: rgb(212, 211, 211);
+    
     list-style: none;
+    padding: 20px;
     display: inline-block;
-    margin: 20px 40px 0 0;
+   
 }
 
 div.task li {
     padding: 40px;
     
+    background-color: rgb(212, 211, 211);
 }
 
 .button-container {
