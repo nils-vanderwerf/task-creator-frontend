@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://task-creator-app.herokuapp.com/';
+export const BASE_URL = 'https://task-creator-app.herokuapp.com/';
 export const SET_USER = 'SET_USER'
 export const CLEAR_USER = 'CLEAR_USER'
 export const SET_ERRORS = 'SET_ERRORS'

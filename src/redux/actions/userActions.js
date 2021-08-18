@@ -30,7 +30,7 @@ const getCurrentUser = () => dispatch => {
       }
     };
     
-    fetch(`http://task-creator-app.herokuapp.com/users/${localStorage.getItem('user_id')}`, config)
+    fetch(`https://task-creator-app.herokuapp.com/users/${localStorage.getItem('user_id')}`, config)
       .then(r => r.json())
       .then(userInstance => {
         dispatch(setUserAction(userInstance.user));
@@ -68,7 +68,7 @@ const deleteUserFromDB = userId => dispatch => {
       Authorization: `Bearer ` + localStorage.token
     }
   };
-  fetch(`http://task-creator-app.herokuapp.com/users/${userId}`, config).then(r => {
+  fetch(`https://task-creator-app.herokuapp.com/users/${userId}`, config).then(r => {
     dispatch(clearUserAction());
     localStorage.clear();
   });
