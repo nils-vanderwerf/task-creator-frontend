@@ -30,7 +30,7 @@ const getCurrentUser = () => dispatch => {
       }
     };
     
-    fetch(`http://localhost:3001/users/${localStorage.getItem('user_id')}`, config)
+    fetch(`http://task-creator-app.herokuapp.com/users/${localStorage.getItem('user_id')}`, config)
       .then(r => r.json())
       .then(userInstance => {
         dispatch(setUserAction(userInstance.user));
@@ -39,7 +39,6 @@ const getCurrentUser = () => dispatch => {
 };
 
 const newUserToDB = userObj => dispatch => {
-  console.log("User object", JSON.stringify(userObj))
   const config = {
     method: 'POST',
     headers: {
@@ -47,13 +46,10 @@ const newUserToDB = userObj => dispatch => {
     },
     body: JSON.stringify(userObj)
   };
-  fetch('http://localhost:3001/users', config)
+  fetch('http://task-creator-app.herokuapp.com/users', config)
     .then(result => result.json())
     .then(data => {
-      console.log("DAAAAATAAAA", data)
       if (data.user) { 
-      console.log("DATA FROM THE SUBMITTED USER", data.user)
-      console.log("TOKEN", data.token)
       localStorage.setItem('token', data.token);
       dispatch(setUserAction(data.user));
       }
@@ -72,7 +68,7 @@ const deleteUserFromDB = userId => dispatch => {
       Authorization: `Bearer ` + localStorage.token
     }
   };
-  fetch(`http://localhost:3001/users/${userId}`, config).then(r => {
+  fetch(`http://task-creator-app.herokuapp.com/users/${userId}`, config).then(r => {
     dispatch(clearUserAction());
     localStorage.clear();
   });
@@ -86,7 +82,7 @@ const loginUserToDB = userCredentials => dispatch => {
     },
     body: JSON.stringify(userCredentials)
   };
-  fetch('http://localhost:3001/login', config)
+  fetch('http://task-creator-app.herokuapp.com/login', config)
     .then(r => r.json())
     .then(data => {
       console.log('Login data > ', data);
@@ -111,7 +107,7 @@ const logoutUser = () => dispatch => {
     }
   };
 
-  fetch(`http://localhost:3001/logout`, config)
+  fetch(`http://task-creator-app.herokuapp.com/logout`, config)
     .then(r => r.json())
     .then(() => {
       dispatch(clearUserAction());

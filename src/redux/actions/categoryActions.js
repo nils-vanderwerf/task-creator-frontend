@@ -17,7 +17,7 @@ export function loadCategories(categories) {
       }
     };
   
-    fetch(`http://localhost:3001/categories`, config)
+    fetch(`http://task-creator-app.herokuapp.com/categories`, config)
       .then(r => r.json())
       .then(categories => {
         dispatch(loadCategories(categories));
