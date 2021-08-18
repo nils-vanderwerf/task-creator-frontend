@@ -6,7 +6,7 @@ div.task {
     background-color: rgb(212, 211, 211);
     list-style: none;
     display: inline-block;
-    margin: 20px;
+    margin: 20px 40px 0 0;
 }
 
 div.task li {
@@ -63,12 +63,26 @@ div.fade.alert.alert-success.show {
     display: block
 }
 
+button.create-button {
+    width: 200px;
+    margin: 0;
+    margin: auto;
+    margin-bottom: 40px;
+}
+
 @media screen and (max-width: 600px) {
 
     div.task {
         display: block;
         width: 100%;
         margin: 0;
+        margin-bottom: 40px;
+    }
+
+    button.create-button {
+        max-width: 100%;
+        margin: 0;
+        margin: auto;
         margin-bottom: 40px;
     }
 }

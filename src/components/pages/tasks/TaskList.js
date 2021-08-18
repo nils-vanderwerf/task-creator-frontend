@@ -26,6 +26,11 @@ const TaskList = () => {
         <>
             <div className="all-tasks main-container p-10">
                 <h1>Your Tasks</h1>
+                <Link to="/tasks/new">
+              <Button className="create-button">
+                  Create a task
+                </Button>
+            </Link>
                 {confirmMessage && <Alert variant="success hide">{confirmMessage}</Alert>}
                 <ul className="task-list d-flex flex-wrap">
                     {tasks.length == 0 && <p>No tasks here yet.

@@ -29,7 +29,9 @@ const NavBar = (props) => {
         {
           localStorage.getItem('token') &&
           <div className="nav-logged-in">
-            <Link to="/"><img alt="Task creator logo" src="https://i.imgur.com/wRrro7e.png" /></Link>
+            <Link to="/">
+              <img alt="Task creator logo" src="https://i.imgur.com/wRrro7e.png" />
+            </Link>
             
             <p id="welcome">
               {currentUser && currentUser.first_name &&
@@ -43,7 +45,9 @@ const NavBar = (props) => {
         }
         {!localStorage.getItem('token') &&
           <div className="nav-logged-out">
-            
+             <Link to="/">
+              <img alt="Task creator logo" src="https://i.imgur.com/wRrro7e.png" />
+            </Link>
             <Link to="/register">Signup</Link>
             <Link to="/login">Login </Link>
           </div>
