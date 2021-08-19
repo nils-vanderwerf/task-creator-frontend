@@ -39,8 +39,7 @@ export const getAllTasks = () => dispatch => {
       Authorization: `Bearer ${localStorage.token}`
     }
   };
-
-  fetch(`http://localhost:3000/users/${localStorage.getItem('user_id')}/tasks`, config)
+  fetch(`http://localhost:3001/users/${localStorage.getItem('user_id')}/tasks`, config)
     .then(r => r.json())
     .then(tasks => {
       dispatch(loadTasks(tasks));
@@ -59,7 +58,7 @@ const createTaskToDB = taskObj => dispatch => {
     body: JSON.stringify(taskObj)
   };
 
-  fetch(`http://localhost:3000/users/${localStorage.getItem('user_id')}/tasks`, config)
+  fetch(`http://localhost:3001/users/${localStorage.getItem('user_id')}/tasks`, config)
     .then(result => result.json())
     .then(data => {
       console.log("the data")
@@ -79,7 +78,7 @@ const updateTaskToDB = task => dispatch => {
     body: JSON.stringify(task)
   };
 
-  fetch(`http://localhost:3000/users/${localStorage.getItem('user_id')}/tasks/${task.task.id}`, config)
+  fetch(`http://localhost:3001/users/${localStorage.getItem('user_id')}/tasks/${task.task.id}`, config)
     .then(result => result.json())
     .then(dispatch(getAllTasks()))
     .catch(error => console.log(error))
@@ -94,7 +93,7 @@ const deleteTaskFromDB = ({ task }) => dispatch => {
     }
   };
 
-  fetch(`http://localhost:3000/users/${localStorage.getItem('user_id')}/tasks/${task.id}`, config)
+  fetch(`http://localhost:3001/users/${localStorage.getItem('user_id')}/tasks/${task.id}`, config)
     .then(result => result.json())
     .then(() => {
       dispatch(deleteTask(task.id));

@@ -1,20 +1,17 @@
-import React, {useEffect, useContext} from 'react'
-import { Link, useParams } from 'react-router-dom'
+import React, {useEffect} from 'react'
+import { Link } from 'react-router-dom'
 
 // import taskActions from '../../redux/actions/taskAction';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import taskActions, { getAllTasks } from '../../../redux/actions/taskActions';
 import './Tasks.style.css'
 import ButtonContainer from './ButtonContainer';
-import {Modal, Alert} from 'react-bootstrap'
+import {Modal } from 'react-bootstrap'
 import history from '../../../history';
 import DeleteConfirmation from './DeleteConfirmation';
-import { TaskCloneContext } from '../../../contexts/taskCloneContext';
 
 const TaskItem = ({task, showState, showModal, hideModal, confirmMessage}) => {
     const dispatch = useDispatch();
-    const params = useParams()
     const tasks = useSelector(state => state.tasks)
 
     const handleDeleteTask = async () => {

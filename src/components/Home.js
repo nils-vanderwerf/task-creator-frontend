@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom'
-import { Button } from 'react-bootstrap'
+import { useDispatch } from 'react-redux';
 import './pages/tasks/Tasks.style.css'
 
 import TaskList from './pages/tasks/TaskList';
@@ -10,7 +8,6 @@ import userActions from '../redux/actions/userActions'
 
 
 const Home = (props) => {
-    const currentUser = useSelector(state => state.currentUser)
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -19,7 +16,7 @@ const Home = (props) => {
 
     return (
         <div className="main-container">
-            {currentUser?.first_name
+            {localStorage.getItem('token')
                 ?
                 <TaskList />
                 :

@@ -33,7 +33,7 @@ const TaskList = () => {
             </Link>
                 {confirmMessage && <Alert variant="success hide">{confirmMessage}</Alert>}
                 <ul className="task-list d-flex flex-wrap">
-                    {tasks.length == 0 && <p>No tasks here yet.
+                    {tasks.length === 0 && <p>No tasks here yet.
                         <Link to="/tasks/new">Create a task now. </Link></p>
                     }
                     {tasks?.map(

@@ -13,7 +13,6 @@ export const SPECIFIC_USER_URL = id => USERS_URL + '/' + id;
 export const LOAD_TASKS = 'LOAD_TASKS'
 export const CREATE_TASK = 'CREATE_TASK'
 export const UPDATE_TASK = 'UPDATE_TASK'
-export const TASK_COMPLETED = 'TASK_COMPLETED'
 export const DELETE_TASK = 'DELETE_TASK'
 
 

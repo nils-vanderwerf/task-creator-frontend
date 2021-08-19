@@ -1,19 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux'
-import store from './redux/store/store'
+import {store, persistor} from './redux/store/store'
 import 'bootstrap/dist/css/bootstrap.css';
 import App from './App';
-import { TaskCloneContextProvider } from './contexts/taskCloneContext';
 import { ConfirmMessageContextProvider } from './contexts/confirmMessageContext';
+import { PersistGate } from 'redux-persist/integration/react'
 
 ReactDOM.render(
   <Provider store={store}>
-    <TaskCloneContextProvider>
+    <PersistGate loading={null} persistor={persistor}>
       <ConfirmMessageContextProvider>
       <App />
       </ConfirmMessageContextProvider>
-    </TaskCloneContextProvider>
+    </PersistGate>
   </Provider>,
   document.getElementById('root')
 );

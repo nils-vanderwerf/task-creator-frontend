@@ -1,11 +1,11 @@
-import React, { useEffect} from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Home from './components/Home'
 import Signup from './components/pages/auth/Signup'
 import Login from './components/pages/auth/Login'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import userActions from './redux/actions/userActions';
-import taskActions from './redux/actions/taskActions';
+import { getAllTasks } from './redux/actions/taskActions';
 import NavBar from './components/NavBar'
 import TaskList from './components/pages/tasks/TaskList'
 import InputTaskForm from './components/pages/tasks/InputTaskForm'
@@ -21,14 +21,15 @@ const App = () => {
   const tasks = useSelector(state => state.tasks)
   const dispatch = useDispatch()
 
+  console.log("App tasks", tasks)
+
   useEffect(() => {
+    dispatch(getAllTasks())
     dispatch(userActions.getCurrentUser())
-    dispatch(taskActions.getAllTasks())
-  }, [window.reload])
+  }, [])
 
   console.log("current user", currentUser)
 
- 
 
   return (
     <Router history={history}>
@@ -56,7 +57,7 @@ const App = () => {
         />
 
         <Route exact path='/tasks/:id'
-          render={match => <ShowTask match={match} tasks={tasks} />}/>
+          render={match => <ShowTask match={match} tasks={tasks}/>}/>
         <Route path='/tasks/:id/edit' 
           render={match =>
           <InputTaskForm match={match} />

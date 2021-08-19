@@ -1,11 +1,10 @@
 import thunk from 'redux-thunk'
-import { createStore, combineReducers, applyMiddleware} from 'redux' 
-import currentUser from '../reducers/currentUser.js'
-import tasks from '../reducers/tasksReducer.js'
-import categoriesReducer from '../reducers/categoriesReducer'
-import logger from 'redux-logger'
-import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
+import { createStore, compose, applyMiddleware} from 'redux'
+import { composeWithDevTools } from 'redux-devtools-extension'; 
 import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
+
+import rootReducer from '../reducers/rootReducer';
 
 //persists store
 const persistConfig = {
@@ -13,22 +12,14 @@ const persistConfig = {
     storage,
   }
 
-
-
-const rootReducer = combineReducers({
-    currentUser,
-    tasks,
-    categoriesReducer
-})
-
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 
-
-
-
-const store = createStore(rootReducer, applyMiddleware(logger, thunk));
+const store = createStore(
+  persistedReducer,
+  composeEnhancer(applyMiddleware(thunk))
+)
 let persistor = persistStore(store)
-
-export default store;
+export { store, persistor }
