@@ -21,14 +21,10 @@ const App = () => {
   const tasks = useSelector(state => state.tasks)
   const dispatch = useDispatch()
 
-  console.log("App tasks", tasks)
-
   useEffect(() => {
     dispatch(getAllTasks())
     dispatch(userActions.getCurrentUser())
   }, [])
-
-  console.log("current user", currentUser)
 
 
   return (

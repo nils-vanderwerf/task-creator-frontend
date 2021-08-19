@@ -12,11 +12,11 @@ const ButtonContainer = ({task, showModal, deleteTask}) => {
             }}>
                 <Button className="col-6"
                     variant="primary">
-                    <FontAwesomeIcon icon="edit" /> Edit
+                    {/* <FontAwesomeIcon icon="edit" /> */} Edit 
                 </Button>
             </Link>
             <Button className="col-6" variant="primary" onClick={showModal}>
-            <FontAwesomeIcon icon="trash" /> Delete
+            {/* <FontAwesomeIcon icon="trash" /> */} Delete 
             </Button>
         </div>
     )

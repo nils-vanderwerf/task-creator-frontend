@@ -24,7 +24,7 @@ const InputTaskForm = ({task}) => {
   const taskToEdit = tasks.find(task => task.id == params.id)
   // const [taskClone, setTaskClone] = useContext(TaskCloneContext)
   const [checkedCats, setCheckedCats] = useState([])
-  const [setConfirmMessage] = useContext(ConfirmMessageContext)
+  const [confirmMessage, setConfirmMessage] = useContext(ConfirmMessageContext)
 // Setting up local state using the useState hook
 
 
@@ -33,14 +33,21 @@ const InputTaskForm = ({task}) => {
       dispatch(userActions.getCurrentUser());
       dispatch(getAllTasks())
       dispatch(getAllCategories());
+      // console.log("Task clone on mount: ", taskClone)
       setTaskForm({
         ...taskForm, task: {
           ...taskForm.task,
           category_ids:checkedCats
         }
     })
+    
   }
 }, [dispatch, checkedCats])
+
+
+useEffect(() => {
+  taskToEdit && taskToEdit.categories && setCheckedCats(taskToEdit.categories.map(category => category.id))
+}, [])
 
 const [taskForm, setTaskForm] =
 useState({
