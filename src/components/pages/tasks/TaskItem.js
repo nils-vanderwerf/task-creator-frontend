@@ -1,9 +1,8 @@
-import React, {useEffect} from 'react'
 import { Link } from 'react-router-dom'
 
 // import taskActions from '../../redux/actions/taskAction';
-import { useDispatch, useSelector } from 'react-redux';
-import taskActions, { getAllTasks } from '../../../redux/actions/taskActions';
+import { useDispatch } from 'react-redux';
+import taskActions from '../../../redux/actions/taskActions';
 import './Tasks.style.css'
 import ButtonContainer from './ButtonContainer';
 import {Modal } from 'react-bootstrap'
@@ -12,19 +11,17 @@ import DeleteConfirmation from './DeleteConfirmation';
 
 const TaskItem = ({task, showState, showModal, hideModal, confirmMessage}) => {
     const dispatch = useDispatch();
-    const tasks = useSelector(state => state.tasks)
 
     const handleDeleteTask = async () => {
         await dispatch(taskActions.deleteTaskFromDB({ task: task }))
-        let taskMessage = document.getElementById('confirm-message')
         confirmMessage(`Task '${task.title}' has been deleted` )
         hideModal()
         history.push('/tasks');
     }
 
-    useEffect(() => {
-        dispatch(getAllTasks())
-    }, [])
+    // useEffect(() => {
+    //     dispatch(getAllTasks())
+    // }, [])
 
     return (
         <>

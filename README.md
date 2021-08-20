@@ -7,8 +7,17 @@ Task Creator is a web application that allows users to create and edit a list of
 
 3. Run npm start in your terminal to start the frontend server. Open http://localhost:3000 to view it in the browser.
 
+## Built with
+- Javascript
+- ReactJS
+- Redux 
+- Thunk
+- React Bootstrap
+- CSS
 
-Contributing
+The project was bootstrapped with Create React App
+
+## Contributing
 Bug reports and pull requests are welcome on GitHub at https://github.com/nils-vanderwerf/task-creator-frontend.git.
 
 License
