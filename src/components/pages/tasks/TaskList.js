@@ -12,6 +12,7 @@ const TaskList = () => {
     const [confirmMessage, setConfirmMessage] = useContext(ConfirmMessageContext)
     console.log("Tasks in task list", tasks)
 
+
     const dispatch = useDispatch()
 
     const [showState, setShowState] = useState(false)
@@ -20,6 +21,7 @@ const TaskList = () => {
 
     useEffect(() => {
         dispatch(getAllTasks())
+        console.log("Token", localStorage.getItem('token'))
     }, [dispatch])
 
     return (
