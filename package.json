@@ -2,6 +2,7 @@
   "name": "nils-task-creator-app",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://task-creator-app.herokuapp.com",
   "engines": {
     "node": "15.x"
   },
