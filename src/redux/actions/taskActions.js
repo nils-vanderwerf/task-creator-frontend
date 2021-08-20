@@ -59,6 +59,7 @@ const createTaskToDB = taskObj => dispatch => {
     body: JSON.stringify(taskObj)
   };
   console.log("Task", taskObj.task)
+  console.log("localStorage.getItem('user_id')", localStorage.getItem('user_id'))
   fetch(`https://task-creator-app.herokuapp.com/users/${localStorage.getItem('user_id')}/tasks`, config)
     .then(result => result.json())
     .then(data => {
