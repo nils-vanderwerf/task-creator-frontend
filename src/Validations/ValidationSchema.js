@@ -21,3 +21,4 @@ export const validationSchema = yup.object().shape({
         .max(20, "Too long!")
         .required("Required *")
 })
+
