@@ -58,11 +58,11 @@ const createTaskToDB = taskObj => dispatch => {
     },
     body: JSON.stringify(taskObj)
   };
-
+  console.log("Task", taskObj.task)
   fetch(`https://task-creator-app.herokuapp.com/users/${localStorage.getItem('user_id')}/tasks`, config)
     .then(result => result.json())
     .then(data => {
-      console.log("the data")
+      console.log("the data", data)
       dispatch(createTask(data.task));
     })
     .catch(error => console.log(error))
@@ -93,7 +93,7 @@ const deleteTaskFromDB = ({ task }) => dispatch => {
       'Content-Type': 'application/json'
     }
   };
-
+  console.log("Token", localStorage.getItem('token'), "User Id:", localStorage.getItem('user_id'))
   fetch(`https://task-creator-app.herokuapp.com/users/${localStorage.getItem('user_id')}/tasks/${task.id}`, config)
     .then(result => result.json())
     .then(() => {
