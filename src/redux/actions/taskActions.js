@@ -86,7 +86,8 @@ const updateTaskToDB = task => dispatch => {
     .catch(error => console.log(error))
 };
 
-const deleteTaskFromDB = ({ task }) => dispatch => {
+const deleteTaskFromDB = (task) => dispatch => {
+  console.log("deleted task", task)
   const config = {
     method: 'DELETE',
     headers: {
@@ -94,10 +95,11 @@ const deleteTaskFromDB = ({ task }) => dispatch => {
       'Content-Type': 'application/json'
     }
   };
-  console.log("Token", localStorage.getItem('token'), "User Id:", localStorage.getItem('user_id'))
-  fetch(`https://aqueous-gorge-85666.herokuapp.com/users/${localStorage.getItem('user_id')}/tasks/${task.id}`, config)
+  
+  fetch(`http://localhost:3001/users/${localStorage.getItem('user_id')}/tasks/${task.id}`, config)
     .then(result => result.json())
     .then(() => {
+      
       dispatch(deleteTask(task.id));
     })
     .catch(error => console.log(error))

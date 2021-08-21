@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
-
+import React, {useEffect} from 'react'
+import { Link, useParams } from 'react-router-dom'
 // import taskActions from '../../redux/actions/taskAction';
 import { useDispatch } from 'react-redux';
 import taskActions from '../../../redux/actions/taskActions';
@@ -9,11 +9,18 @@ import {Modal } from 'react-bootstrap'
 import history from '../../../history';
 import DeleteConfirmation from './DeleteConfirmation';
 
-const TaskItem = ({task, showState, showModal, hideModal, confirmMessage}) => {
+const TaskItem = ({taskId, showState, showModal, hideModal, confirmMessage}) => {
     const dispatch = useDispatch();
+    const tasks = useSelector(state => state.tasks)
+    const params = useParams()
+    console.log("tasks", tasks, "taskId", taskId)
+    const task = tasks.find(task => task["id"] === taskId )
+    
 
-    const handleDeleteTask = async () => {
-        await dispatch(taskActions.deleteTaskFromDB({ task: task }))
+    const handleDeleteTask = () => {
+        console.log("This task ==", task )
+        dispatch(taskActions.deleteTaskFromDB(task))
+        let taskMessage = document.getElementById('confirm-message')
         confirmMessage(`Task '${task.title}' has been deleted` )
         hideModal()
         history.push('/tasks');
@@ -26,7 +33,7 @@ const TaskItem = ({task, showState, showModal, hideModal, confirmMessage}) => {
     return (
         <>
             <li>
-            <Link key={task.id} to={`/tasks/${task.id}`} task={task} className="link-button">
+            <Link key={taskId} to={`/tasks/${taskId}`} task={task} className="link-button">
                     <h2>{task.title}</h2>
                 </Link>
                 <p>{task.description}</p>

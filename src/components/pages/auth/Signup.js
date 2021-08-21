@@ -4,7 +4,7 @@ import userActions from '../../../redux/actions/userActions';
 import './Form.style.css'
 import { Button, Form} from 'react-bootstrap'
 // import { FormGroup } from '@material-ui/core';
-import { validationSchema } from '../../../Validations/ValidationSchema';
+import { userValidationSchema } from '../../../Validations/ValidationSchema';
 // import * as yup from "yup"
 import { useFormik } from 'formik';
 
@@ -38,7 +38,7 @@ const Signup = props => {
     console.log("Form data", formData)
     submitForm(formData)
   },
-    validationSchema
+    userValidationSchema
   });
 
   const removeErrorMessage = (event) => {
