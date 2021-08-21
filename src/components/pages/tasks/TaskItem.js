@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import { Link, useParams } from 'react-router-dom'
 // import taskActions from '../../redux/actions/taskAction';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import taskActions from '../../../redux/actions/taskActions';
 import './Tasks.style.css'
 import ButtonContainer from './ButtonContainer';
