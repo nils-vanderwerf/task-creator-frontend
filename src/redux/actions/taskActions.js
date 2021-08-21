@@ -85,6 +85,7 @@ const updateTaskToDB = task => dispatch => {
 };
 
 const deleteTaskFromDB = ({ task }) => dispatch => {
+  console.log("deleted task", task)
   const config = {
     method: 'DELETE',
     headers: {
@@ -92,10 +93,11 @@ const deleteTaskFromDB = ({ task }) => dispatch => {
       'Content-Type': 'application/json'
     }
   };
-
+  
   fetch(`http://localhost:3001/users/${localStorage.getItem('user_id')}/tasks/${task.id}`, config)
     .then(result => result.json())
     .then(() => {
+      
       dispatch(deleteTask(task.id));
     })
     .catch(error => console.log(error))

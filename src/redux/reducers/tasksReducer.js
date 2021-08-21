@@ -25,7 +25,8 @@ const tasks = (state = [], action) => {
           console.log('new state > ', newState);
           return newState;
         case DELETE_TASK:
-            return state.filter(task => task.id !== action.index)
+            console.log(action.task)
+            return state.filter(task => task.id !== action.id)
 
         default:
             return state;
