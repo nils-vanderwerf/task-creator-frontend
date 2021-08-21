@@ -17,7 +17,7 @@ export function loadCategories(categories) {
       }
     };
   
-    fetch(`https://task-creator-app.herokuapp.com/`, config)
+    fetch(`https://aqueous-gorge-85666.herokuapp.com/categories`, config)
       .then(r => r.json())
       .then(categories => {
         dispatch(loadCategories(categories));
