@@ -85,6 +85,13 @@ useState({
     
     // Controlled form functions
     const handleChange = e => {
+      console.log(e.target.name)
+      if (e.target.name === 'description' && e.target.value !== '') {
+        document.getElementById('description-error').innerHTML = ''
+      }
+      if (e.target.name === 'title' && e.target.value !== '') {
+        document.getElementById('title-error').innerHTML = ''
+      }
       setTaskForm({
         ...taskForm, task: {
           ...taskForm.task,
@@ -93,21 +100,38 @@ useState({
       });
     }
 
+    const formValidateError = () => {
+      const titleErrorTag = document.getElementById('title-error')
+      const descriptionErrorTag = document.getElementById('description-error')
+      if (taskForm.task.title === '') {
+        titleErrorTag.innerHTML = "Title can't be blank"
+      }
+      if (taskForm.task.description === '')  {
+        descriptionErrorTag.innerHTML = "Description can't be blank"
+      }
+    }
+
     const handleCreateTask = e => {
       e.preventDefault();
+      if (taskForm.task.title === '' || taskForm.task.description === '') formValidateError()
+      else {
       dispatch(taskActions.createTaskToDB(taskForm));
       setConfirmMessage(`${taskForm.task.title} has been created.`)
       history.push('/tasks');
+      }
     };
 
     const handleEdit = e => {
-      // e.preventDefault();
-      dispatch(taskActions.updateTaskToDB(taskForm));
-      taskForm.categories = taskForm.category_ids
-      delete taskForm.category_ids
-      dispatch(taskActions.updateTask(taskForm))
-      setConfirmMessage(`${taskToEdit.title} has been updated.`)
-      history.push('/tasks');
+      e.preventDefault();
+      if (taskForm.task.title === '' || taskForm.task.description === '') formValidateError()
+      else {
+        dispatch(taskActions.updateTaskToDB(taskForm));
+        taskForm.categories = taskForm.category_ids
+        delete taskForm.category_ids
+        dispatch(taskActions.updateTask(taskForm))
+        setConfirmMessage(`${taskToEdit.title} has been updated.`)
+        history.push('/tasks');
+      }
     }
 
     // Destructuring keys from our local state to use in the form
@@ -123,6 +147,7 @@ useState({
           <Form onSubmit={(path === '/tasks/new') ? handleCreateTask : handleEdit}>
             <Form.Group className="mb-3">
               <h1 className="auth-header mb-4">{(path === '/tasks/new') ? "New Task" : "Edit task"}</h1>
+              <p className="error-message" id="title-error"></p>
               <FormControl className="title"
                 type="text"
                 name="title"
@@ -133,6 +158,7 @@ useState({
             </Form.Group>
             <br />
             <Form.Group className="description">
+            <p className="error-message" id="description-error"></p>
               <textarea className="col-3 form-control"
                 name="description"
                 value={description}
