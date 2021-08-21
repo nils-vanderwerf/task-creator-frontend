@@ -41,7 +41,7 @@ const TaskList = () => {
                             <div className="task col-sm-4" key={task.id}>
                                 <TaskItem
                                     taskIndex={index}
-                                    task={task}
+                                    taskId={task.id}
                                     showModal={showModal}
                                     hideModal={hideModal}
                                     showState={showState}

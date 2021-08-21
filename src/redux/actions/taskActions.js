@@ -84,23 +84,23 @@ const updateTaskToDB = task => dispatch => {
     .catch(error => console.log(error))
 };
 
-const deleteTaskFromDB = ({ task }) => dispatch => {
+const deleteTaskFromDB = (task) => dispatch => {
   console.log("deleted task", task)
-  const config = {
-    method: 'DELETE',
-    headers: {
-      Authorization: `Bearer ${localStorage.token}`,
-      'Content-Type': 'application/json'
-    }
-  };
+  // const config = {
+  //   method: 'DELETE',
+  //   headers: {
+  //     Authorization: `Bearer ${localStorage.token}`,
+  //     'Content-Type': 'application/json'
+  //   }
+  // };
   
-  fetch(`http://localhost:3001/users/${localStorage.getItem('user_id')}/tasks/${task.id}`, config)
-    .then(result => result.json())
-    .then(() => {
+  // fetch(`http://localhost:3001/users/${localStorage.getItem('user_id')}/tasks/${task.id}`, config)
+  //   .then(result => result.json())
+  //   .then(() => {
       
-      dispatch(deleteTask(task.id));
-    })
-    .catch(error => console.log(error))
+  //     dispatch(deleteTask(task.id));
+  //   })
+  //   .catch(error => console.log(error))
 };
 
 export default {
