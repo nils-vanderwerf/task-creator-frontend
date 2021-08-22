@@ -40,10 +40,11 @@ const TaskList = () => {
                     }
                     {tasks?.map(
                         (task, index) => (
-                            <div className="task col-sm-4" key={task.id}>
+                            
+                            <div className="task col-sm-4" id={`task-${index+1}`} key={`task-${index+1}`}>
                                 <TaskItem
                                     taskIndex={index}
-                                    taskId={task.id}
+                                    task={task}
                                     showModal={showModal}
                                     hideModal={hideModal}
                                     showState={showState}

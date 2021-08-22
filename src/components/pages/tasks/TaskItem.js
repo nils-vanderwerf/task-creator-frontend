@@ -9,12 +9,11 @@ import {Modal } from 'react-bootstrap'
 import history from '../../../history';
 import DeleteConfirmation from './DeleteConfirmation';
 
-const TaskItem = ({taskId, showState, showModal, hideModal, confirmMessage}) => {
+const TaskItem = ({task, taskIndex, showState, showModal, hideModal, confirmMessage}) => {
     const dispatch = useDispatch();
     const tasks = useSelector(state => state.tasks)
     const params = useParams()
-    console.log("tasks", tasks, "taskId", taskId)
-    const task = tasks.find(task => task["id"] === taskId )
+    console.log("tasks", tasks, "taskId", taskIndex, "task", task)
     
 
     const handleDeleteTask = () => {
@@ -33,7 +32,7 @@ const TaskItem = ({taskId, showState, showModal, hideModal, confirmMessage}) => 
     return (
         <>
             <li>
-            <Link key={taskId} to={`/tasks/${taskId}`} task={task} className="link-button">
+            <Link key={task} to={`/tasks/${task.id}`} task={task} className="link-button">
                     <h2>{task.title}</h2>
                 </Link>
                 <p>{task.description}</p>
@@ -57,7 +56,7 @@ const TaskItem = ({taskId, showState, showModal, hideModal, confirmMessage}) => 
                         <DeleteConfirmation
                             hideModal={hideModal}
                             confirmModal={handleDeleteTask}
-                            id={task.id}
+                            taskToDelete={task}
                         />
                     </Modal.Body>
                 </Modal>

@@ -1,7 +1,8 @@
 import React from 'react'
 import { Button } from "react-bootstrap";
 
-const DeleteConfirmation = ({ show, hideModal, confirmModal }) => {
+const DeleteConfirmation = ({ taskToDelete, hideModal, confirmModal }) => {
+    console.log("Delete Confirmation task", taskToDelete)
     return (
         // <Modal show={show}>
             <>
