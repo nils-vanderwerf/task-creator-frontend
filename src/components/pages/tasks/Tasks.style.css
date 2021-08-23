@@ -61,6 +61,11 @@ div.fade.alert.alert-success.show {
     padding: 0;
 }
 
+/* Font awesome */
+.svg-inline--fa {
+    margin-right: 5px;
+}
+
 .task-message-visible {
     display: block
 }
