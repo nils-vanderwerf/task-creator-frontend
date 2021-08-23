@@ -8,6 +8,8 @@ import { Button, Form, FormControl } from 'react-bootstrap'
 import { TaskCloneContext } from '../../../contexts/taskCloneContext';
 import { ConfirmMessageContext } from '../../../contexts/confirmMessageContext';
 import '../auth/Form.style.css'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlusCircle, faEdit} from '@fortawesome/free-solid-svg-icons'
 
 const InputTaskForm = ({task}) => {
   const dispatch = useDispatch()
@@ -189,8 +191,18 @@ useState({
                 })}
               </div>
             </Form.Group>
-            <Button type="submit">{(path === '/tasks/new') ? 
-            "Create Task" : "Edit Task"} </Button>
+            <Button type="submit">{(path === '/tasks/new') ?
+            <>
+            <FontAwesomeIcon icon={faPlusCircle}/> 
+              Create Task 
+            </>
+            :
+            <> 
+            <FontAwesomeIcon icon={faEdit}/> 
+              Edit Task  
+            </>
+            }
+            </Button>
 
 
           </Form>

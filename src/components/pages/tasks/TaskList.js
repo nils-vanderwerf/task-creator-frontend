@@ -6,6 +6,8 @@ import { getAllTasks } from '../../../redux/actions/taskActions'
 import { ConfirmMessageContext } from '../../../contexts/confirmMessageContext';
 import TaskItem from './TaskItem'
 import './Tasks.style.css'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 
 const TaskList = () => {
     const tasks = useSelector(state => state.tasks)
@@ -25,17 +27,17 @@ const TaskList = () => {
 
     useEffect(() => {
         dispatch(getAllTasks())
-    }, [dispatch, deleteSelected])
+    }, [dispatch])
 
     return (
         <>
             <div className="all-tasks main-container p-10">
                 <h1>Your Tasks</h1>
                 <Link to="/tasks/new">
-              <Button className="create-button">
-                  Create a task
-                </Button>
-            </Link>
+                    <Button className="create-button">
+                        <FontAwesomeIcon icon={faPlusCircle} />Create a task
+                    </Button>
+                </Link>
                 {confirmMessage && <Alert variant="success hide">{confirmMessage}</Alert>}
                 <ul className="task-list d-flex flex-wrap">
                     {tasks.length === 0 && <p>No tasks here yet.
