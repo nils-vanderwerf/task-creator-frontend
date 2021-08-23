@@ -1,21 +1,22 @@
 import React from 'react'
 import { Button } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes, faTrash } from '@fortawesome/free-solid-svg-icons'
 
 const DeleteConfirmation = ({ taskToDelete, hideModal, confirmModal }) => {
-    console.log("Delete Confirmation task", taskToDelete)
     return (
         // <Modal show={show}>
             <>
                 <div className="alert alert-danger">
-                    Are you sure you want to delete this task?
+                Are you sure you want to delete this task?
                     {/* {message} */}
                 </div>
                 {/* onhide modal */}
                 <Button variant="default" onClick={hideModal}>
-                    Cancel
+                <FontAwesomeIcon icon={faTimes} /> Cancel
                 </Button>
-                <Button variant="danger" onClick={() => confirmModal()}>
-                    Delete
+                <Button variant="danger" onClick={confirmModal}>
+                <FontAwesomeIcon icon={faTrash}/> Delete
                 </Button>
             </>
     )
