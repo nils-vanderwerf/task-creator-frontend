@@ -2,32 +2,47 @@ import React, { useState, useEffect, useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Alert, Button } from "react-bootstrap";
-import { getAllTasks } from '../../../redux/actions/taskActions'
+import taskActions, { getAllTasks } from '../../../redux/actions/taskActions'
 import { ConfirmMessageContext } from '../../../contexts/confirmMessageContext';
 import TaskItem from './TaskItem'
 import './Tasks.style.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
+import DeleteConfirmation from './DeleteConfirmation';
+import { Modal } from 'react-bootstrap'
+import history from '../../../history';
 
-const TaskList = () => {
+
+const TaskList = (props) => {
     const tasks = useSelector(state => state.tasks)
     const [confirmMessage, setConfirmMessage] = useContext(ConfirmMessageContext)
-    const [deleteSelected, setDeleteSelected] = useState()
+    const [taskToDelete, setTaskToDelete] = useState()
     console.log("Tasks in task list", tasks)
 
     const dispatch = useDispatch()
 
     const [showState, setShowState] = useState(false)
-    const showModal = (e) => {
-        console.log(e.target.id)
+    const showModal = (event) => {
+        const targetInt = parseInt(event.target.id)
+        setTaskToDelete(tasks.find(task => task["id"] === targetInt))
         setShowState(true)
-        setDeleteSelected(e.target.id)
     }
     const hideModal = () => setShowState(false)
 
     useEffect(() => {
         dispatch(getAllTasks())
     }, [dispatch])
+
+
+    const handleDeleteTask = () => {
+        console.log("Task to delete", taskToDelete)
+        dispatch(taskActions.deleteTaskFromDB(taskToDelete))
+        let taskMessage = document.getElementById('confirm-message')
+        setConfirmMessage(`Task '${taskToDelete.title}' has been deleted` )
+        hideModal()
+        dispatch(getAllTasks())
+        history.push('/tasks');
+    }
 
     return (
         <>
@@ -45,9 +60,8 @@ const TaskList = () => {
                     }
                     {tasks?.map(
                         (task) => (
-                            <div className="task col-sm-4" id={task.id} key={`task-${task.id}`}>
+                            <div className="task col-sm-4" key={`task-${task.id}`}>
                                 <TaskItem
-                                    deleteTaskId={deleteSelected}
                                     taskId={task.id}
                                     showModal={showModal}
                                     hideModal={hideModal}
@@ -57,8 +71,19 @@ const TaskList = () => {
                             </div>
                         )
                     )
-                    }
+                }
                 </ul>
+                <Modal show={showState}onHide={hideModal}>
+                <Modal.Header closeButton onClick={hideModal}>
+                    <Modal.Title>Delete Confirmation</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <DeleteConfirmation
+                        hideModal={hideModal}
+                        handleDeleteTask={handleDeleteTask}
+                    />
+                </Modal.Body>
+            </Modal>
             </div>
         </>
     )

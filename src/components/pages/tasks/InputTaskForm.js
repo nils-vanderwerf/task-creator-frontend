@@ -5,7 +5,7 @@ import taskActions, { getAllTasks } from '../../../redux/actions/taskActions';
 import userActions from '../../../redux/actions/userActions';
 import { getAllCategories } from '../../../redux/actions/categoryActions';
 import { Button, Form, FormControl } from 'react-bootstrap'
-import { TaskCloneContext } from '../../../contexts/taskCloneContext';
+import { TaskCloneContext } from '../../../contexts/currentTaskContext';
 import { ConfirmMessageContext } from '../../../contexts/confirmMessageContext';
 import '../auth/Form.style.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -24,7 +24,6 @@ const InputTaskForm = ({task}) => {
   const path = location.pathname
   const params = useParams()
   const taskToEdit = tasks.find(task => task.id == params.id)
-  // const [taskClone, setTaskClone] = useContext(TaskCloneContext)
   const [checkedCats, setCheckedCats] = useState([])
   const [confirmMessage, setConfirmMessage] = useContext(ConfirmMessageContext)
 // Setting up local state using the useState hook

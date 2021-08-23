@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faTrash } from '@fortawesome/free-solid-svg-icons'
 
-const DeleteConfirmation = ({ handleDeleteTask, hideModal, confirmModal }) => {
+const DeleteConfirmation = ({task, handleDeleteTask, hideModal}) => {
     return (
         // <Modal show={show}>
             <>
