@@ -96,7 +96,7 @@ const deleteTaskFromDB = (task) => dispatch => {
     }
   };
   
-  fetch(`http://localhost:3001/users/${localStorage.getItem('user_id')}/tasks/${task.id}`, config)
+  fetch(`https://aqueous-gorge-85666.herokuapp.com/users/${localStorage.getItem('user_id')}/tasks/${task.id}`, config)
     .then(result => result.json())
     .then(() => {
       
