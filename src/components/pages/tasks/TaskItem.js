@@ -20,7 +20,7 @@ const TaskItem = ({taskId, deleteTaskId, showState, showModal, hideModal, confir
 
     const handleDeleteTask = (e) => {
         console.log("IN HANDLE DELETE FUNCTION, TASK READY TO DELETE", deleteTask)
-        dispatch(taskActions.deleteTaskFromDB(tasks))
+        dispatch(taskActions.deleteTaskFromDB(task))
         let taskMessage = document.getElementById('confirm-message')
         confirmMessage(`Task '${task.title}' has been deleted` )
         hideModal()
