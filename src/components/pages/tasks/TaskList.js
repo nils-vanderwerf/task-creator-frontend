@@ -10,17 +10,22 @@ import './Tasks.style.css'
 const TaskList = () => {
     const tasks = useSelector(state => state.tasks)
     const [confirmMessage, setConfirmMessage] = useContext(ConfirmMessageContext)
+    const [deleteSelected, setDeleteSelected] = useState()
     console.log("Tasks in task list", tasks)
 
     const dispatch = useDispatch()
 
     const [showState, setShowState] = useState(false)
-    const showModal = () => setShowState(true)
+    const showModal = (e) => {
+        console.log(e.target.id)
+        setShowState(true)
+        setDeleteSelected(e.target.id)
+    }
     const hideModal = () => setShowState(false)
 
     useEffect(() => {
         dispatch(getAllTasks())
-    }, [dispatch])
+    }, [dispatch, deleteSelected])
 
     return (
         <>
@@ -37,10 +42,10 @@ const TaskList = () => {
                         <Link to="/tasks/new">Create a task now. </Link></p>
                     }
                     {tasks?.map(
-                        (task, index) => (
-                            <div className="task col-sm-4" key={task.id}>
+                        (task) => (
+                            <div className="task col-sm-4" id={task.id} key={`task-${task.id}`}>
                                 <TaskItem
-                                    taskIndex={index}
+                                    deleteTaskId={deleteSelected}
                                     taskId={task.id}
                                     showModal={showModal}
                                     hideModal={hideModal}

@@ -32,6 +32,10 @@ div.task li {
     width: 100%;
 }
 
+.svg-inline--fa {
+    margin-right: 5px;
+}
+
 .check-container {
     flex-wrap: wrap;
 }

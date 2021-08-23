@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Link, useParams } from 'react-router-dom'
 
 // import taskActions from '../../redux/actions/taskAction';
@@ -10,17 +10,17 @@ import {Modal } from 'react-bootstrap'
 import history from '../../../history';
 import DeleteConfirmation from './DeleteConfirmation';
 
-const TaskItem = ({taskId, showState, showModal, hideModal, confirmMessage}) => {
+const TaskItem = ({taskId, deleteTaskId, showState, showModal, hideModal, confirmMessage}) => {
     const dispatch = useDispatch();
     const tasks = useSelector(state => state.tasks)
     const params = useParams()
-    console.log("tasks", tasks, "taskId", taskId)
     const task = tasks.find(task => task["id"] === taskId )
-    
+    const [deleteTask, setDeleteTask] = useState((tasks.find(task => task["id"] === deleteTaskId )))
 
-    const handleDeleteTask = () => {
-        console.log("This task ==", task )
-        dispatch(taskActions.deleteTaskFromDB(task))
+
+    const handleDeleteTask = (e) => {
+        console.log("IN HANDLE DELETE FUNCTION, TASK READY TO DELETE", deleteTask)
+        dispatch(taskActions.deleteTaskFromDB(tasks))
         let taskMessage = document.getElementById('confirm-message')
         confirmMessage(`Task '${task.title}' has been deleted` )
         hideModal()
@@ -30,6 +30,12 @@ const TaskItem = ({taskId, showState, showModal, hideModal, confirmMessage}) => 
     useEffect(() => {
         dispatch(getAllTasks())
     }, [])
+
+    useEffect(() =>{
+        console.log(tasks)
+        setDeleteTask(tasks.find(task => task["id"] === deleteTaskId ))
+        console.log(deleteTask)
+    }, [deleteTaskId])
 
     return (
         <>
@@ -50,7 +56,7 @@ const TaskItem = ({taskId, showState, showModal, hideModal, confirmMessage}) => 
                     showModal={showModal}
                 />
 
-                <Modal show={showState} onHide={hideModal}>
+                <Modal show={showState}onHide={hideModal}>
                     <Modal.Header closeButton onClick={hideModal}>
                         <Modal.Title>Delete Confirmation</Modal.Title>
                     </Modal.Header>
@@ -58,7 +64,7 @@ const TaskItem = ({taskId, showState, showModal, hideModal, confirmMessage}) => 
                         <DeleteConfirmation
                             hideModal={hideModal}
                             confirmModal={handleDeleteTask}
-                            id={task.id}
+                            taskToDelete={taskId}
                         />
                     </Modal.Body>
                 </Modal>
