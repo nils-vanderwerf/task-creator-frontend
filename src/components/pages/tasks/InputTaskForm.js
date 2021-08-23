@@ -5,11 +5,8 @@ import taskActions, { getAllTasks } from '../../../redux/actions/taskActions';
 import userActions from '../../../redux/actions/userActions';
 import { getAllCategories } from '../../../redux/actions/categoryActions';
 import { Button, Form, FormControl } from 'react-bootstrap'
-import { TaskCloneContext } from '../../../contexts/currentTaskContext';
 import { ConfirmMessageContext } from '../../../contexts/confirmMessageContext';
 import '../auth/Form.style.css'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlusCircle, faEdit} from '@fortawesome/free-solid-svg-icons'
 
 const InputTaskForm = ({task}) => {
   const dispatch = useDispatch()
@@ -24,9 +21,11 @@ const InputTaskForm = ({task}) => {
   const path = location.pathname
   const params = useParams()
   const taskToEdit = tasks.find(task => task.id == params.id)
+  // const [taskClone, setTaskClone] = useContext(TaskCloneContext)
   const [checkedCats, setCheckedCats] = useState([])
   const [confirmMessage, setConfirmMessage] = useContext(ConfirmMessageContext)
 // Setting up local state using the useState hook
+
 
 
   useEffect(() => {
@@ -60,7 +59,7 @@ useState({
     user_id: currentUser
   }
 })
-
+console.log(taskForm)
   const handleCheckBoxChange = event => {
     let array = [...checkedCats]
     let index = array.indexOf(event.target.value)
@@ -104,17 +103,17 @@ useState({
     const formValidateError = () => {
       const titleErrorTag = document.getElementById('title-error')
       const descriptionErrorTag = document.getElementById('description-error')
-      if (taskForm.task.title === '') {
+      if (taskForm.task.title === null) {
         titleErrorTag.innerHTML = "Title can't be blank"
       }
-      if (taskForm.task.description === '')  {
+      if (taskForm.task.description === null)  {
         descriptionErrorTag.innerHTML = "Description can't be blank"
       }
     }
 
     const handleCreateTask = e => {
       e.preventDefault();
-      if (taskForm.task.title === '' || taskForm.task.description === '') formValidateError()
+      if (taskForm.task.title === null || taskForm.task.description === null) formValidateError()
       else {
       dispatch(taskActions.createTaskToDB(taskForm));
       setConfirmMessage(`${taskForm.task.title} has been created.`)
@@ -124,7 +123,7 @@ useState({
 
     const handleEdit = e => {
       e.preventDefault();
-      if (taskForm.task.title === '' || taskForm.task.description === '') formValidateError()
+      if (taskForm.task.title === null || taskForm.task.description === null) formValidateError()
       else {
         dispatch(taskActions.updateTaskToDB(taskForm));
         taskForm.categories = taskForm.category_ids
@@ -190,18 +189,8 @@ useState({
                 })}
               </div>
             </Form.Group>
-            <Button type="submit">{(path === '/tasks/new') ?
-            <>
-            <FontAwesomeIcon icon={faPlusCircle}/> 
-              Create Task 
-            </>
-            :
-            <> 
-            <FontAwesomeIcon icon={faEdit}/> 
-              Edit Task  
-            </>
-            }
-            </Button>
+            <Button type="submit">{(path === '/tasks/new') ? 
+            "Create Task" : "Edit Task"} </Button>
 
 
           </Form>
