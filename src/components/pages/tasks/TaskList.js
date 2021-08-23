@@ -12,6 +12,7 @@ import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 const TaskList = () => {
     const tasks = useSelector(state => state.tasks)
     const [confirmMessage, setConfirmMessage] = useContext(ConfirmMessageContext)
+    const [deleteSelected, setDeleteSelected] = useState()
     console.log("Tasks in task list", tasks)
 
     const dispatch = useDispatch()
@@ -20,6 +21,7 @@ const TaskList = () => {
     const showModal = (e) => {
         console.log(e.target.id)
         setShowState(true)
+        setDeleteSelected(e.target.id)
     }
     const hideModal = () => setShowState(false)
 
@@ -45,6 +47,7 @@ const TaskList = () => {
                         (task) => (
                             <div className="task col-sm-4" id={task.id} key={`task-${task.id}`}>
                                 <TaskItem
+                                    deleteTaskId={deleteSelected}
                                     taskId={task.id}
                                     showModal={showModal}
                                     hideModal={hideModal}
