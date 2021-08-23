@@ -63,7 +63,7 @@ const TaskItem = ({taskId, deleteTaskId, showState, showModal, hideModal, confir
                     <Modal.Body>
                         <DeleteConfirmation
                             hideModal={hideModal}
-                            confirmModal={handleDeleteTask}
+                            handleDeleteTask={handleDeleteTask}
                             taskToDelete={taskId}
                         />
                     </Modal.Body>
