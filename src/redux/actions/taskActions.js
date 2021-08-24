@@ -20,7 +20,6 @@ export function createTask(task) {
 }
 
 export function updateTask(task) {
-  console.log("REDUCER FOR UPDATING TASK IN STORE: ", task)
   return {
     type: UPDATE_TASK,
     task
@@ -61,7 +60,6 @@ const createTaskToDB = taskObj => dispatch => {
   fetch(`http://localhost:3001/users/${localStorage.getItem('user_id')}/tasks`, config)
     .then(result => result.json())
     .then(data => {
-      console.log("the data")
       dispatch(createTask(data.task));
     })
     .catch(error => console.log(error))
@@ -85,7 +83,6 @@ const updateTaskToDB = task => dispatch => {
 };
 
 const deleteTaskFromDB = task => dispatch => {
-  console.log("deleted task", task)
   const config = {
     method: 'DELETE',
     headers: {

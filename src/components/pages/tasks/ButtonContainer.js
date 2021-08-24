@@ -6,7 +6,6 @@ import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
 
 
 const ButtonContainer = ({ task, showModal }) => {
-    console.log("TASK IN BUTTON CONTAINER", task.id)
     return (
         <div className="button-container d-flex justify-content-between">
             <Link to={{

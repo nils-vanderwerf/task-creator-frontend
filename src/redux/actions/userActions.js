@@ -50,15 +50,11 @@ const newUserToDB = userObj => dispatch => {
   fetch('http://localhost:3001/users', config)
     .then(result => result.json())
     .then(data => {
-      console.log("DAAAAATAAAA", data)
       if (data.user) { 
-      console.log("DATA FROM THE SUBMITTED USER", data.user)
-      console.log("TOKEN", data.token)
       localStorage.setItem('token', data.token);
       dispatch(setUserAction(data.user));
       }
       else {
-        console.log("DATA NOT OK, data", data)
         dispatch(receiveErrors(data.message));
       }
     })
@@ -89,7 +85,6 @@ const loginUserToDB = userCredentials => dispatch => {
   fetch('http://localhost:3001/login', config)
     .then(r => r.json())
     .then(data => {
-      console.log('Login data > ', data);
       if (data.base) {
         dispatch(setUserAction(data))
       }

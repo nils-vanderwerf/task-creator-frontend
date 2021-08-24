@@ -15,17 +15,12 @@ const tasks = (state = [], action) => {
                 }
             ]
         case UPDATE_TASK:
-          console.log("action.task", action.task)  
           const newState = state.map(task => {
-              console.log("=======TRUE OR FALSE=========")
-              console.log(`${task.id} === ${action.task.task.id}: `, task.id === action.task.task.id )
               return task.id === action.task.task.id ? 
               action.task : task
             });
-          console.log('new state > ', newState);
           return newState;
         case DELETE_TASK:
-            console.log(action.task)
             return state.filter(task => task.id !== action.id)
 
         default:
