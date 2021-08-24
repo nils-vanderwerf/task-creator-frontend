@@ -11,7 +11,8 @@ nav.navbar.bg-dark a, nav.navbar.bg-dark p {
 }
 
 nav > .main-container {
-    max-width: 1024px;
+    max-width: 1200px;
+    margin: auto;
     width: 100%;
     padding: 10px 0;
 }
@@ -33,7 +34,7 @@ p#welcome {
     font-size: 16px;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1200px) {
     nav > .main-container > .nav-logged-in, 
     nav > .main-container > .nav-logged-out {
         padding: 0 20px;

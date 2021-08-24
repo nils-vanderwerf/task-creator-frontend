@@ -8,7 +8,7 @@ import './Tasks.style.css'
 import ButtonContainer from './ButtonContainer';
 import history from '../../../history';
 
-const TaskItem = ({taskId, showState, showModal, hideModal, confirmMessage}) => {
+const TaskItem = ({taskId, taskToDelete, showState, showModal, hideModal, confirmMessage}) => {
     const dispatch = useDispatch();
     const tasks = useSelector(state => state.tasks)
     const params = useParams()

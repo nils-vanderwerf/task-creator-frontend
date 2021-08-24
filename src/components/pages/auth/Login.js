@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import userActions from '../../../redux/actions/userActions';
 import './Form.style.css'
 import { Button, Form } from 'react-bootstrap'
-import history from '../../../history';
 
 const Login = props => {
   // initializing dispatch
@@ -43,7 +42,7 @@ const Login = props => {
   const { email, password } = loginForm.user;
 
   if (!currentUser.base && Object.keys(currentUser).length !== 0) {
-    history.push('/');
+    props.history.push('/tasks');
   }
 
   // Component code

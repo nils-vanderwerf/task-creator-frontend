@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faTrash } from '@fortawesome/free-solid-svg-icons'
 
-const DeleteConfirmation = ({ taskToDelete, hideModal, confirmModal }) => {
+const DeleteConfirmation = ({task, handleDeleteTask, hideModal}) => {
     return (
         // <Modal show={show}>
             <>
@@ -15,7 +15,7 @@ const DeleteConfirmation = ({ taskToDelete, hideModal, confirmModal }) => {
                 <Button variant="default" onClick={hideModal}>
                 <FontAwesomeIcon icon={faTimes} /> Cancel
                 </Button>
-                <Button variant="danger" onClick={confirmModal}>
+                <Button variant="danger" onClick={handleDeleteTask}>
                 <FontAwesomeIcon icon={faTrash}/> Delete
                 </Button>
             </>

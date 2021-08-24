@@ -86,7 +86,7 @@ const updateTaskToDB = task => dispatch => {
     .catch(error => console.log(error))
 };
 
-const deleteTaskFromDB = (task) => dispatch => {
+const deleteTaskFromDB = task => dispatch => {
   console.log("deleted task", task)
   const config = {
     method: 'DELETE',

@@ -32,6 +32,10 @@ div.task li {
     width: 100%;
 }
 
+.svg-inline--fa {
+    margin-right: 5px;
+}
+
 .check-container {
     flex-wrap: wrap;
 }
@@ -76,6 +80,13 @@ button.create-button {
     margin: auto;
     margin-bottom: 40px;
 }
+
+/* @media screen and (min-width: 1200px) {
+
+    .all-tasks.main-container {
+        padding: 90px;
+    }
+} */
 
 @media screen and (max-width: 600px) {
 

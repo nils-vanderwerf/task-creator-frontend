@@ -25,18 +25,6 @@ const InputTaskForm = ({task}) => {
   const [confirmMessage, setConfirmMessage] = useContext(ConfirmMessageContext)
 // Setting up local state using the useState hook
 
-
-const [taskForm, setTaskForm] =
-useState({
-  task: {
-    id: taskToEdit && taskToEdit.id,
-    title: taskToEdit && taskToEdit.title,
-    description: taskToEdit && taskToEdit.description,
-    category_ids: checkedCats,
-    user_id: currentUser
-  }
-})
-
   useEffect(() => {
     if (localStorage.getItem('token')) {
       dispatch(userActions.getCurrentUser());
@@ -57,7 +45,21 @@ useEffect(() => {
   taskToEdit && taskToEdit.categories && setCheckedCats(taskToEdit.categories.map(category => category.id))
 }, [])
 
+<<<<<<< HEAD
 
+=======
+const [taskForm, setTaskForm] =
+useState({
+  task: {
+    id: taskToEdit && taskToEdit.id,
+    title: taskToEdit && taskToEdit.title,
+    description: taskToEdit && taskToEdit.description,
+    category_ids: checkedCats,
+    user_id: currentUser
+  }
+})
+console.log(taskForm)
+>>>>>>> main
   const handleCheckBoxChange = event => {
     let array = [...checkedCats]
     let index = array.indexOf(event.target.value)
@@ -101,17 +103,17 @@ useEffect(() => {
     const formValidateError = () => {
       const titleErrorTag = document.getElementById('title-error')
       const descriptionErrorTag = document.getElementById('description-error')
-      if (taskForm.task.title === '') {
+      if (taskForm.task.title === null) {
         titleErrorTag.innerHTML = "Title can't be blank"
       }
-      if (taskForm.task.description === '')  {
+      if (taskForm.task.description === null)  {
         descriptionErrorTag.innerHTML = "Description can't be blank"
       }
     }
 
     const handleCreateTask = e => {
       e.preventDefault();
-      if (taskForm.task.title === '' || taskForm.task.description === '') formValidateError()
+      if (taskForm.task.title === null || taskForm.task.description === null) formValidateError()
       else {
       dispatch(taskActions.createTaskToDB(taskForm));
       setConfirmMessage(`${taskForm.task.title} has been created.`)
@@ -121,7 +123,7 @@ useEffect(() => {
 
     const handleEdit = e => {
       e.preventDefault();
-      if (taskForm.task.title === '' || taskForm.task.description === '') formValidateError()
+      if (taskForm.task.title === null || taskForm.task.description === null) formValidateError()
       else {
         dispatch(taskActions.updateTaskToDB(taskForm));
         taskForm.categories = taskForm.category_ids
