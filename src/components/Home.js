@@ -15,14 +15,14 @@ const Home = (props) => {
     }, [dispatch])
 
     return (
-        <>
+        <div className="main-container">
             {localStorage.getItem('token')
                 ?
                 <TaskList />
                 :
                 <Login />
             }
-        </>
+        </div>
     )
 };
 
