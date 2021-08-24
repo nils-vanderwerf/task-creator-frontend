@@ -60,7 +60,7 @@ const TaskList = (props) => {
                     }
                     {tasks?.map(
                         (task) => (
-                            <div className="task col-sm-4" key={`task-${task.id}`}>
+                            <div className="task col-xs-12 col-sm-6 col-md-4" key={`task-${task.id}`}>
                                 <TaskItem
                                     taskId={task.id}
                                     showModal={showModal}
