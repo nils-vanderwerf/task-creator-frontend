@@ -45,9 +45,6 @@ useEffect(() => {
   taskToEdit && taskToEdit.categories && setCheckedCats(taskToEdit.categories.map(category => category.id))
 }, [])
 
-<<<<<<< HEAD
-
-=======
 const [taskForm, setTaskForm] =
 useState({
   task: {
@@ -59,7 +56,6 @@ useState({
   }
 })
 console.log(taskForm)
->>>>>>> main
   const handleCheckBoxChange = event => {
     let array = [...checkedCats]
     let index = array.indexOf(event.target.value)
