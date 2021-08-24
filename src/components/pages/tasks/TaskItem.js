@@ -1,17 +1,15 @@
-import React, {useState, useEffect} from 'react'
-import { Link, useParams } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 // import taskActions from '../../redux/actions/taskAction';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllTasks } from '../../../redux/actions/taskActions';
 import './Tasks.style.css'
 import ButtonContainer from './ButtonContainer';
-import history from '../../../history';
 
 const TaskItem = ({taskId, taskToDelete, showState, showModal, hideModal, confirmMessage}) => {
     const dispatch = useDispatch();
     const tasks = useSelector(state => state.tasks)
-    const params = useParams()
     const task = tasks.find(task => task["id"] === taskId )
 
     useEffect(() => {

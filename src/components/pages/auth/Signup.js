@@ -14,16 +14,6 @@ const Signup = props => {
   const dispatch = useDispatch();
   let currentUser = useSelector(state => state.currentUser)
 
-  // Setting up local state using the useState hook
-  // const [signupForm, setSignupForm] = useState({
-  //   user: {
-  //     email: '',
-  //     password: '',
-  //     first_name: '',
-  //     last_name: ''
-  //   }
-  // });
-
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -35,7 +25,6 @@ const Signup = props => {
       const formData = { 
         user: values
     }
-    console.log("Form data", formData)
     submitForm(formData)
   },
     userValidationSchema
@@ -46,28 +35,20 @@ const Signup = props => {
   }
 
   const submitForm = (formData) => {
-    console.log("B4 DISPATCH >> ", currentUser);
     dispatch(userActions.newUserToDB(formData));
-    console.log("CURRENT USER IN SUBMIT FORM", currentUser)
   };
 
 
   if (!currentUser.errorMessage && Object.keys(currentUser).length !== 0) {
-    console.log('CurrentUser in Signup 2 >> ', currentUser);
     props.history.push('/');
   }
 
-  // // Destructuring keys from our local state to use in the form
-  // console.log("destructured:", signupForm.user)
-  // const { email, password, first_name, last_name } = signupForm.user;
 
-  // Component code
   return (
     <div className="auth-form col-12">
        <div className="form-inner-content align-items-center justify-content-center col-sm-4">
       <h1 className="auth-header mb-4">Create a new account</h1>
 
-     
       <Form className="form" 
         onSubmit={
           (event) => {

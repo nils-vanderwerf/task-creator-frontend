@@ -13,7 +13,7 @@ const ShowTask = (props) => {
 
     console.log("currentUser", currentUser)
     console.log("Tasks on show page", props.tasks)
-    const taskToShow = tasks.find(task => task.id == params.id)
+    const taskToShow = tasks.find(task => task.id === params.id)
     console.log(props)
 
     useEffect(() => {

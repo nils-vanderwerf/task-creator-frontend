@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
+    "npm": "7.19.1",
     "node": "15.x"
   },
+  "proxy": "https://task-creator-app.herokuapp.com/",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-regular-svg-icons": "^5.15.4",

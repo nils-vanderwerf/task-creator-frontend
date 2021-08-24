@@ -37,7 +37,6 @@ const TaskList = (props) => {
     const handleDeleteTask = () => {
         console.log("Task to delete", taskToDelete)
         dispatch(taskActions.deleteTaskFromDB(taskToDelete))
-        let taskMessage = document.getElementById('confirm-message')
         setConfirmMessage(`Task '${taskToDelete.title}' has been deleted` )
         hideModal()
         dispatch(getAllTasks())

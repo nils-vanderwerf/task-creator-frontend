@@ -55,7 +55,7 @@ useState({
     user_id: currentUser
   }
 })
-console.log(taskForm)
+
   const handleCheckBoxChange = event => {
     let array = [...checkedCats]
     let index = array.indexOf(event.target.value)
@@ -81,7 +81,6 @@ console.log(taskForm)
     
     // Controlled form functions
     const handleChange = e => {
-      console.log(e.target.name)
       if (e.target.name === 'description' && e.target.value !== '') {
         document.getElementById('description-error').innerHTML = ''
       }
