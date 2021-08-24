@@ -40,7 +40,7 @@ export const getAllTasks = () => dispatch => {
       Authorization: `Bearer ${localStorage.token}`
     }
   };
-  fetch(`https://aqueous-gorge-85666.herokuapp.com/users/${localStorage.getItem('user_id')}/tasks`, config)
+  fetch(`https://task-creator-app.herokuapp.com/users/${localStorage.getItem('user_id')}/tasks`, config)
     .then(r => r.json())
     .then(tasks => {
       dispatch(loadTasks(tasks));
@@ -60,7 +60,7 @@ const createTaskToDB = taskObj => dispatch => {
   };
   console.log("Task", taskObj.task)
   console.log("localStorage.getItem('user_id')", localStorage.getItem('user_id'))
-  fetch(`https://aqueous-gorge-85666.herokuapp.com/users/${localStorage.getItem('user_id')}/tasks`, config)
+  fetch(`https://task-creator-app.herokuapp.com/users/${localStorage.getItem('user_id')}/tasks`, config)
     .then(result => result.json())
     .then(data => {
       console.log("the data", data)
@@ -80,7 +80,7 @@ const updateTaskToDB = task => dispatch => {
     body: JSON.stringify(task)
   };
 
-  fetch(`https://aqueous-gorge-85666.herokuapp.com/users/${localStorage.getItem('user_id')}/tasks/${task.task.id}`, config)
+  fetch(`https://task-creator-app.herokuapp.com/users/${localStorage.getItem('user_id')}/tasks/${task.task.id}`, config)
     .then(result => result.json())
     .then(dispatch(getAllTasks()))
     .catch(error => console.log(error))
@@ -96,7 +96,7 @@ const deleteTaskFromDB = task => dispatch => {
     }
   };
   
-  fetch(`https://aqueous-gorge-85666.herokuapp.com/users/${localStorage.getItem('user_id')}/tasks/${task.id}`, config)
+  fetch(`https://task-creator-app.herokuapp.com/users/${localStorage.getItem('user_id')}/tasks/${task.id}`, config)
     .then(result => result.json())
     .then(() => {
       
