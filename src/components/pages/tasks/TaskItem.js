@@ -17,6 +17,7 @@ const TaskItem = ({taskId, taskToDelete, showState, showModal, hideModal, confir
     useEffect(() => {
         dispatch(getAllTasks())
     }, [])
+    
 
     return (
         <>

@@ -1,13 +1,16 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import taskActions from '../../../redux/actions/taskActions'
 import userActions from '../../../redux/actions/userActions'
+import { ShowModalContext } from '../../../contexts/showModal';
 import ButtonContainer from './ButtonContainer'
+import { Modal } from 'react-bootstrap'
 
 const ShowTask = (props) => {
     const currentUser = useSelector(state => state.currentUser)
     const tasks = useSelector(state => state.tasks)
+    const [showState, setShowState] = useContext(ShowModalContext)
     const dispatch = useDispatch()
     const params = useParams()
     const taskToShow = tasks.find(task => task.id == params.id)
