@@ -42,7 +42,7 @@ const ButtonContainer = ({ task }) => {
         setConfirmMessage(`Task '${taskToDelete.title}' has been deleted`)
         hideModal()
         dispatch(getAllTasks())
-        history.push('/');
+        history.push('/tasks');
     }
 
 
