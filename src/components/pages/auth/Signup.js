@@ -1,20 +1,29 @@
-
-import React, { useState } from 'react';
-import { Jumbotron } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux';
 import userActions from '../../../redux/actions/userActions';
 import './Form.style.css'
 import { Button, Form} from 'react-bootstrap'
 // import { FormGroup } from '@material-ui/core';
-import { userValidationSchema } from '../../../Validations/ValidationSchema';
+import { validationSchema } from '../../../Validations/ValidationSchema';
 // import * as yup from "yup"
 import { useFormik } from 'formik';
+import * as yup from 'yup'
+import { yupResolver } from "@hookform/resolvers/yup";
 
 
 const Signup = props => {
   // initializing dispatch
   const dispatch = useDispatch();
   let currentUser = useSelector(state => state.currentUser)
+
+  // Setting up local state using the useState hook
+  // const [signupForm, setSignupForm] = useState({
+  //   user: {
+  //     email: '',
+  //     password: '',
+  //     first_name: '',
+  //     last_name: ''
+  //   }
+  // });
 
   const formik = useFormik({
     initialValues: {
@@ -27,17 +36,14 @@ const Signup = props => {
       const formData = { 
         user: values
     }
-    console.log("Form data", formData)
     submitForm(formData)
   },
-    userValidationSchema
+    validationSchema
   });
 
 
   const submitForm = (formData) => {
-    console.log("B4 DISPATCH >> ", currentUser);
     dispatch(userActions.newUserToDB(formData));
-    console.log("CURRENT USER IN SUBMIT FORM", currentUser)
   };
 
 

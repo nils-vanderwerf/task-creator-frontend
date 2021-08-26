@@ -106,16 +106,21 @@ useState({
         titleErrorTag.innerHTML = "Title can't be blank"
       }
       if (taskForm.task.description === undefined ||
-        taskForm.task.description === null ||
-        taskForm.task.description === '')  {
+          taskForm.task.description === null ||
+          taskForm.task.description === '')  {
         descriptionErrorTag.innerHTML = "Description can't be blank"
       }
     }
 
     const handleCreateTask = e => {
-      console.log("Task Form", taskForm )
       e.preventDefault();
-      if (taskForm.task.title === '' || taskForm.task.title === undefined || taskForm.task.description === '' ||  taskForm.task.description === undefined ) formValidateError()
+      if (taskForm.task.title === '' || 
+          taskForm.task.title === undefined ||
+          taskForm.task.title === null || 
+          taskForm.task.description === '' ||  
+          taskForm.task.description === undefined || 
+          taskForm.task.title === null)
+           formValidateError()
       else {
       dispatch(taskActions.createTaskToDB(taskForm));
       setConfirmMessage(`${taskForm.task.title} has been created.`)
@@ -124,9 +129,14 @@ useState({
     };
 
     const handleEdit = e => {
-      console.
       e.preventDefault();
-      if (taskForm.task.title === '' || taskForm.task.description === '') formValidateError()
+      if (taskForm.task.title === '' || 
+      taskForm.task.title === undefined ||
+      taskForm.task.title === null || 
+      taskForm.task.description === '' ||  
+      taskForm.task.description === undefined || 
+      taskForm.task.title === null)
+       formValidateError()
       else {
         dispatch(taskActions.updateTaskToDB(taskForm));
         taskForm.categories = taskForm.category_ids
