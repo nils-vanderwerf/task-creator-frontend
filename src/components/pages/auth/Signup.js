@@ -1,4 +1,6 @@
-import React from 'react';
+
+import React, { useState } from 'react';
+import { Jumbotron } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux';
 import userActions from '../../../redux/actions/userActions';
 import './Form.style.css'
@@ -14,16 +16,6 @@ const Signup = props => {
   const dispatch = useDispatch();
   let currentUser = useSelector(state => state.currentUser)
 
-  // Setting up local state using the useState hook
-  // const [signupForm, setSignupForm] = useState({
-  //   user: {
-  //     email: '',
-  //     password: '',
-  //     first_name: '',
-  //     last_name: ''
-  //   }
-  // });
-
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -35,18 +27,17 @@ const Signup = props => {
       const formData = { 
         user: values
     }
-
+    console.log("Form data", formData)
     submitForm(formData)
   },
     userValidationSchema
   });
 
-  const removeErrorMessage = (event) => {
-    dispatch(userActions.clearUserAction())
-  }
 
   const submitForm = (formData) => {
+    console.log("B4 DISPATCH >> ", currentUser);
     dispatch(userActions.newUserToDB(formData));
+    console.log("CURRENT USER IN SUBMIT FORM", currentUser)
   };
 
 
@@ -106,12 +97,7 @@ const Signup = props => {
             name="email"
             placeholder="Enter Email"
             value={formik.values.email}
-            onChange={(event) => {
-              event.preventDefault();
-              removeErrorMessage() 
-              formik.handleChange(event)
-            }
-          }
+            onChange={formik.handleChange}
           />
              {formik.touched.email && formik.errors.email ? (
          <p className="error-message">
@@ -134,17 +120,16 @@ const Signup = props => {
             value={formik.values.password}
             onChange={formik.handleChange}
           />
-          {formik.touched.password && formik.errors.password &&
+          {formik.touched.password && formik.errors.password ? (
          <p className="error-message">
            <strong>{formik.errors.password}</strong>
            </p>
-       }
-       {/* Current user base indicates that there are errors */}
-       {currentUser.base &&
+       ) : null}
+       {currentUser.base ? (
          <p className="error-message">
            <strong>{currentUser.errorMessage}</strong>
            </p>
-      }
+       ) : null}
         </Form.Group>
         <Button type="submit">Sign Up</Button>
       </Form>

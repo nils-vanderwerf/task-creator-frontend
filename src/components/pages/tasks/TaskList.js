@@ -2,15 +2,12 @@ import React, { useState, useEffect, useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Alert, Button } from "react-bootstrap";
-import taskActions, { getAllTasks } from '../../../redux/actions/taskActions'
+import { getAllTasks } from '../../../redux/actions/taskActions'
 import { ConfirmMessageContext } from '../../../contexts/confirmMessageContext';
 import TaskItem from './TaskItem'
 import './Tasks.style.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
-import DeleteConfirmation from './DeleteConfirmation';
-import { Modal } from 'react-bootstrap'
-import history from '../../../history';
 import { ShowModalContext } from '../../../contexts/showModal';
 
 

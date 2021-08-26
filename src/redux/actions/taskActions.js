@@ -83,7 +83,6 @@ const updateTaskToDB = task => dispatch => {
 };
 
 const deleteTaskFromDB = task => dispatch => {
-  console.log("TASK IN REDUX", task)
   const config = {
     method: 'DELETE',
     headers: {

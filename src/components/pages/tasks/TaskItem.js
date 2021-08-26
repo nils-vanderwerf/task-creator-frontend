@@ -1,28 +1,25 @@
-import React, {useState, useEffect} from 'react'
-import { Link, useParams } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 // import taskActions from '../../redux/actions/taskAction';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllTasks } from '../../../redux/actions/taskActions';
 import './Tasks.style.css'
 import ButtonContainer from './ButtonContainer';
-import history from '../../../history';
 
-const TaskItem = ({taskId, taskToDelete, showState, showModal, hideModal, confirmMessage}) => {
+const TaskItem = ({ taskId, showModal }) => {
     const dispatch = useDispatch();
     const tasks = useSelector(state => state.tasks)
-    const params = useParams()
-    const task = tasks.find(task => task["id"] === taskId )
+    const task = tasks.find(task => task["id"] === taskId)
 
     useEffect(() => {
         dispatch(getAllTasks())
     }, [])
-    
 
     return (
         <>
             <li>
-            <Link key={taskId} to={`/tasks/${task.id}`} task={task} className="link-button">
+                <Link key={taskId} to={`/tasks/${task.id}`} task={task} className="link-button">
                     <h2>{task.title}</h2>
                 </Link>
                 <p>{task.description}</p>

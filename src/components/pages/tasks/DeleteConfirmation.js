@@ -2,11 +2,8 @@ import React, { useContext } from 'react'
 import { Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faTrash } from '@fortawesome/free-solid-svg-icons'
-import { ShowModalContext } from '../../../contexts/showModal';
-
 
 const DeleteConfirmation = ({task, handleDeleteTask, hideModal}) => {
-    const [showState, setShowState] = useContext(ShowModalContext)
     return (
         // <Modal show={show}>
         <>

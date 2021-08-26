@@ -23,16 +23,10 @@ const ButtonContainer = ({ task }) => {
 
     const showModal = (event) => {
         const targetInt = parseInt(event.target.id)
-        console.log("Task Int", targetInt)
         const findTask = tasks.find(item => item["id"] === targetInt)
-        console.log("FIND TASK >> ", findTask)
         setTaskToDelete(findTask)
         setShowState(true)
     }
-  
-    useEffect(() => {
-        console.log("Set task to delete", taskToDelete)
-    }, [taskToDelete])
 
     const hideModal = () => setShowState(false)
 
