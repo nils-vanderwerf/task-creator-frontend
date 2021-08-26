@@ -1,7 +1,15 @@
+import React, { useEffect, useContext } from 'react'
+import { useSelector, useDispatch } from 'react-redux';
 import { Button } from "react-bootstrap";
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { ShowModalContext } from '../../../contexts/showModal';
+import { ConfirmMessageContext } from '../../../contexts/confirmMessageContext';
+import { TaskToDeleteContext } from '../../../contexts/taskToDeleteContext';
+import taskActions, { getAllTasks } from '../../../redux/actions/taskActions'
+import DeleteConfirmation from './DeleteConfirmation';
+import { Modal } from 'react-bootstrap'
 
 
 const ButtonContainer = ({ task }) => {
@@ -34,11 +42,14 @@ const ButtonContainer = ({ task }) => {
         setConfirmMessage(`Task '${taskToDelete.title}' has been deleted`)
         hideModal()
         dispatch(getAllTasks())
+<<<<<<< HEAD
         history.push('/');
+=======
+        history.push('/tasks');
+>>>>>>> deploy3
     }
 
 
-const ButtonContainer = ({ task, showModal }) => {
     return (
         <div className="button-container d-flex justify-content-between">
             <Link to={{
@@ -46,12 +57,23 @@ const ButtonContainer = ({ task, showModal }) => {
             }}>
                 <Button className="col-6"
                     variant="primary">
-                    <FontAwesomeIcon icon={faEdit} /> Edit 
+                    <FontAwesomeIcon icon={faEdit} /> Edit
                 </Button>
             </Link>
             <Button className="col-6" variant="primary" id={task.id} onClick={showModal}>
-            <FontAwesomeIcon icon={faTrash}/> Delete 
+                <FontAwesomeIcon icon={faTrash} /> Delete
             </Button>
+            <Modal show={showState} onHide={hideModal}>
+                <Modal.Header closeButton onClick={hideModal}>
+                    <Modal.Title>Delete Confirmation</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <DeleteConfirmation 
+                    showModal={showModal} 
+                    hideModal={hideModal}
+                    handleDeleteTask={handleDeleteTask} />
+                </Modal.Body>
+            </Modal>
         </div>
     )
 }

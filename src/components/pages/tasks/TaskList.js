@@ -11,36 +11,21 @@ import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 import DeleteConfirmation from './DeleteConfirmation';
 import { Modal } from 'react-bootstrap'
 import history from '../../../history';
+import { ShowModalContext } from '../../../contexts/showModal';
 
 
 const TaskList = (props) => {
     const tasks = useSelector(state => state.tasks)
     const [confirmMessage, setConfirmMessage] = useContext(ConfirmMessageContext)
-    const [taskToDelete, setTaskToDelete] = useState()
+    const [showState, setShowState] = useState(ShowModalContext)
 
     const dispatch = useDispatch()
 
-    const [showState, setShowState] = useState(false)
-    const showModal = (event) => {
-        const targetInt = parseInt(event.target.id)
-        setTaskToDelete(tasks.find(task => task["id"] === targetInt))
-        setShowState(true)
-    }
     const hideModal = () => setShowState(false)
 
     useEffect(() => {
         dispatch(getAllTasks())
     }, [dispatch])
-
-
-    const handleDeleteTask = () => {
-        dispatch(taskActions.deleteTaskFromDB(taskToDelete))
-        let taskMessage = document.getElementById('confirm-message')
-        setConfirmMessage(`Task '${taskToDelete.title}' has been deleted` )
-        hideModal()
-        dispatch(getAllTasks())
-        history.push('/tasks');
-    }
 
     return (
         <>
@@ -61,7 +46,6 @@ const TaskList = (props) => {
                             <div className="task col-sm-4" key={`task-${task.id}`}>
                                 <TaskItem
                                     taskId={task.id}
-                                    showModal={showModal}
                                     hideModal={hideModal}
                                     showState={showState}
                                     confirmMessage={setConfirmMessage}
@@ -69,19 +53,8 @@ const TaskList = (props) => {
                             </div>
                         )
                     )
-                }
+                    }
                 </ul>
-                <Modal show={showState}onHide={hideModal}>
-                <Modal.Header closeButton onClick={hideModal}>
-                    <Modal.Title>Delete Confirmation</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <DeleteConfirmation
-                        hideModal={hideModal}
-                        handleDeleteTask={handleDeleteTask}
-                    />
-                </Modal.Body>
-            </Modal>
             </div>
         </>
     )
