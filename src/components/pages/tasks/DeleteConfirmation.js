@@ -7,18 +7,18 @@ const DeleteConfirmation = ({task, handleDeleteTask, hideModal}) => {
     return (
         // <Modal show={show}>
         <>
-                <div className="alert alert-danger">
-                Are you sure you want to delete this task?
-                    {/* {message} */}
-                </div>
-                {/* onhide modal */}
-                <Button variant="default" onClick={hideModal}>
+            <div className="alert alert-danger">
+            Are you sure you want to delete this task?
+                {/* {message} */}
+            </div>
+            {/* onhide modal */}
+            <Button variant="default" onClick={hideModal}>
                 <FontAwesomeIcon icon={faTimes} /> Cancel
-                </Button>
-                <Button variant="danger" onClick={handleDeleteTask}>
+            </Button>
+            <Button variant="danger" onClick={handleDeleteTask}>
                 <FontAwesomeIcon icon={faTrash}/> Delete
-                </Button>
-                </>
+            </Button>
+            </>
     )
 }
 

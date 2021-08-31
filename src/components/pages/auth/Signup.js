@@ -6,24 +6,12 @@ import { Button, Form} from 'react-bootstrap'
 import { validationSchema } from '../../../Validations/ValidationSchema';
 // import * as yup from "yup"
 import { useFormik } from 'formik';
-import * as yup from 'yup'
-import { yupResolver } from "@hookform/resolvers/yup";
 
 
 const Signup = props => {
   // initializing dispatch
   const dispatch = useDispatch();
   let currentUser = useSelector(state => state.currentUser)
-
-  // Setting up local state using the useState hook
-  // const [signupForm, setSignupForm] = useState({
-  //   user: {
-  //     email: '',
-  //     password: '',
-  //     first_name: '',
-  //     last_name: ''
-  //   }
-  // });
 
   const formik = useFormik({
     initialValues: {

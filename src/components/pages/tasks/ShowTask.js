@@ -33,4 +33,4 @@ const ShowTask = (props) => {
     )
 }
 
-export default ShowTask
+export default ShowTask;

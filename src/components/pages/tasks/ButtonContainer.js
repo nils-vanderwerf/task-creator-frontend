@@ -39,7 +39,6 @@ const ButtonContainer = ({ task }) => {
         history.push('/tasks');
     }
 
-
     return (
         <div className="button-container d-flex justify-content-between">
             <Link to={{
